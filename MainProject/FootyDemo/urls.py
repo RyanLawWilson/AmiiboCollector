@@ -6,4 +6,5 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='footy'),
+    path('/AddToCollection/', views.addJersey, name='createJersey'),
     ]

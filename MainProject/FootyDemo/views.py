@@ -1,5 +1,13 @@
 from django.shortcuts import render
+from .models import Jersey
+from .forms import JerseyForm
 
 # Create your views here.
 def index(request):
-    return render(request, 'FootyDemo/footy_index.html')
+    get_jerseys = Jersey.Jerseys.all()
+    context = {'jerseys': get_jerseys}
+    return render(request, 'FootyDemo/footy_index.html', context)
+
+def addJersey(request):
+    form = JerseyForm(request.POST or None)
+    return render(request, 'FootyDemo/footy_create.html', {'form':form})
