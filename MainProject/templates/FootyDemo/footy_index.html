@@ -1,32 +1,34 @@
 {% extends 'FootyDemo/footy_base.html' %}
 {% load staticfiles %}
 {% block templatecontent %}
-<div class="flex-container">
-    <table>
-        <tr>
-            <th>Team Name</th>
-            <th>Country</th>
-            <th>Manufacturer</th>
-            <th>Size</th>
-            <th>Year</th>
-            <th>Primary Color</th>
-            <th>Authentic</th>
-        </tr>
-        {% for jersey in jerseys %}
+<section>
+    <div class="flex-container">
+        <table>
             <tr>
-                <td>{{jersey.team}}</td>
-                <td>{{jersey.country}}</td>
-                <td>{{jersey.manufacturer}}</td>
-                <td>{{jersey.size}}</td>
-                <td>{{jersey.year}}</td>
-                <td>{{jersey.primary_color}}</td>
-                <td>
-                    {% if jersey.authentic %} &#8730 {% endif %}
-                </td>
-                <td><a href="{{jersey.pk}}/Details">Details</a></td>
+                <th>Team Name</th>
+                <th>Country</th>
+                <th>Manufacturer</th>
+                <th>Size</th>
+                <th>Year</th>
+                <th>Primary Color</th>
+                <th>Authentic</th>
             </tr>
-        {% endfor %}
-    </table>
-    <button type="button" onclick=" location.href='{% url 'createJersey' %}'">Add to Collection</button>
-</div>
+            {% for jersey in jerseys %}
+                <tr>
+                    <td>{{jersey.team}}</td>
+                    <td>{{jersey.country}}</td>
+                    <td>{{jersey.manufacturer}}</td>
+                    <td>{{jersey.size}}</td>
+                    <td>{{jersey.year}}</td>
+                    <td>{{jersey.primary_color}}</td>
+                    <td>
+                        {% if jersey.authentic %} &#8730 {% endif %}
+                    </td>
+                    <td><a href="{{jersey.pk}}/Details">Details</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+        <button type="button" onclick=" location.href='{% url 'createJersey' %}'">Add to Collection</button>
+    </div>
+</section>
 {% endblock %}
