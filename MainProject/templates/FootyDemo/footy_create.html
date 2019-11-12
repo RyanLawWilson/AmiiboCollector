@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% block templatecontent %}
     <div class="flex-container">
-        {{ form.as_p }}
+        {% csrf_token %}
+        {{ form.as_table }}
     </div>
 {% endblock %}

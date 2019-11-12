@@ -1,0 +1,9 @@
+{% extends 'FootyDemo/footy_base.html' %}
+{% load staticfiles %}
+{% block templatecontent %}
+<div class="flex-container">
+    {% csrf_token %}
+    {{form.as_table}}
+    <button type="button" onclick=" location.href='{% url 'footy' %}'">Back to Collection</button>
+</div>
+{% endblock %}
