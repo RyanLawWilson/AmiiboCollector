@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Jersey
 from .forms import JerseyForm
 
@@ -20,3 +20,9 @@ def add_jersey(request):
         print(form.errors)
         form = JerseyForm()
     return render(request, 'FootyDemo/footy_create.html', {'form':form})
+
+def details_jersey(request, pk):
+    pk = int(pk)
+    jersey = get_object_or_404(Jersey, pk=pk)
+    context={'jersey':jersey}
+    return render(request,'FootyDemo/footy_details.html', context)

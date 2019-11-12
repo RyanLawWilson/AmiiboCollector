@@ -11,7 +11,7 @@ class Jersey(models.Model):
     size = models.CharField(max_length=20)
     primary_color = models.CharField(max_length=20, blank=True)
     authentic = models.BooleanField(blank=True)
-    year = models.DateTimeField(blank=True)
+    year = models.PositiveIntegerField(blank=True, null=True)
 
     Jerseys = models.Manager()
 
