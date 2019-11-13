@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block templatecontent %}
 <section>
-    <div class="flex-container">
+    <div class="projects-holder">
         <table>
             <tr>
                 <th>Team Name</th>
@@ -28,7 +28,7 @@
                 </tr>
             {% endfor %}
         </table>
-        <button type="button" onclick=" location.href='{% url 'createJersey' %}'">Add to Collection</button>
+        <button class="primary-bright-button" type="button" onclick=" location.href='{% url 'createJersey' %}'">Add to Collection</button>
     </div>
 </section>
 {% endblock %}

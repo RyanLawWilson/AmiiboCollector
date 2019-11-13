@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
 {% block appcontent %}
-<div class="jumbotron">Welcome to the Footy Demo App</div>
-    <a href="{% url 'footy' %}">Main Page</a>
-    <a href="{% url 'footyApi' %}">Footy API Service</a>
+    <section>
+        <div class="fluid-container wrapper">
+            Welcome to the Footy Demo App
+            <hr />
+            <a href="{% url 'footy' %}">Main Page</a> |
+            <a href="{% url 'footyApi' %}">Footy API Service</a>
+        </div>
+    </section>
     {% block templatecontent %}{% endblock %}
 {% endblock %}
 
