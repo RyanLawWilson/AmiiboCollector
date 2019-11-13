@@ -2,6 +2,8 @@
 {% load staticfiles %}
 {% block appcontent %}
 <div class="jumbotron">Welcome to the Footy Demo App</div>
+    <a href="{% url 'footy' %}">Main Page</a>
+    <a href="{% url 'footyApi' %}">Footy API Service</a>
     {% block templatecontent %}{% endblock %}
 {% endblock %}
 

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Jersey
 from .forms import JerseyForm
+from .api_service import *
 
 # Create your views here.
 
@@ -52,3 +53,9 @@ def delete_jersey(request, pk):
         return redirect('footy')
     else:
         return render(request, 'FootyDemo/footy_delete.html', context)
+
+
+def api_response(request):
+    context = GetAreas()
+    print(context)
+    return render(request, 'FootyDemo/footy_api.html', context)

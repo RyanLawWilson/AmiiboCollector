@@ -1,0 +1,11 @@
+{% extends 'FootyDemo/footy_base.html' %}
+{% load staticfiles %}
+{% block templatecontent %}
+<section>
+    <div class="flex-container">
+        {% for area in childAreas %}
+            <p>{{area.name}}</p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}
