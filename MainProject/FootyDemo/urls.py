@@ -11,4 +11,5 @@ urlpatterns = [
     path('<int:pk>/Edit/', views.edit_jersey, name='jerseyEdit'),
     path('<int:pk>/Delete/', views.delete_jersey, name='jerseyDelete'),
     path('ApiService/', views.api_response, name='footyApi'),
+    path('<int:code>/Matches/', views.matches, name='footyMatches'),
     ]
