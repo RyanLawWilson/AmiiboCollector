@@ -2,11 +2,12 @@
 {% load staticfiles %}
 {% block appcontent %}
     <section>
-        <div class="fluid-container wrapper">
+        <div class="flex-container wrapper">
             Welcome to the Footy Demo App
             <hr />
             <a href="{% url 'footy' %}">Main Page</a> |
-            <a href="{% url 'footyApi' %}">Footy API Service</a>
+            <a href="{% url 'footyApi' %}">Footy API Service</a> |
+            <a href="{% url 'MLSNews' %}">News from the MLS</a>
         </div>
     </section>
     {% block templatecontent %}{% endblock %}

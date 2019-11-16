@@ -12,4 +12,5 @@ urlpatterns = [
     path('<int:pk>/Delete/', views.delete_jersey, name='jerseyDelete'),
     path('ApiService/', views.api_response, name='footyApi'),
     path('<int:code>/Matches/', views.matches, name='footyMatches'),
+    path('MLSNews/', views.mls_news, name='MLSNews'),
     ]

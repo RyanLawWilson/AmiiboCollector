@@ -1,0 +1,11 @@
+{% extends 'FootyDemo/footy_base.html' %}
+{% load staticfiles %}
+{% block templatecontent %}
+<section>
+    <div class="flex-container wrapper">
+        {% for article in articles%}
+            <p><a href="{{article.url}}">{{article.title}}</a> <span>{{article.date}}</span></p>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

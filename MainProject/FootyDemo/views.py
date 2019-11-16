@@ -4,6 +4,9 @@ from .models import Jersey
 from .forms import JerseyForm
 from .api_service import *
 from django.utils import timezone
+import requests
+from bs4 import BeautifulSoup as BS
+import pandas as pd
 
 # Create your views here.
 
@@ -96,6 +99,25 @@ def matches(request, code):
     context.update({'local_tz':timezone.get_current_timezone_name()})
 
     return render(request, 'FootyDemo/footy_matches.html', context)
+
+
+def mls_news(request):
+    # Get MLSSoccer.com/news
+    source = requests.get("https://www.mlssoccer.com/news")
+    print(source.status_code)
+    soup = BS(source.content, 'html.parser')
+    # Search for divs with class node-title
+    nodes = soup.find_all(class_="node-title")
+    articles = []
+    for node in nodes:
+        title = node.find('a').get_text()
+        link = node.find('a').get('href')
+        timestamp = node.find_next_siblings(class_="timestamp")[0].get_text()
+        url = "https://www.mlssoccer.com" + link
+        article={'title':title, 'url': url, 'date': timestamp}
+        articles.append(article)
+    context={'articles': articles}
+    return render(request, 'FootyDemo/mls_news.html', context)
 
 
 def convert_to_localtime(utctime):
