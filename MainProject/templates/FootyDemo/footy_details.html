@@ -31,11 +31,11 @@
             <tr>
                 <th>Authentic</th>
                 <td>
-                        {% if jersey.authentic %} &#8730 {% else %} No {% endif %}
+                        {% if jersey.authentic %} &#8730 {% else %} No {% endif %} <!-- check mark if authentic, x was confusing, so no if not -->
                 </td>
             </tr>
         </table>
-        <button type="button" onclick=" location.href='../../{{jersey.pk}}/Edit'">Edit this Jersey</button>
+        <button type="button" onclick=" location.href='../../{{jersey.pk}}/Edit'">Edit this Jersey</button> <!-- will redirect to this items edit page -->
         <button type="button" onclick=" location.href='../../{{jersey.pk}}/Delete'">Delete this Jersey</button>
         <hr />
         <button type="button" onclick=" location.href='{% url 'footy' %}'">Back to Collection</button>

@@ -4,11 +4,11 @@
 <section>
     <div class="flex-container wrapper">
         <form method="post">
-            {% csrf_token %}
+            {% csrf_token %} <!-- Django needs a csrf token for every form -->
             <label>Select an Area of the World:</label>
             <select name="parentArea" id="parentArea">
-                {% for area in world.childAreas %}
-                    {% if parents.id == area.id %}
+                {% for area in world.childAreas %}  <!-- iterates through the returned options-->
+                    {% if parents.id == area.id %}  <!-- maintains the selected option if postback -->
                         <option value="{{area.id}}" selected>{{area.name}}</option>
                     {% else %}
                         <option value="{{area.id}}">{{area.name}}</option>
@@ -18,25 +18,25 @@
             <button type="submit" name="submit" value="submit">Select Area</button>
         </form>
 
-        {% if parents != None %}
+        {% if parents != None %} <!-- checks if the parent dropdown has been selected before rendering -->
             <form method="post">
                 {% csrf_token %}
                 <label>Select a Country:</label>
                 <select name="childArea" id="childArea">
-                    {% for area in parents.childAreas %}
-                        {% if childArea == area.id %}
+                    {% for area in parents.childAreas %}    <!-- iterates through the areas -->
+                        {% if childArea == area.id %}       <!-- maintains the selected option on postback -->
                             <option value="{{area.id}}" selected>{{area.name}}</option>
                         {% else %}
-                            <option value="{{area.id}}">{{area.name}}</option>
+                            <option value="{{area.id}}">{{area.name}}</option> <!-- sets the value to the id and the selection display to the name -->
                         {% endif %}
                     {% endfor %}
                 </select>
-                <input type="hidden" name="parentArea" value="{{parents.id}}">
+                <input type="hidden" name="parentArea" value="{{parents.id}}"> <!-- sends the parent id back on postback -->
                 <button type="submit" name="submit" value="submit">Filter for Country</button>
-                <button type="submit" name="submit" value="noFilter">Get All Leagues</button>
+                <button type="submit" name="submit" value="noFilter">Get All Leagues</button> <!-- value will be captured on back end to determine handling -->
             </form>
 
-            {% if leagues != None %}
+            {% if leagues != None %} <!-- checks for data before populating -->
                 <form method="post">
                     {% csrf_token %}
                     <label>Select a League:</label>

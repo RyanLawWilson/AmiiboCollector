@@ -13,7 +13,7 @@
                 <th>Primary Color</th>
                 <th>Authentic</th>
             </tr>
-            {% for jersey in jerseys %}
+            {% for jersey in jerseys %}     <!-- creates a new row for each jersey in the collection -->
                 <tr>
                     <td>{{jersey.team}}</td>
                     <td>{{jersey.country}}</td>
@@ -24,7 +24,7 @@
                     <td>
                         {% if jersey.authentic %} &#8730 {% endif %}
                     </td>
-                    <td><a href="{{jersey.pk}}/Details">Details</a></td>
+                    <td><a href="{{jersey.pk}}/Details">Details</a></td>    <!-- creates a link for that specific jersey -->
                 </tr>
             {% endfor %}
         </table>

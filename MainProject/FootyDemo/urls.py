@@ -5,12 +5,12 @@ from . import views
 ## Third is the name of the pattern/function.
 
 urlpatterns = [
-    path('', views.index, name='footy'),
-    path('AddToCollection/', views.add_jersey, name='createJersey'),
-    path('<int:pk>/Details/', views.details_jersey, name='jerseyDetails'),
-    path('<int:pk>/Edit/', views.edit_jersey, name='jerseyEdit'),
-    path('<int:pk>/Delete/', views.delete_jersey, name='jerseyDelete'),
-    path('ApiService/', views.api_response, name='footyApi'),
-    path('<int:code>/Matches/', views.matches, name='footyMatches'),
-    path('MLSNews/', views.mls_news, name='MLSNews'),
+    path('', views.index, name='footy'),                                #index
+    path('AddToCollection/', views.add_jersey, name='createJersey'),    #add new jersey
+    path('<int:pk>/Details/', views.details_jersey, name='jerseyDetails'),  #get details for a single jersey
+    path('<int:pk>/Edit/', views.edit_jersey, name='jerseyEdit'),       #edit a single jersey
+    path('<int:pk>/Delete/', views.delete_jersey, name='jerseyDelete'), #delete a single jersey
+    path('ApiService/', views.api_response, name='footyApi'),           #main page for API service with dropdowns
+    path('<int:code>/Matches/', views.matches, name='footyMatches'),    #specific league page for matches
+    path('MLSNews/', views.mls_news, name='MLSNews'),                   #data scraped news from MLS
     ]

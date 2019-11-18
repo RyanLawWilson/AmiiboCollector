@@ -12,14 +12,14 @@
             {% for game in matches %}
                 <tr>
                     <td>
-                        {{game.date|date:"d-m-y"}} {{game.date|time:"h:i a"}}
+                        {{game.date|date:"d-m-y"}} {{game.date|time:"h:i a"}} <!-- uses built in filtering to display datetime -->
                     </td>
                     <td>
                         &nbsp&nbsp
                         {% if game.winner == "HOME_TEAM" %}
                             <i class="fas fa-trophy"></i>
                         {% else %}
-                            &nbsp&nbsp&nbsp&nbsp
+                            &nbsp&nbsp&nbsp&nbsp <!-- use blank spaces to account for space of the icon -->
                         {% endif %}
                         {{game.home_team}}
                     </td>

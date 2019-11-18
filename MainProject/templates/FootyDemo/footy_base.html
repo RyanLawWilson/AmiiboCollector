@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load staticfiles %}
+{% load staticfiles %} <!-- must load static files on every template, even though it extends another template -->
 {% block appcontent %}
     <section>
         <div class="flex-container wrapper">
@@ -10,6 +10,6 @@
             <a href="{% url 'MLSNews' %}">News from the MLS</a>
         </div>
     </section>
-    {% block templatecontent %}{% endblock %}
+    {% block templatecontent %}{% endblock %} <!-- section that all the template specific content will render within -->
 {% endblock %}
 
