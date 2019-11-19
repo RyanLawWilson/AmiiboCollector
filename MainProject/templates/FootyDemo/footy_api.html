@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block templatecontent %}
 <section>
-    <div class="flex-container wrapper">
+    <div class="flex-container footy">
         <form method="post">
             {% csrf_token %} <!-- Django needs a csrf token for every form -->
             <label>Select an Area of the World:</label>
@@ -15,7 +15,7 @@
                     {% endif %}
                 {% endfor %}
             </select>
-            <button type="submit" name="submit" value="submit">Select Area</button>
+            <button class="primary-bright-button" type="submit" name="submit" value="submit">Select Area</button>
         </form>
 
         {% if parents != None %} <!-- checks if the parent dropdown has been selected before rendering -->
@@ -32,8 +32,10 @@
                     {% endfor %}
                 </select>
                 <input type="hidden" name="parentArea" value="{{parents.id}}"> <!-- sends the parent id back on postback -->
-                <button type="submit" name="submit" value="submit">Filter for Country</button>
-                <button type="submit" name="submit" value="noFilter">Get All Leagues</button> <!-- value will be captured on back end to determine handling -->
+                <div class="row">
+                    <button class="primary-bright-button" type="submit" name="submit" value="submit">Filter for Country</button>
+                    <button class="primary-bright-button" type="submit" name="submit" value="noFilter">Get All Leagues</button> <!-- value will be captured on back end to determine handling -->
+                </div>
             </form>
 
             {% if leagues != None %} <!-- checks for data before populating -->
@@ -45,7 +47,7 @@
                             <option value="{{league.id}}">{{league.name}}</option>
                         {% endfor %}
                     </select>
-                    <button type="submit" name="submit" value="submit">Get Matches</button>
+                    <button class="primary-bright-button" type="submit" name="submit" value="submit">Get Matches</button>
                 </form>
             {% endif %}
         {% endif %}

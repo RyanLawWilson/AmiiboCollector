@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block templatecontent %}
 <section>
-    <div class="flex-container">
+    <div class="flex-container footy">
         <table>
             <tr>
                 <th>Team Name</th>
@@ -35,10 +35,12 @@
                 </td>
             </tr>
         </table>
-        <button type="button" onclick=" location.href='../../{{jersey.pk}}/Edit'">Edit this Jersey</button> <!-- will redirect to this items edit page -->
-        <button type="button" onclick=" location.href='../../{{jersey.pk}}/Delete'">Delete this Jersey</button>
+        <div class="row">
+            <button class="primary-light-button col-3" type=button" onclick=" location.href='../../{{jersey.pk}}/Edit'">Edit this Jersey</button> <!-- will redirect to this items edit page -->
+            <button class="primary-light-button col-3" type="button" onclick=" location.href='../../{{jersey.pk}}/Delete'">Delete this Jersey</button>
+        </div>
         <hr />
-        <button type="button" onclick=" location.href='{% url 'footy' %}'">Back to Collection</button>
+        <button class="primary-bright-button" type="button" onclick=" location.href='{% url 'footy' %}'">Back to Collection</button>
     </div>
 </section>
 {% endblock %}

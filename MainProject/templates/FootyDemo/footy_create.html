@@ -9,10 +9,10 @@
                 {{ form.as_table }} <!-- this only renders the td tags, still need the table tags -->
             </table>
             {{ form.non_field_errors }}
-            <button type="submit" >Add to Collection</button>
+            <button class="primary-bright-button" type="submit"> Add to Collection </button>
         </form>
         <hr />
-        <button type="button" onclick=" location.href='{% url 'footy' %}'">Back to Collection</button>
+        <button class="primary-bright-button" type="button" onclick=" location.href='{% url 'footy' %}'">Back to Collection</button>
     </div>
 </section>
 {% endblock %}

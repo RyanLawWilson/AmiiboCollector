@@ -2,17 +2,17 @@
 {% load staticfiles %}
 {% block templatecontent %}
 <section>
-    <div class="flex-container">
+    <div class="flex-container footy">
         <form method="post">
             {% csrf_token %}
             <table>
                 {{form.as_table}}
             </table>
             {{ form.non_field_errors}}
-            <button type="submit">Update Jersey</button>
+            <button class="primary-light-button" type="submit">Update Jersey</button>
         </form>
         <hr />
-        <button type="button" onclick=" location.href='{% url 'footy' %}'">Back to Collection</button>
+        <button class="primary-bright-button" type="button" onclick=" location.href='{% url 'footy' %}'">Back to Collection</button>
     </div>
 </section>
 {% endblock %}

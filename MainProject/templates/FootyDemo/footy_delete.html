@@ -3,7 +3,8 @@
 {% block templatecontent %}
 <section>
     <div class="flex-container">
-        <div class="header">Are you sure you want to delete this jersey?</div>
+        <div class="footy"><h4>Are you sure you want to delete this jersey?</h4></div>
+        <div class="footy">
         <table>
             <tr>
                 <th>Team Name</th>
@@ -38,10 +39,11 @@
         </table>
         <form method="post">
             {% csrf_token %}
-        <button type="submit">Delete this Jersey</button>
+        <button  class="primary-light-button" type="submit">Delete this Jersey</button>
         </form>
         <hr />
-        <button type="button" onclick=" location.href='{% url 'footy' %}'">Back to Collection</button>
+        <button class="primary-bright-button" type="button" onclick=" location.href='{% url 'footy' %}'">Back to Collection</button>
+    </div>
     </div>
 </section>
 {% endblock %}

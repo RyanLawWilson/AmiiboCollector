@@ -5,26 +5,27 @@
     <div class="flex-container">
         <table>
             <tr>
-                <th>Team Name</th>
-                <th>Country</th>
-                <th>Manufacturer</th>
-                <th>Size</th>
-                <th>Year</th>
-                <th>Primary Color</th>
-                <th>Authentic</th>
+                <th class="col-md">Team Name</th>
+                <th class="col-md-2">Country</th>
+                <th class="col-md">Manufacturer</th>
+                <th class="col-md">Size</th>
+                <th class="col-md">Year</th>
+                <th class="col-md-2">Primary Color</th>
+                <th class="col-md">Authentic</th>
+                <th class="col-md">&nbsp;</th>
             </tr>
             {% for jersey in jerseys %}     <!-- creates a new row for each jersey in the collection -->
                 <tr>
-                    <td>{{jersey.team}}</td>
-                    <td>{{jersey.country}}</td>
-                    <td>{{jersey.manufacturer}}</td>
-                    <td>{{jersey.size}}</td>
-                    <td>{{jersey.year}}</td>
-                    <td>{{jersey.primary_color}}</td>
-                    <td>
+                    <td class="col-md">{{jersey.team}}</td>
+                    <td class="col-md-2">{{jersey.country}}</td>
+                    <td class="col-md">{{jersey.manufacturer}}</td>
+                    <td class="col-md">{{jersey.size}}</td>
+                    <td class="col-md">{{jersey.year}}</td>
+                    <td class="col-md-2">{{jersey.primary_color}}</td>
+                    <td class="col-md">
                         {% if jersey.authentic %} &#8730 {% endif %}
                     </td>
-                    <td><a href="{{jersey.pk}}/Details">Details</a></td>    <!-- creates a link for that specific jersey -->
+                    <td class="col-md"><a href="{{jersey.pk}}/Details"><button class="primary-light-button">Details</button></a></td>    <!-- creates a link for that specific jersey -->
                 </tr>
             {% endfor %}
         </table>

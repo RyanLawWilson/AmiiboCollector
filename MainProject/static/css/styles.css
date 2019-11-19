@@ -137,14 +137,44 @@ p {
 	line-height: 24px;
 }
 
-.shiptheme table{
-    width: 75%;
+/* Specific styling for the Footy Demo App */
+.footy button{
+    display: flex;
+    justify-content: center;
+    margin: auto;
 }
 
-.shiptheme tr,th,td{
+.footy table{
+    width: 75%;
+    align: center;
+    margin: 20px auto;
+    border: 40px 20px 10px 20px;
+}
+
+.footy tr,th,td{
     color: var(--midtone);
     background-color: var(--highlight);
 }
+
+.footy hr{
+    color: var(--banner);
+    border-top-width: 2px;
+    margin: 2px;
+}
+
+.footy h4{
+    color: var(--midtone);
+    text-align: center;
+    text-shadow: 2px 2px var(--standout);
+}
+
+.footy select, label{
+    color: var(--midtone);
+    background: var(--standout);
+    display: flex;
+}
+
+/* End footy styling */
 
 .primary-light-button {
 	display: inline-block;
