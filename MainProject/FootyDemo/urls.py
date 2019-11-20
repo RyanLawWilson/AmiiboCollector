@@ -5,7 +5,8 @@ from . import views
 ## Third is the name of the pattern/function.
 
 urlpatterns = [
-    path('', views.index, name='footy'),                                #index
+    path('', views.home, name='footy'),                                #home page
+    path('Collection/', views.index, name='listJerseys'),               #index of jerseys
     path('AddToCollection/', views.add_jersey, name='createJersey'),    #add new jersey
     path('<int:pk>/Details/', views.details_jersey, name='jerseyDetails'),  #get details for a single jersey
     path('<int:pk>/Edit/', views.edit_jersey, name='jerseyEdit'),       #edit a single jersey

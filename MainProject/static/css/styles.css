@@ -306,6 +306,63 @@ p {
     display: flex;
 }
 
+#footyPic{
+    text-align: center;
+    position: relative;
+}
+
+#footyPic img {
+    border: 2px dotted var(--midtone);
+    border-radius: 10%;
+    width: 600px;
+    padding: 10px;
+    align: center;
+}
+
+#footyPic span{
+    background: var(--contrast);
+    opacity: 70%;
+    width: 500px;
+    border-radius: 5px;
+}
+
+.footy_top{
+    display:inline-block;
+    padding:2px 3px;
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: var(--neutral);
+    text-shadow: 2px 2px 5px var(--dark);
+}
+
+.footy_center{
+    display:inline-block;
+    padding:2px 3px;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+    color: var(--neutral);
+}
+
+.footy_caption{
+    background-color: var(--standout);
+    color:var(--light);
+    text-decoration:none;
+    padding:4px 6px;
+    font-family: Helvetica, Ubuntu, Roboto, Noto, Arial, sans-serif;
+    font-size:12px;
+    font-weight:bold;
+    line-height:1.2;
+    display:inline-block;
+    border-radius:3px;
+    position: absolute;
+    bottom: -30px;
+    right: 25%;
+}
+
 /* End footy styling */
 
 .primary-light-button {

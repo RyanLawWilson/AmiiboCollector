@@ -10,6 +10,10 @@ from bs4 import BeautifulSoup as BS #necessary for datascraping
 # Create your views here.
 
 
+#View function that renders the home page - no context needed
+def home(request):
+    return render(request, 'FootyDemo/footy_home.html')
+
 #View function that controls the main index page - list of jerseys
 def index(request):
     get_jerseys = Jersey.Jerseys.all()      #Gets all the current jerseys from the database

@@ -3,9 +3,10 @@
 {% block appcontent %}
     <section>
         <div class="flex-container wrapper">
-            Welcome to the Footy Demo App
+            Footy Demo Application
             <hr />
-            <a href="{% url 'footy' %}">Main Page</a> |
+            <a href="{% url 'footy' %}">Footy Home Page</a> |
+            <a href="{% url 'listJerseys' %}">Jersey Collection</a> |
             <a href="{% url 'footyApi' %}">Footy API Service</a> |
             <a href="{% url 'MLSNews' %}">News from the MLS</a>
         </div>
