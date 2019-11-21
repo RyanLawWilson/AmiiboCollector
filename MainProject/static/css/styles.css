@@ -157,8 +157,7 @@ body{
 
 .wheelbuttons{
     display: flex;
-    left: 50%;
-    transform: translate(0, -50%);
+    left: 60%;
 }
 
 .wheelbuttons img{
@@ -216,67 +215,7 @@ body{
     font-size:13px;
     margin-bottom:0;
     color:#fff;
-}*/
-/*
-.footer-dark h3 {
-    margin-top:0;
-    margin-bottom:12px;
-    font-weight:bold;
-    font-size:16px;
 }
-
-.footer-dark ul {
-    padding:0;
-    list-style:none;
-    line-height:1;
-    font-size:14px;
-    margin-bottom:0;
-}
-
-.footer-dark ul a {
-    color:inherit;
-    text-decoration:none;
-    opacity:0.6;
-}
-
-.footer-dark ul a:hover {
-    opacity:0.8;
-}
-
-@media (max-width:767px) {
-    .footer-dark .item:not(.social) {
-    text-align:center;
-    padding-bottom:20px;
-    }
-}
-
-.footer-dark .item.text {
-    margin-bottom:36px;
-}
-
-@media (max-width:767px) {
-    .footer-dark .item.text {
-    margin-bottom:0;
-    }
-}
-
-.footer-dark .item.text p {
-    opacity:0.6;
-    margin-bottom:0;
-}
-
-.footer-dark .item.social {
-    text-align:center;
-}
-
-@media (max-width:991px) {
-    .footer-dark .item.social {
-    text-align:center;
-    margin-top:20px;
-    }
-}
-
-/*============Footer styling END============*/
 
 /* Beginning of the stock CSS template */
 *{
@@ -296,7 +235,44 @@ p {
 	line-height: 24px;
 }
 
-/* Specific styling for the Footy Demo App */
+.primary-light-button {
+	display: inline-block;
+	background-color: var(--neutral);
+	font-size: 13px;
+	padding: 12px 18px;
+	color: var(--contrast);
+	font-weight: 500;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	text-decoration: none;
+	border-radius: 20px;
+}
+
+.primary-bright-button {
+	display: inline-block;
+	background-color: var(--standout);
+	font-size: 13px;
+	padding: 12px 18px;
+	color: var(--neutral);
+	font-weight: 500;
+	letter-spacing: 1px;
+	text-transform: uppercase;
+	text-decoration: none;
+	border-radius: 20px;
+}
+
+.wrapper {
+  text-align: center;
+  background: var(--neutral);
+}
+
+.wrapper a:link {
+    color: var(--standout);
+}
+
+/* ===========================================
+    Specific styling for the Footy Demo App
+=============================================*/
 .footy button{
     display: flex;
     justify-content: center;
@@ -392,358 +368,17 @@ p {
 
 /* End footy styling */
 
-.primary-light-button {
-	display: inline-block;
-	background-color: var(--neutral);
-	font-size: 13px;
-	padding: 12px 18px;
-	color: var(--contrast);
-	font-weight: 500;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	text-decoration: none;
-	border-radius: 20px;
-}
-
-.primary-bright-button {
-	display: inline-block;
-	background-color: var(--standout);
-	font-size: 13px;
-	padding: 12px 18px;
-	color: var(--neutral);
-	font-weight: 500;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	text-decoration: none;
-	border-radius: 20px;
-}
-
-.pop-button h4 {
-	display: inline-block;
-	background-color: var(--standout);
-	font-size: 13px!important;
-	padding: 12px 18px;
-	color: var(--neutral);
-	font-weight: 400!important;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	text-decoration: none;
-	border-radius: 20px;
-	cursor: pointer;
-}
-
-/*** CODE need to be refactored // START ******/
-
-#about {
-	padding: 150px 0px;
-	background-image: url(../images/bg1.png);
-	background-repeat: no-repeat;
-	background-size: cover;
-	background-attachment: fixed;
-}
-
-#about .service-item {
-	text-align: center;
-}
-
-#about .service-item .icon {
-	width: 110px;
-	height: 110px;
-	display: inline-block;
-	text-align: center;
-	line-height: 104px;
-	border: 3px solid var(--neutral);
-	border-radius: 50%;
-	background-color: var(--highlight);
-}
-
-#about .service-item h4 {
-	margin-bottom: 30px;
-	margin-top: 45px;
-	font-size: 17px;
-	font-weight: 500;
-	color: var(--neutral);
-	letter-spacing: 1px;
-}
-
-#about .service-item .line-dec {
-	width: 100%;
-	height: 1px;
-	background-color: rgba(250, 250, 250, 0.5);
-}
-
-#about .service-item p {
-	color: var(--neutral);
-	margin-top: 30px;
-}
-
-#about .service-item .primary-bright-button {
-	margin-top: 35px;
-}
-
-
-.projects-holder .mix {
-  display: none;
-}
-
-.projects-holder {
-	padding: 30px 15px 0px 15px;
-}
-
-.filter-categories {;
-  margin-top: 60px;
-}
-
-.filter-categories ul li {
-  margin: 0px 10px 15px 0px;
-  display: block;
-}
-
-.filter-categories ul li span {
-  cursor: pointer;
-  color: var(--neutral);
-  display: inline-block;
-  font-size: 15px;
-  text-transform: capitalize;
-  font-weight: 500;
-  left: 0.5px;
-}
-
-.filter-categories ul li.active span {
-  color: var(--highlight);
-}
-
-.wrapper {
-  text-align: center;
-  background: var(--neutral);
-}
-
-.wrapper a:link {
-    color: var(--standout);
-}
-
-.tabs {
-  list-style: none;
-  margin-top: 40px;
-  padding-right: 70px;
-}
-
-.tabs li {
-  display: block;
-  text-align: center;
-  margin: 25px 0px;
-}
-
-.tabs a {
-  display:block;
-  text-align:center;
-  text-decoration:none;
-  text-transform:capitalize;
-  letter-spacing: 0.5px;
-  color: var(--contrast);
-  font-size: 15px;
-  font-weight: 500;
-  padding: 12px 12px;
-  background-color: var(--neutral);
-}
-
-.tabs a:hover {
-  color: var(--highlight);
-}
-
-.tabs .active {
-  color: var(--highlight);
-}
-#first-tab-group {
-	margin-top: 30px;
-	margin-bottom: 15px;
-}
-.tabgroup .text-content	 {
-  background-color: var(--neutral);
-  color: var(--neutral);
-  padding: 25px;
-  text-align: left;
-}
-.tabgroup .text-content h4 {
-	font-size: 17px;
-	font-weight: 500;
-	letter-spacing: 0.5px;
-	color: var(--contrast);
-	margin-top: 0px;
-	margin-bottom: 5px;
-}
-.tabgroup .text-content span {
-	font-size: 13px;
-	color: var(--standout);
-}
-.tabgroup .text-content a {
-	font-size: 13px;
-	color: var(--standout);
-	text-decoration: none;
-}
-.tabgroup .text-content p {
-	margin-top: 10px;
-}
-
-#contact-us {
-	background-color: var(--contact);
-	text-align: center;
-	padding: 80px 0px;
-}
-
-#contact-us .section-heading h4 {
-	margin-top: 0px;
-	font-size: 20px;
-	text-transform: uppercase;
-	font-weight: 700;
-	color: var(-neutral);
-	letter-spacing: 1px;
-}
-
-#contact-us .section-heading .line-dec {
-	width: 270px;
-	height: 1px;
-	background-color: rgba(250, 250, 250, 0.5);
-	margin: 20px auto 15px auto;
-}
-
-#contact-us .section-heading p {
-	color: var(--neutral);
-	padding: 0px 33%;
-}
-
-#contact-us .pop-button {
-	margin-top: 30px;
-}
-
-#contact input {
-  border-radius: 0px;
-  padding-left: 15px;
-  font-size: 13px;
-  color: var(--dark);
-  background-color: rgba(250, 250, 250, 1);
-  outline: none;
-  border: none;
-  box-shadow: none;
-  line-height: 50px;
-  height: 50px;
-  width: 100%;
-  margin-bottom: 30px;
-}
-
-#contact textarea {
-  border-radius: 0px;
-  padding-left: 15px;
-  padding-top: 10px;
-  font-size: 13px;
-  color: var(--dark);
-  background-color: rgba(250, 250, 250, 1);
-  outline: none;
-  border: none;
-  box-shadow: none;
-  height: 165px;
-  max-height: 220px;
-  width: 100%;
-  margin-bottom: 25px;
-}
-
-#contact button {
-  display: inline-block;
-	background-color: var(--highlight);
-	font-size: 13px;
-	padding: 12px 18px;
-	color: var(--neutral);
-	font-weight: 500;
-	letter-spacing: 1px;
-	text-transform: uppercase;
-	text-decoration: none;
-	border-radius: 20px;
-}
-
-
-.pop #contact {
-	z-index: 99999;
-	position: fixed;
-	top: 25%;
-	left: 20%;
-	right: 20%;
-}
-
-.pop {
-	z-index: 99999;
-	text-align: center;
-	padding: 30px;
-    display:none;
-    position:fixed;
-    width: 100%;
-    top:0;
-    left:0;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    box-shadow: 0px 0px 15px;
-}
-
-.pop span {
-	z-index: 999;
-	position: relative;
-	margin-bottom: 20px;
-	cursor: pointer;
-	width: 44px;
-	height: 44px;
-	display: inline-block;
-	line-height: 44px;
-	color: var(--neutral);
-	text-align: center;
-	background-color: var(--standout);
-}
-
-.pop span:hover {
-	background-color: var(--contact);
-	transition: all 0.5s;
-}
-
-
-/*** CODE need to be refactored // END ******/
-
 
 /* ============= RESPONSIVE max-width: 991px =========== */
 
 @media (max-width: 991px){
 
-	/*.banner-content .text-content p {
-		padding: 0px 15%;
-	}
-
-	#about .service-item {
-		margin-bottom: 80px;
-	}
-
-	.projects-holder {
-		text-align: center;
-		padding: 15px 0px;
-	}
-
-	.tabs {
-		padding: 0px 45px;
-	}
-
-	#first-tab-group {
-		margin-bottom: 30px;
-	}
-
-	#contact-us .section-heading p {
-		padding: 0px 10%;
-	}
-
-	*/
 
 }
 
 /* ============= RESPONSIVE max-width: 768px =========== */
 @media (max-width: 768px){
-	/*.banner-content .text-content p {
-		padding: 0px 10%;
-	}
+
 
 
 }
