@@ -26,171 +26,67 @@ body{
     background-color: transparent;
     color:var(--neutral);
 }
-/* ============ Navigation Bar styling //  START ========= */
-.navbar-global {
-  background-color: transparent;
-}
 
+/* ===========================================
+  Navigation Bar styling  //  START
+=============================================*/
 .navbar-global .navbar-brand {
-  color: white;
-  margin-left:-30px!important;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  font-family: 'Permanent Marker', cursive;
-}
-
-.navbar-global .navbar-user > li > a
-{
-  color: white!important;
-  background:yellow!important;
-  display:block!important;
-}
-
-.navbar-global .navbar-user > li > a
-{
-  color: white;
-}
-
-.navbar-primary {
-  background-color: #00000085;
-  bottom: 0px;
-  left: 0px;
-  position: absolute;
-  top: 61px;
-  width: 175px;
-  z-index: 8;
-  overflow: hidden;
-  -webkit-transition: all 0.1s ease-in-out;
-  -moz-transition: all 0.1s ease-in-out;
-  transition: all 0.1s ease-in-out;
-  }
-
-.navbar-primary.collapsed {
-    width: 60px;
-}
-.navbar-primary.collapsed .fas {
-  font-size: 22px;
-}
-
-.navbar-primary.collapsed .nav-label {
-  display: none;
-}
-.btn-expand-collapse {
-    position: absolute;
-    display: block;
-    left: 0px;
-    bottom:0;
-    width: 100%;
-    padding: 8px 0;
-    color: #fff;
-    font-size: 20px;
-    text-align: center;
-}
-
-.btn-expand-collapse:hover,
-.btn-expand-collapse:focus {
-    background-color: #222;
     color: white;
-}
-.btn-expand-collapse {
-    position: absolute;
-    display: block;
-    left: 0px;
-    bottom:0;
-    width: 100%;
-    padding: 8px 0;
-    border-top:solid 1px #666;
-    color: grey;
-    font-size: 20px;
-    text-align: center;
-}
-
-.btn-expand-collapse:active {
-    background-color: #111;
-}
-
-.navbar-primary-menu,
-.navbar-primary-menu li {
-  margin:0; padding:0;
-  list-style: none;
-}
-
-.navbar-primary-menu li a {
-  display: block;
-  padding: 10px 18px;
-  text-align: left;
-  border-bottom:solid 1px #444;
-  color: #ccc;
-}
-
-.navbar-primary-menu li a:hover {
-  background-color: #000;
-  text-decoration: none;
-  color: white;
-}
-
-.navbar-primary-menu li a .fas {
-  margin-right:8px;
-}
-
-.navbar-primary-menu li a:hover .fas {
-  color: #e7d052;
-}
-.navbar-primary-menu li a:hover .fab {
-  color: #e7d052;
+    border-radius: 10px;
+    font-family: 'Permanent Marker', cursive;
+    background:#0000009e;
 }
 
 .main-content {
-  margin-top: 60px;
-  margin-left: 150px;
-  padding: 20px;
-  color:#fff!important;
-  letter-spacing:1px;
+    color:#fff!important;
+    letter-spacing:1px;
 }
 
 .main-content p {
-  color:#fff;
-  font-style:italic;
-  word-spacing: 3.5px;
-
+    color:#fff;
+    font-style:italic;
+    word-spacing: 3.5px;
 }
 
-.wheelbuttons{
+.collapsed + .main-content {
+    margin-left: 30px;
+}
+
+#buttonList {
+    transition: all .7s;
+}
+.wheelButtons{
     display: flex;
-    left: 60%;
+    justify-content: center;
 }
 
-.wheelbuttons img{
+.wheelButtons a {
+    display: flex;
+}
+
+.wheelButtons img{
     width: 50px;
     background: var(--dark);
     border-radius: 50%;
 }
 
-.wheelbuttons figcaption{
+.wheelButtons figcaption{
     color: var(--neutral);
-    text-align: left;
-    position: bottom;
+    margin-left: -10px;
+}
+
+#mainWheel > .wheelButtons{
+    color: var(--neutral);
+    align-self: center;
+    padding:20px;
+    width: 50px;
     background: var(--dark);
 }
+/* ===== Navigation Bar styling  //  END =====*/
 
-#mainwheel {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-10%, -50%);
-    color: var(--neutral);
-}
-
-.collapsed + .main-content {
-  margin-left: 30px;
-}
-
-.navbar-toggle .icon-bar{
-    background-color:red;
- }
-/* ========== Navigation Bar styling //  END ========= */
-
-/*=========== Footer styling //  START============*/
+/* ===========================================
+     Footer styling //  START
+=============================================*/
 .footer {
     padding:10px 0;
     color: var(--neutral);
@@ -199,10 +95,6 @@ body{
     margin: 0;
     width: 10%;
     background:transparent;
-}
-
-.footer .item.social > a {
-
 }
 
 .footer .item.social > a:hover {
