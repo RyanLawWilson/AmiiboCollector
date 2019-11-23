@@ -3,12 +3,12 @@
 {% block appcontent %}
     <section>
         <div class="flex-container wrapper">
-            Footy Demo Application
+            <h5>Footy Demo Application</h5>
             <hr />
-            <a href="{% url 'footy' %}">Footy Home Page</a> |
-            <a href="{% url 'listJerseys' %}">Jersey Collection</a> |
-            <a href="{% url 'footyApi' %}">Footy API Service</a> |
-            <a href="{% url 'MLSNews' %}">News from the MLS</a>
+            <a class= 'tabNav' href="{% url 'footy' %}">Footy Home Page</a>
+            <a class= 'tabNav'  href="{% url 'listJerseys' %}">Jersey Collection</a>
+            <a class= 'tabNav'  href="{% url 'footyApi' %}">Footy API Service</a>
+            <a class= 'tabNav'  href="{% url 'MLSNews' %}">News from the MLS</a>
         </div>
     </section>
     {% block templatecontent %}{% endblock %} <!-- section that all the template specific content will render within -->
