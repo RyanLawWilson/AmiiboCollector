@@ -1,42 +1,66 @@
+{% load staticfiles %}
 <section>
   <nav class="navbar navbar-global navbar-fixed-top">
     <div class="container-fluid">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapse" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-          <span class="sr-only">Toggle Navigation</span>
-          <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-           <span class="icon-bar"></span>
-        </button>
+      <div class="navbar-header mx-auto">
         <a href="{% url 'home' %}" class="navbar-brand px-3 rounded">Hobby Manager</a>
-      </div>
-
-      <div id='navbar' class="collapse navbar-collapse">
-        <ul class='nav navbar-nav navbar-user navbar-right'>
-          <li class="navbar-item">
-            <a class="nav-link"   href="#"><span class="fas fa-user">Welcome UserName</span></a>
-          </li>
-          <li class="navbar-item">
-            <a class="nav-link"  href="#"><span class="fas fa-sign-out-alt">Logout</span></a>
-          </li>
-        </ul>
       </div>
     </div>
   </nav>
 
-  <nav class="navbar-primary">
-     <a href="#" class="btn-expand-collapse">
-      <span class="fas fa-arrows-alt-h"></span>
-    </a>
-    <ul class="navbar-primary-menu">
-    <li>
-      <a href="#"><span class="fas fa-tachometer-alt"></span><span class="nav-label">Dashboard</span></a>
-      <a href="#"><span class="fas fa-id-card"></span><span class="nav-label">Profile</span></a>
-      <a href="#"><span class="fas fa-play-circle"></span><span class="nav-label">Collections</span></a>
-      <a href="#"><span class="fab fa-mixcloud"></span><span class="nav-label">API Services</span></a>
-      <a href="#"><span class="fas fa-laptop-code"></span><span class="nav-label">Web Scraping</span></a>
-    </li>
-  </ul>
- </nav>
+
+  <div id="appsContainer >
+        <div id="mainWheel" class="wheelButtons">
+            <a href="expand-collapse" class="js-scroll-trigger" data-toggle="collapse" data-target="#buttonList" role="button">
+              <figure>
+                <img src="{% static 'images/shipswheel.png' %}">
+                <figcaption>Collections</figcaption>
+              </figure>
+            </a>
+        </div>
+
+        <div id="buttonList" class="collapse col-12 mx-auto">
+          <div class="wheelButtons col mx-auto">
+            <a href="{% url 'footy' %}">
+                <figure class="col">
+                  <img src="{% static 'images/shipswheel.png' %}" alt="Footy App">
+                  <figcaption>Footy App</figcaption>
+                </figure>
+            </a>
+            <a href="">
+                <figure class="col">
+                  <img src="{% static 'images/shipswheel.png' %}" alt="Add App">
+                  <figcaption>Add Your App</figcaption>
+                 </figure>
+            </a>
+            <a href="">
+                <figure class="col">
+                  <img src="{% static 'images/shipswheel.png' %}" alt="Add App">
+                  <figcaption>Add Your App</figcaption>
+                 </figure>
+            </a>
+            <a href="">
+                <figure class="col">
+                  <img src="{% static 'images/shipswheel.png' %}" alt="Add App">
+                  <figcaption>Add Your App</figcaption>
+                 </figure>
+            </a>
+            <a href="">
+                <figure class="col">
+                  <img src="{% static 'images/shipswheel.png' %}" alt="Add App">
+                  <figcaption>Add Your App</figcaption>
+                 </figure>
+            </a>
+            <a href="">
+                <figure class="col">
+                  <img src="{% static 'images/shipswheel.png' %}" alt="Add App">
+                  <figcaption>Add Your App</figcaption>
+                 </figure>
+            </a>
+
+            <!--create 4-->
+          </div>
+        </div>
+      </div>
 </section>
 

@@ -25,43 +25,6 @@
     {% include 'navbar.html' %}
 <section>
     <div class="container main-content">
-        <div id="mainwheel" class="wheelbuttons">
-    <a href="expand-collapse" class="js-scroll-trigger" data-toggle="collapse" data-target="#buttonlist" role="button">
-      <figure>
-        <img src="{% static 'images/shipswheel.png' %}">
-        <figcaption>Collections</figcaption>
-      </figure>
-
-    </a>
-  </div>
-    <div id="buttonlist" class="collapse">
-      <div class="wheelbuttons">
-        <a href="{% url 'footy' %}"><figure class="col">
-          <img src="{% static 'images/shipswheel.png' %}" alt="Footy App">
-          <figcaption>Footy App</figcaption>
-        </figure></a>
-        <a href=""><figure class="col">
-          <img src="{% static 'images/shipswheel.png' %}" alt="Add App">
-          <figcaption>Add Your App</figcaption>
-        </figure></a>
-        <a href=""><figure class="col">
-          <img src="{% static 'images/shipswheel.png' %}" alt="Add App">
-          <figcaption>Add Your App</figcaption>
-        </figure></a>
-                <a href=""><figure class="col">
-          <img src="{% static 'images/shipswheel.png' %}" alt="Add App">
-          <figcaption>Add Your App</figcaption>
-        </figure></a>
-                <a href=""><figure class="col">
-          <img src="{% static 'images/shipswheel.png' %}" alt="Add App">
-          <figcaption>Add Your App</figcaption>
-        </figure></a>
-                <a href=""><figure class="col">
-          <img src="{% static 'images/shipswheel.png' %}" alt="Add App">
-          <figcaption>Add Your App</figcaption>
-        </figure></a>
-      </div>
-    </div>
         {% block appcontent %}{% endblock %}
     </div>
 </section>
