@@ -26,7 +26,7 @@ def add_jersey(request):
     form = JerseyForm(request.POST or None)     #Gets the posted form, if one exists
     if form.is_valid():                         #Checks the form for errors, to make sure it's filled in
         form.save()                             #Saves the valid form/jersey to the database
-        return redirect('footy')                #Redirects to the index page, which is named 'footy' in the urls
+        return redirect('listJerseys')                #Redirects to the index page, which is named 'footy' in the urls
     else:
         print(form.errors)                      #Prints any errors for the posted form to the terminal
         form = JerseyForm()                     #Creates a new blank form
@@ -63,7 +63,7 @@ def delete_jersey(request, pk):
     context = {'jersey': jersey}            #Sets the jersey to a dictionary item for the template
     if request.method == 'POST':            #If the user posts a form, in this case just a delete button
         jersey.delete()                     #Deletes the jersey from the database
-        return redirect('footy')            #Redirects back to the index
+        return redirect('listJerseys')            #Redirects back to the index
     else:
         return render(request, 'FootyDemo/footy_delete.html', context)
 
