@@ -111,6 +111,7 @@ body{
     margin-bottom:0;
     color:#fff;
 }
+/* =====  Footer styling  //  END =====*/
 
 /* Beginning of the stock CSS template */
 *{
@@ -126,35 +127,57 @@ ul {
 
 p {
 	color: var(--midtone);
-	font-size: 14px;
+	font-size: 13px;
 	line-height: 24px;
 }
 
 .primary-light-button {
+
+	background-color: var(--contrast);
+	color: var(--lightGray);
 	display: inline-block;
-	background-color: var(--neutral);
-	font-size: 13px;
-	padding: 12px 18px;
-	color: var(--contrast);
-	font-weight: 500;
+	font-size: 12px;
+	padding:5px 12px 5px 12px;
 	letter-spacing: 1px;
-	text-transform: uppercase;
 	text-decoration: none;
 	border-radius: 20px;
+	border: none;
+	margin:1px;
 }
 
 .primary-bright-button {
-	display: inline-block;
 	background-color: var(--standout);
-	font-size: 13px;
-	padding: 12px 18px;
 	color: var(--neutral);
-	font-weight: 500;
+	display: inline-block;
+	font-size: 12px;
+	padding:5px 12px 5px 12px;
 	letter-spacing: 1px;
-	text-transform: uppercase;
 	text-decoration: none;
 	border-radius: 20px;
+	border: none;
+	margin-top:3px;
+	text-transform: uppercase;
 }
+
+.primary-bright-button:hover , .primary-light-button:hover{
+    box-shadow: 0px 0px 4px 2px var(--highlight);
+}
+
+.primary-light-button:hover{
+    box-shadow: 0px 0px 4px 2px #fff;
+}
+
+/*:root{
+    --midtone: #8D7148;
+    --neutral: #B49159;
+    --contrast: #403025;
+    --standout: #2F3C48;
+    --highlight: #f7c552;
+    --banner: #f89624;
+    --dark: #232323;
+    --footer: #675036;
+    --lightGray: #E8EFF6;
+}*/
 
 .wrapper {
   text-align: center;
@@ -182,10 +205,12 @@ background:var(--contrast);
     border-radius:20px;
 
 }
+/* End of the stock CSS template */
 
 /* ===========================================
-    Specific styling for the Footy Demo App
+    Specific styling Footy Demo App //  START
 =============================================*/
+
 .footy button{
     display: flex;
     justify-content: center;
@@ -197,11 +222,6 @@ background:var(--contrast);
     align: center;
     margin: 20px auto;
     border: 40px 20px 10px 20px;
-}
-
-.footy tr,th,td{
-    color: var(--midtone);
-    background-color: var(--highlight);
 }
 
 .footy hr{
@@ -274,7 +294,35 @@ div #footyPic{
     right: 25%;
 }
 
-/* End footy styling */
+#jerseyCollectionPage {
+background:#0000009e;
+    padding: 40px;
+    border-radius: 15px;
+}
+
+#jerseyCollectionPage table th
+ {
+    background:var(--standout);
+    border-radius: 10px;
+    text-align:center;
+    font-size: 13px;
+}
+
+#jerseyCollectionPage table td
+ {
+     background:var(--dark);
+     border-radius: 10px;
+     text-align:center;
+     font-size: 12px;
+}
+
+/*.footy tr,th,td{
+    color: var(--midtone);
+    background-color: var(--highlight);
+}*/
+
+
+/* =====  Specific styling Footy Demo App // END =====*/
 
 
 /* ============= RESPONSIVE max-width: 991p =========== */

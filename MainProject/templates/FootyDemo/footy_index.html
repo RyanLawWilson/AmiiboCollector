@@ -1,27 +1,27 @@
 {% extends 'FootyDemo/footy_base.html' %}
 {% load staticfiles %}
 {% block templatecontent %}
-<section>
-    <div class="flex-container">
-        <table>
+<section >
+    <div class="flex-container" id="jerseyCollectionPage">
+        <table class="table-striped">
             <tr>
                 <th class="col-md">Team Name</th>
-                <th class="col-md-2">Country</th>
+                <th class="col-md">Country</th>
                 <th class="col-md">Manufacturer</th>
                 <th class="col-md">Size</th>
                 <th class="col-md">Year</th>
-                <th class="col-md-2">Primary Color</th>
+                <th class="col-md">Primary Color</th>
                 <th class="col-md">Authentic</th>
-                <th class="col-md">&nbsp;</th>
+                <th class="col-md">&nbsp;Info</th>
             </tr>
             {% for jersey in jerseys %}     <!-- creates a new row for each jersey in the collection -->
                 <tr>
                     <td class="col-md">{{jersey.team}}</td>
-                    <td class="col-md-2">{{jersey.country}}</td>
+                    <td class="col-md">{{jersey.country}}</td>
                     <td class="col-md">{{jersey.manufacturer}}</td>
                     <td class="col-md">{{jersey.size}}</td>
                     <td class="col-md">{{jersey.year}}</td>
-                    <td class="col-md-2">{{jersey.primary_color}}</td>
+                    <td class="col-md">{{jersey.primary_color}}</td>
                     <td class="col-md">
                         {% if jersey.authentic %} &#8730 {% endif %}
                     </td>
