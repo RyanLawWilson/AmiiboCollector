@@ -250,11 +250,13 @@ div #footyPic{
 
 #footyPic img {
     border-radius: 10px;
-   max-width:70%;
-    height:20px
-   /* padding: 10px;*/
+    height:10%;
+    height:500px;
+/*   padding: 80px;*/
     align: center;
     margin:0;
+    vertical-align:middle;
+    width:100%;
 }
 
 #footyPic span{
