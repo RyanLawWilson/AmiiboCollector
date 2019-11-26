@@ -16,6 +16,6 @@
 #     >Data scrape: https://www.hbo.com/game-of-thrones
 
 # > Kyla Kozole
-#   > Fine Art Collection App
+#   > Contemporary Art Collection App
 #   > API: https://developers.artsy.net/v2
 #   > Data scrape: http://www.contemporaryartdaily.com/
