@@ -14,3 +14,8 @@
 #     > Game of Thrones Collection App
 #     >API: https://anapioficeandfire.com/
 #     >Data scrape: https://www.hbo.com/game-of-thrones
+
+# > Kyla Kozole
+#   > Contemporary Art Collection App
+#   > API: https://developers.artsy.net/v2
+#   > Data scrape: http://www.contemporaryartdaily.com/
