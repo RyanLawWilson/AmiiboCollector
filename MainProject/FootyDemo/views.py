@@ -41,33 +41,6 @@ def details_jersey(request, pk):
     return render(request,'FootyDemo/footy_details.html', context)
 
 
-#View function to edit the details of a jersey
-def edit_jersey(request, pk):
-    pk = int(pk)
-    jersey = Jersey.Jerseys.get(pk=pk)          #Alternate way to get the single jersey from the database
-    form = JerseyForm(data=request.POST or None, instance=jersey)   #Creates a form filled in with the details of this jersey
-    if request.method == 'POST':                #If the form is being posted back with changes
-        if form.is_valid():                     #Check that the form is still valid
-            form.save()                         #Save the changes made to the jersey details
-            return redirect('jerseyDetails',pk) #Redirect to the details page for that jersey
-        else:                                   #Else for form not being valid
-            print(form.errors)
-    else:                                       #Else for request not being Post method
-        return render(request,'FootyDemo/footy_edit.html', {'form':form})
-
-
-#View function for deleting a jersey
-def delete_jersey(request, pk):
-    pk = int(pk)
-    jersey = Jersey.Jerseys.get(pk=pk)
-    context = {'jersey': jersey}            #Sets the jersey to a dictionary item for the template
-    if request.method == 'POST':            #If the user posts a form, in this case just a delete button
-        jersey.delete()                     #Deletes the jersey from the database
-        return redirect('listJerseys')            #Redirects back to the index
-    else:
-        return render(request, 'FootyDemo/footy_delete.html', context)
-
-
 #View function for the main API page with dropdowns
 def api_response(request):
     context = {'world': get_areas()}            #Creates a dictionary item of all the world areas
