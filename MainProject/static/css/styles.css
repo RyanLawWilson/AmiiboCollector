@@ -5,9 +5,6 @@
     --contrast: #403025;
     --standout: #2F3C48;
     --highlight: #f7c552;
-    --banner: #f89624;
-    --dark: #232323;
-    --footer: #675036;
     --lightGray: #E8EFF6;
 }
 
@@ -69,7 +66,7 @@ body{
 
 .wheelButtons img{
     width: 50px;
-    background: var(--dark);
+    background: var(--standout);
     border-radius: 50%;
 }
 
@@ -83,7 +80,7 @@ body{
     align-self: center;
     padding:20px;
     width: 50px;
-    background: var(--dark);
+    background: var(--standout);
 }
 /* ===== Navigation Bar styling  //  END =====*/
 
@@ -167,18 +164,6 @@ p {
     box-shadow: 0px 0px 4px 2px #fff;
 }
 
-/*:root{
-    --midtone: #8D7148;
-    --neutral: #B49159;
-    --contrast: #403025;
-    --standout: #2F3C48;
-    --highlight: #f7c552;
-    --banner: #f89624;
-    --dark: #232323;
-    --footer: #675036;
-    --lightGray: #E8EFF6;
-}*/
-
 .wrapper {
   text-align: center;
   margin-bottom: 5px;
@@ -225,7 +210,7 @@ background:var(--contrast);
 }
 
 .footy hr{
-    color: var(--banner);
+    color: var(--highlight);
     border-top-width: 2px;
     margin: 2px;
 }
@@ -271,7 +256,7 @@ div #footyPic{
     top: -230px;
     width:100%;
     color: var(--neutral);
-    text-shadow: 2px 2px 5px var(--dark);
+    text-shadow: 2px 2px 5px var(--standout);
 }
 
 .footy_center{
@@ -312,7 +297,7 @@ background:#0000009e;
 
 #jerseyCollectionPage table td
  {
-     background:var(--dark);
+     background:var(--standout);
      border-radius: 10px;
      text-align:center;
      font-size: 12px;
