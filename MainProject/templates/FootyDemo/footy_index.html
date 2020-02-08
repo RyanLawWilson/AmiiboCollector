@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block templatecontent %}
 <section >
-    <div class="flex-container" id="jerseyCollectionPage">
+    <div class="flex-container footy" id="jerseyCollectionPage">
         <table class="table-striped">
             <tr>
                 <th class="col-md">Team Name</th>
@@ -25,7 +25,7 @@
                     <td class="col-md">
                         {% if jersey.authentic %} &#8730 {% endif %}
                     </td>
-                    <td class="col-md"><a href="{{jersey.pk}}/Details"><button class="primary-light-button">Details</button></a></td>    <!-- creates a link for that specific jersey -->
+                    <td class="col-md"><a href="{{jersey.pk}}/Details"><button class="primary-light-button" id="info-button">Details</button></a></td>    <!-- creates a link for that specific jersey -->
                 </tr>
             {% endfor %}
         </table>
