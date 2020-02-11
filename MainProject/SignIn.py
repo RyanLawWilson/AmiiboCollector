@@ -10,5 +10,5 @@
 
 # > Hanna Wilson
 #       > Book collection app
-#       > API: https://openlibrary.org/developers/api
+#       > API: http://www.penguinrandomhouse.biz/webservices/rest/
 #       > Data scrape: https://www.barnesandnoble.com/b/books/_/N-29Z8q8
