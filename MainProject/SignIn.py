@@ -33,3 +33,8 @@
 #	> Data scrape: https://www.nintendo.com/whatsnew/#all
 #		* Show latest Nintendo news.
 #		*** Show any news related to amiibos first
+
+# > Tyler Lyons
+#     > App that lists current Timberwolves players
+#     >API: https://www.balldontlie.io/#introduction
+#     >Data scrape: https://www.nba.com/timberwolves/roster
