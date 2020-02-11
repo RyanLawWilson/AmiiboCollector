@@ -3,11 +3,17 @@
 
 # > Brenton Turner
 
-# > Deanna M Cochener
+# > Deanna Cochener
 #     > Soccer jersey collection app
 #     >API: api.football-data.org
 #     >Data scrape: https://www.mlssoccer.com/news
 
+# > Tristan McGrath
+#     > Places to surf App
+#     >API: https://tidesandcurrents.noaa.gov/api/
+#     >Data Scrape: https://www.surfline.com/surf-news/
+#
+#
 # I broke everything down so that I could figure out what I wanted to do.  I included some
 # features that I think would be cool to implement as well.  We'll see if I get to them.
 #
