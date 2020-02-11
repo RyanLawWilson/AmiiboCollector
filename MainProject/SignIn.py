@@ -38,3 +38,7 @@
 #     > App that lists current Timberwolves players
 #     >API: https://www.balldontlie.io/#introduction
 #     >Data scrape: https://www.nba.com/timberwolves/roster
+# > Hanna Wilson
+#       > Book collection app
+#       > API: http://www.penguinrandomhouse.biz/webservices/rest/
+#       > Data scrape: https://www.barnesandnoble.com/b/books/_/N-29Z8q8
