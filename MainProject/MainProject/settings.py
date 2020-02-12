@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'FootyDemo',
     'TWolvesRoster',
+    'Amiibo',   # Added my app per instructions from story #1
 ]
 
 MIDDLEWARE = [
@@ -56,7 +57,7 @@ ROOT_URLCONF = 'MainProject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],  # We are using a project level template folder.  Don't make app-level template folder.
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
