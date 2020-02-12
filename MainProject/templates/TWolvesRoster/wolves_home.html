@@ -1,12 +1,15 @@
-{% extends 'FootyDemo/footy_base.html' %}
+{% extends 'TWolvesRoster/wolves_base.html' %}
 {% load staticfiles %}
 
 {% block templatecontent %}
 
+<img src="{% static 'images/wolvesLogo.png' %}" width="500" height="333">
 
 <div class="wolvesPageTitle ">Timberwolves Roster App</div>
 
-<p class="wolvesHomePagetxt">This is a web app that provides Timberwolves fans with the current roster.</p>
+<p class="wolvesHomePagetxt">This is a web app that provides Timberwolves fans with the current roster.</p><br>
+
+<p class="wolvesHomePagetxt">We will be scraping the data from the official Minnesota Timberwolves team site..</p>
 
 
 {% endblock %}
