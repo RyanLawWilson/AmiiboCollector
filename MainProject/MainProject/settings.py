@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'FootyDemo',
+    'TWolvesRoster',
     'Amiibo',   # Added my app per instructions from story #1
 ]
 

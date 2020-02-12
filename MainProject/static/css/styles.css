@@ -623,6 +623,25 @@ div #footyPic{
 
 /* =====  Specific styling Footy Demo App // END =====*/
 
+/* ===========================================
+    Specific styling for TWolvesRoster App //  START
+=============================================*/
+
+.wolvesPageTitle {
+  text-align: center;
+  text-transform: uppercase;
+  color: blue;
+  size: 60px;
+}
+
+.wolvesHomePagetxt {
+  text-align: center;
+  color: black;
+  size: 22px;
+}
+
+/* =====  Specific styling for TWolvesRoster App // END =====*/
+
 
 
 /* ===========================================
