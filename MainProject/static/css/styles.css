@@ -639,3 +639,14 @@ div #footyPic{
 @media (max-width: 385px){
 
 }
+
+/* ===========================================
+    Specific styling BookBag //  START
+=============================================*/
+
+.cover-bookBag {
+  background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('../images/bookBagheader.jpg') right bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80vh;
+}
