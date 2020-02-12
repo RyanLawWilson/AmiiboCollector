@@ -1,8 +1,8 @@
 {% extends 'TWolvesRoster/wolves_base.html' %}
 {% load staticfiles %}
 
-{% block templatecontent %}
-
+<section class="main_content">
+{% block appcontent %}
 <img src="{% static 'images/wolvesLogo.png' %}" width="500" height="333">
 
 <div class="wolvesPageTitle ">Timberwolves Roster App</div>
@@ -11,5 +11,6 @@
 
 <p class="wolvesHomePagetxt">We will be scraping the data from the official Minnesota Timberwolves team site..</p>
 
-
 {% endblock %}
+
+</section>
