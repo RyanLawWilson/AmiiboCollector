@@ -20,5 +20,6 @@ and get it to display a home page with basic content.
 """
 
 from django.contrib import admin
+from .models import AmiiboFigure
 
-# Register your models here.
+admin.site.register(AmiiboFigure)

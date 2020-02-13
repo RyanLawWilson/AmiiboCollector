@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block pagetop-css %} cover-bookBag {% endblock %}
+
+{% block page-title %}BookBag{% endblock %}
+{% block page-subtitle %}Keep track of all the books your eyes have ever come across!{% endblock %}
+
+{% block appcontent %}
+    <section>
+
+    {% block templatecontent %}{% endblock %} <!-- section that all the template specific content will render within -->
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'Amiibo/amiibo_base.html' %}
+{% load static %}
+{% block templatecontent %}
+<section style="width: 90%;">
+    <p class="text-center">ADD STUFF TO THE DATABASE HERE!</p>
+    <form class="addAmiibo_grid-container" method="POST">
+        {% csrf_token %}    {# Needed for form security #}
+        {# form.as_p makes the ModelForm as paragraph tags: a label and input is INSIDE the p tag #}
+
+        {# Gets the text fields for the form #}
+        {% for field in form %}
+            {{ field }}         {# Gives a textbox that represents one of the columns in the db #}
+        {% endfor %}
+
+        {# I need to add the labels in a specific order to make everything line up. #}
+        <label>{{ form.name.label }}:</label>
+        <label>{{ form.game_series.label }}:</label>
+        <label>{{ form.amount.label }}:</label>
+        <label>{{ form.purchase_date.label }}:</label>
+        <label>{{ form.purchase_price.label }}:</label>
+
+        <input class="addAmiiboBtn grid-supercenter" type="submit" value="Add Amiibo!!">
+    </form>
+
+    <button onclick="location.href='{% url 'amiiboCollection' %}'">Back to your Collection</button>
+</section>
+{% endblock %}
