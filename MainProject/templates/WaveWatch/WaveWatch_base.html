@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load staticfiles %} <!-- must load static files on every template, even though it extends another template -->
+
+{% block pagetop-css %} cover-wave {% endblock %}
+
+{% block page-title %}Wave App{% endblock %}
+{% block page-subtitle %}Check Oregon's wave data here!{% endblock %}
+<!--{% block button1 %}<a href="{% url 'wave' %}" class="contact-btn"></a>{% endblock %}
+{% block button2 %}<a href="{% url '' %}" class="contact-btn"></a>{% endblock %}-->
+
+{% block appcontent %}
+    <section>
+
+        {% block templatecontent %}{% endblock %} <!-- section that all the template specific content will render within -->
+{% endblock %}
