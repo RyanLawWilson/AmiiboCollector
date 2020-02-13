@@ -1,0 +1,8 @@
+{% extends 'Amiibo/amiibo_base.html' %}
+{% load static %}
+{% block templatecontent %}
+<section>
+    <p class="text-center">This will show what is in the database</p>
+    <button onclick="location.href='{% url 'addAmiibo' %}'">Add an Amiibo!</button>
+</section>
+{% endblock %}

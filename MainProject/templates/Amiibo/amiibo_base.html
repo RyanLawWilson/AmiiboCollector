@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE>
+
+{% comment "Making Templates" %}
+    This may be the most difficult thing about Django.  It will be extremely hard to
+    figure out what page does if this project gets really big.
+    I'm going to extend the templates/base.html to keep every page consistent with the site.
+
+    This file extends from base.html to make pages look consistent
+    Almost everything within the app will extend from this file.
+    Most of the CSS and JS are called in base.html, not this file
+{% endcomment %}
+
+
+{#  The background image #}
+{% block pagetop-css %} cover-amiibo {% endblock %}
+
+{% block page-title %}Amiibo App{% endblock %}
+{% block page-subtitle %}Digitally store your Amiibos and find new ones!{% endblock %}
+
+{#  Using url will grab the name associated with the path in urls.py #}
+{% block button1 %}<a href="{% url 'amiibo_home' %}" class="contact-btn">Amiibo Home</a>{% endblock %}
+{% block button2 %}<a href="{% url 'amiiboCollection' %}" class="contact-btn">Your Amiibos</a>{% endblock %}
+{% block button3 %}<a href="{% url 'amiiboAPI' %}" class="contact-btn">Find Amiibos</a>{% endblock %}
+{% block button4 %}<a href="{% url 'nintendoNews' %}" class="contact-btn">Nintendo News</a>{% endblock %}
+
+{#  Not sure why we need appcontent and templatecontent.  Why not just one?  #}
+{% block appcontent %}
+    {% block templatecontent %}{% endblock %} <!-- section that all the template specific content will render within -->
+{% endblock %}
+
