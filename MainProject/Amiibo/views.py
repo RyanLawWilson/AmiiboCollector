@@ -4,8 +4,9 @@
 # >>> Amiibo.urls reads the URL
 # >>> Amiibo.urls, depending on what it reads, one of the functions below is run.
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .forms import AmiiboFigureForm
+from .models import AmiiboFigure
 
 # Called when Amiibo/urls.py sees  ''  at the end of the URL
 # Returns the HTML file amiibo_home.html
@@ -16,6 +17,26 @@ def amiibo_home(request):
 # Returns the HTML file amiibo_db.html which will show the contents of the database.
 def amiibo_db(request):
     return render(request, 'Amiibo/amiibo_db.html')
+
+# Called when Amiibo/urls.py sees  'yourcollection/details'  at the end of the URL
+# Gets the AmiiboFigure instance that was clicked and sends it to details page.
+# Returns the HTML file amiibo_db-details.html
+def details(request, pk):
+    # I'll determine what amiibo to show details of based on its primary key.
+    pk = int(pk)    # Make sure it's an integer.
+    amiibo = get_object_or_404(AmiiboFigure, pk=pk)
+
+    context = {
+        'amiibo': amiibo
+    }
+
+    # When the primary key is passed to this function, the corresponding amiibo is retrieved and
+    # sent to amiibo_db-details.html.  Now we have to figure out how the primary key sent here and
+    # what the amiibo does once it gets to the details page.
+    # TLDR: We get pk, we get amiibo using pk, we send amiibo to details page.
+    #       How do we send pk here?
+    #       Utilize amiibo in details page.
+    return render(request, 'Amiibo/amiibo_db-details.html', context)
 
 # Called when Amiibo/urls.py sees  'amiibolist'  at the end of the URL
 # Returns the HTML file amiibo_api.html
@@ -35,7 +56,7 @@ def addAmiibo(request):
     print(form)
     if form.is_valid():
         form.save()
-        form = AmiiboFigureForm()   # Makes the contents of the form refresh when the user clicks save.
+        form = AmiiboFigureForm()   # Makes the contents of the form refresh when the user add Amiibo save.
 
     # Make a dictionary to send to the page that will be rendered
     context = {
