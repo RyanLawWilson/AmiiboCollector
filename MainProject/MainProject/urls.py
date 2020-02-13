@@ -23,11 +23,12 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 #   For example, If a URL is http://www.somewebsite.com/amiibo/
 #   Django will look for another list of URLs in urls.py of the Amiibo app.
 urlpatterns = [
-    path('amiibo/', include('Amiibo.urls')),
     path('admin/', admin.site.urls),
     path('', include('HomePage.urls')),
     path('footy/', include('FootyDemo.urls')),
     path('wolves/', include('TWolvesRoster.urls')),
+    path('amiibo/', include('Amiibo.urls')),
+    path('bookBag/', include('BookBag.urls')),
     path('bookshelf/', include('BookShelf.urls')),
 ]
 
