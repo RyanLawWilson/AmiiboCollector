@@ -28,6 +28,7 @@ urlpatterns = [
     path('', include('HomePage.urls')),
     path('footy/', include('FootyDemo.urls')),
     path('wolves/', include('TWolvesRoster.urls')),
+    path('bookshelf/', include('BookShelf.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

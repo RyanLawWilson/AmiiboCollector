@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'FootyDemo',
     'TWolvesRoster',
     'Amiibo',   # Added my app per instructions from story #1
+    'BookShelf',    # Added app to settings.py for Mark's story 1
 ]
 
 MIDDLEWARE = [
