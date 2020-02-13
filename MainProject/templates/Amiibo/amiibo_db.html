@@ -2,7 +2,25 @@
 {% load static %}
 {% block templatecontent %}
 <section>
-    <p class="text-center">This will show what is in the database</p>
-    <button onclick="location.href='{% url 'addAmiibo' %}'">Add an Amiibo!</button>
+    <p class="text-center titleText">These are all of your Amiibos!</p>
+
+    <div class="db_grid-container">
+        <h4>Name</h4>
+        <h4>Series</h4>
+        <h4>Price</h4>
+        <h4>Date</h4>
+        <h4>Qty</h4>
+
+        {% for amiibo in amiibos %}
+            <p>{{ amiibo.name | title }}</p>
+            <p>{{ amiibo.game_series | title }}</p>
+            <p>{% if not amiibo.purchase_price == None %}${% endif %}{{ amiibo.purchase_price }}</p>
+            <p class="text-center">{{ amiibo.purchase_date }}</p>
+            <p class="text-center">{{ amiibo.amount }}</p>
+        {% endfor %}
+    </div>
+
+
+    <button class="btn_pageTransition" onclick="location.href='{% url 'addAmiibo' %}'">Add an Amiibo!</button>
 </section>
 {% endblock %}
