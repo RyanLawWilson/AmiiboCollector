@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'FootyDemo',
-    'Amiibo',   # Added my app per instructions from story #1
+    'TWolvesRoster',
+    'Amiibo',
+    'BookBag',
 ]
 
 MIDDLEWARE = [
