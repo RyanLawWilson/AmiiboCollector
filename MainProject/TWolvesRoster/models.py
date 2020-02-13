@@ -10,8 +10,8 @@ STATUS_OPTIONS = (('Current Player', 'Current Player'), ('Retired', 'Retired'), 
 
 class Player(models.Model):
     name = models.CharField(max_length=60, null=False, blank=False)
-    position = models.CharField(max_length=75, Choices=POSITION_OPTIONS)
-    currentStatus = models.CharField(max_length=75, Choices=STATUS_OPTIONS)
+    position = models.CharField(max_length=75, choices=POSITION_OPTIONS)
+    currentStatus = models.CharField(max_length=75, choices=STATUS_OPTIONS)
     age = models.PositiveIntegerField(blank=True, null=True)
 
     Players = models.Manager()
