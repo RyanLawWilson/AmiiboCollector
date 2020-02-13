@@ -14,9 +14,15 @@ def amiibo_home(request):
     return render(request, 'Amiibo/amiibo_home.html')
 
 # Called when Amiibo/urls.py sees  'yourcollection'  at the end of the URL
-# Returns the HTML file amiibo_db.html which will show the contents of the database.
+# Returns the HTML file amiibo_db.html which shows the contents of the database.
 def amiibo_db(request):
-    return render(request, 'Amiibo/amiibo_db.html')
+    amiibos = AmiiboFigure.AmiiboFigurines.all()        # Put all of the variables in the db into the variable
+
+    context = {
+        'amiibos': amiibos,
+    }
+
+    return render(request, 'Amiibo/amiibo_db.html', context)
 
 # Called when Amiibo/urls.py sees  'yourcollection/details'  at the end of the URL
 # Gets the AmiiboFigure instance that was clicked and sends it to details page.

@@ -1,7 +1,7 @@
 {% extends 'Amiibo/amiibo_base.html' %}
 {% load static %}
 {% block templatecontent %}
-<section style="width: 90%;">
+<section>
     <p class="text-center">ADD STUFF TO THE DATABASE HERE!</p>
     <form class="addAmiibo_grid-container" method="POST">
         {% csrf_token %}    {# Needed for form security #}
@@ -22,6 +22,6 @@
         <input class="addAmiiboBtn grid-supercenter" type="submit" value="Add Amiibo!!">
     </form>
 
-    <button onclick="location.href='{% url 'amiiboCollection' %}'">Back to your Collection</button>
+    <button class="btn_pageTransition" onclick="location.href='{% url 'amiiboCollection' %}'">Back to your Collection</button>
 </section>
 {% endblock %}
