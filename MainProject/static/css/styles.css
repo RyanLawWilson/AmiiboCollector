@@ -636,9 +636,10 @@ div #footyPic{
 }
 
 .text-center {text-align: center;}
+
+/* Aligns the Elements on the Amiibo home page */
 .left {grid-area: left;}
 .right {grid-area: right;}
-
 .home_grid-container {
     display: grid;
     margin: 5px auto;
@@ -651,6 +652,52 @@ div #footyPic{
         'left . right';
     grid-gap: 50px;
     width: 80%;
+    height: auto;
+}
+
+/* The CSS that aligns all of the items in the addAmiibo form */
+.addAmiibo_grid-container > input {font-size: 16px;}
+.addAmiibo_grid-container > label {padding: 5px;}
+.addAmiibo_grid-container > input[name="name"] {grid-area: nameField}
+.addAmiibo_grid-container > input[name="game_series"] {grid-area: gameSField}
+.addAmiibo_grid-container > input[name="purchase_date"] {grid-area: purDate}
+.addAmiibo_grid-container > input[name="purchase_price"] {grid-area: purPrice}
+.addAmiibo_grid-container > select[name="amount"] {
+    grid-area: qtyDD;
+    width: 50%;
+    align-self: center;
+    justify-self: center;
+    font-size: 20px;}
+.addAmiibo_grid-container > input[type=submit] {
+    grid-area: addBtn;
+    padding: 10px 20px;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: rgba(0,0,255,0.5);
+    color: black;
+    width: 75%;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.2s;
+    box-shadow: 3px 3px 6px black}
+.addAmiibo_grid-container > input[type=submit]:hover {
+    background: green;
+    color: white;
+    border: 1px solid black}
+.addAmiibo_grid-container {
+    display: grid;
+    margin: 5px auto;
+    padding: 25px;
+    justify-content: center;
+    align-content: center;
+    grid-template:
+        '   .           nameField       nameField   '
+        '   .           gameSField      gameSField  '
+        '   .           .               .           '
+        '   qtyDD       purDate         purPrice    '
+        '   qtyDD       addBtn          addBtn      ';
+    grid-gap: 10px;
+    width: 60%;
     height: auto;
 }
 
