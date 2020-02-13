@@ -6,7 +6,16 @@
 {% block templatecontent %}
 
 <section>
-    <h1 class="wolvesPageTitle">Create Form</h1>
-    
+    <div class="flex-container">
+        <form method="post">
+            {% csrf_token %}
+            <table>
+                {{ form.as_table }} <!-- this only renders the td tags, still need the table tags -->
+            </table>
+            {{ form.non_field_errors }}
+            <button class="primary-bright-button" type="submit"> Add Player </button>
+        </form>
+    </div>
 </section>
+
 {% endblock %}
