@@ -394,7 +394,7 @@ h2.sub-title::after {
   -webkit-transform: translateY(30px);
 }
 .app-image .title {
-  font-size: 3.5em;
+  font-size: 3em;
   text-transform: uppercase;
   opacity: 0;
   transition-delay: 0.2s;
@@ -622,6 +622,69 @@ div #footyPic{
 }
 
 /* =====  Specific styling Footy Demo App // END =====*/
+
+/* ===========================================
+    Specific styling for TWolvesRoster App //  START
+=============================================*/
+
+.wolvesPageTitle {
+  text-align: center;
+  text-transform: uppercase;
+  color: blue;
+  size: 60px;
+}
+
+.wolvesHomePagetxt {
+  text-align: center;
+  color: black;
+  size: 22px;
+}
+
+/* =====  Specific styling for TWolvesRoster App // END =====*/
+
+
+
+/* ===========================================
+    Specific Styling Amiibo App //  START
+=============================================*/
+.cover-amiibo {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../images/amiibo_home.png') right bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80vh;
+}
+
+.text-center {text-align: center;}
+.left {grid-area: left;}
+.right {grid-area: right;}
+
+.home_grid-container {
+    display: grid;
+    margin: 5px auto;
+    padding: 25px 5px 5px 5px;
+    justify-content: center;
+    align-content: center;
+    grid-template:
+        'left . right'
+        'left . right'
+        'left . right';
+    grid-gap: 50px;
+    width: 80%;
+    height: auto;
+}
+
+.grid-supercenter {
+    align-self: center;
+    justify-self: center;
+}
+
+.titleText {
+    font-size: 32px;
+    text-weight: bold;
+}
+
+/* =====  Specific Styling Amiibo App // END =====*/
+
 
 
 /* ============= RESPONSIVE max-width: 991p =========== */
