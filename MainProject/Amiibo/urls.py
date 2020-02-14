@@ -8,13 +8,16 @@ from . import views
 urlpatterns = [
 	# If the end of the URL is blank, go to views.py and execute the index method
 	path('', views.amiibo_home, name='amiibo_home'),
+
 	path('yourcollection/', views.amiibo_db, name='amiiboCollection'),
-	path('yourcollection/details', views.details, name='details'),
+	# I think what is actually happening is Django compares the URL with the name attribute.
+	# If it matches, the URL is set to the first argument in path().
+	path('yourcollection/addAmiibo/', views.addAmiibo, name='addAmiibo'),
+	path('yourcollection/<int:pk>/details/', views.details, name='details'),
+
 	path('amiibolist/', views.amiibo_api, name='amiiboAPI'),
 	path('nintendonews/', views.amiibo_news, name='nintendoNews'),
 
-	# I think what is actually happening is Django compares the URL with the name attribute.
-	# If it matches, the URL is set to the first argument in path().
-	path('addAmiibo/', views.addAmiibo, name='addAmiibo'),
+
 
 ]

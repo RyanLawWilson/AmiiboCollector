@@ -2,7 +2,7 @@
 {% load static %}
 {% block templatecontent %}
 <section>
-    <p class="text-center">ADD STUFF TO THE DATABASE HERE!</p>
+    <p class="titleText text-center">Add your Amiibo!</p>
     <form class="addAmiibo_grid-container" method="POST">
         {% csrf_token %}    {# Needed for form security #}
         {# form.as_p makes the ModelForm as paragraph tags: a label and input is INSIDE the p tag #}
