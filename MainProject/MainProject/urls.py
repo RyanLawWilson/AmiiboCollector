@@ -22,6 +22,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('HomePage.urls')),
     path('footy/', include('FootyDemo.urls')),
+    path('wolves/', include('TWolvesRoster.urls')),
+    path('amiibo/', include('Amiibo.urls')),
+    path('bookBag/', include('BookBag.urls')),
+    path('bookshelf/', include('BookShelf.urls')),
     path('waves/', include('WaveWatch.urls')),
 ]
 
