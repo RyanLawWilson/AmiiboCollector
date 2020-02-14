@@ -1,7 +1,8 @@
-from django.urls import path
+from django.urls import include, path
 from . import views
 
 
 urlpatterns = [
-    path('', views.bookBagHome, name='bookBagHome'),                                #home page
+    path('', views.bookBagHome, name='bookBagHome'),                #home page
+    path('AddToLibrary/', views.add_book, name='createBook'),
     ]
