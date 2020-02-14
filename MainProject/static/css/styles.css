@@ -728,26 +728,66 @@ div #footyPic{
 
 /* Styling for table in amiibo.db.html */
 .db_grid-container > * {
+    /* These 4 styles make the cool background work */
     padding: 10px;
     margin: 0;
     background: transparent;
     border: 5px solid white;
+    overflow-wrap: break-word;      /* For the dates. May remove later if I require date to be specific format */
     color: white;}
 .db_grid-container > h4 {
+    padding: 10px 0;
     font-size: 20px;
     letter-spacing: 2px;
     text-align: center;}
+.btn_details {
+    background-color: rgba(0, 0, 0, 0.0);
+    transition: 0.2s;
+    color: rgb(51, 153, 255);}
+.btn_details:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: green;
+    font-weight: bolder;
+    cursor: pointer;}
 .db_grid-container {
     display: grid;
     margin: 5px auto;
     align-content: center;
-    width: 75%;
-    grid-template-columns: auto auto 10% 10% 10%;
+    width: 85%;
+    grid-template-columns: auto 20% 10% 10% 7% 10%;
     background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../images/gamesystems_repeatingimg.jpg') right bottom;
     background-repeat: repeat;
 }
 
-/* The buttons that move between db and addAmiibo */
+/*Styling for the details page: amiibo_db-details.html */
+.details_grid-container > .amiiboImg {grid-area: img;}
+.details_grid-container > .name {grid-area: name;}
+.details_grid-container > .series {grid-area: ser;}
+.details_grid-container > .date {grid-area: date;}
+.details_grid-container > .price {grid-area: pri;}
+.details_grid-container > .amount {grid-area: qty;}
+.details_grid-container {
+    display: grid;
+    grid-template:
+        '   img     .   name   name   name  '
+        '   img     .   ser    ser    ser   '
+        '   img     .   date   .      pri   '
+        '   img     .   qty    qty    qty   ';
+    margin: 5px auto;
+    padding: 25px;
+    justify-content: center;
+    align-content: center;
+}
+.details_grid-container > * {
+    padding: 10px;
+    font-size: 32px;
+    text-weight: bold;
+    margin: 0;
+    align-self: center
+}
+
+
+/* The buttons that move between db, addAmiibo, and details */
 .btn_pageTransition {
     display: block;
     margin: 20px auto;

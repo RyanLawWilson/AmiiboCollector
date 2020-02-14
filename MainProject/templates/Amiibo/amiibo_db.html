@@ -2,7 +2,7 @@
 {% load static %}
 {% block templatecontent %}
 <section>
-    <p class="text-center titleText">These are all of your Amiibos!</p>
+    <h1 class="text-center titleText">These are all of your Amiibos!</h1>
 
     <div class="db_grid-container">
         <h4>Name</h4>
@@ -10,6 +10,7 @@
         <h4>Price</h4>
         <h4>Date</h4>
         <h4>Qty</h4>
+        <h4>Info</h4>
 
         {% for amiibo in amiibos %}
             <p>{{ amiibo.name | title }}</p>
@@ -17,6 +18,10 @@
             <p>{% if not amiibo.purchase_price == None %}${% endif %}{{ amiibo.purchase_price }}</p>
             <p class="text-center">{{ amiibo.purchase_date }}</p>
             <p class="text-center">{{ amiibo.amount }}</p>
+
+            {# Using url will look at the name of the path in urls.py. #}
+            {# Remove url to look at the browser's url. #}
+            <button class="btn_details" onclick="location.href='{{ amiibo.pk }}/amiibo_details'">Details</button>
         {% endfor %}
     </div>
 

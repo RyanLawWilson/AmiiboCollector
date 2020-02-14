@@ -2,8 +2,10 @@
 {% load static %}
 {% block templatecontent %}
 <section>
-    <p class="text-center">ADD STUFF TO THE DATABASE HERE!</p>
-    <form class="addAmiibo_grid-container" method="POST">
+    <p class="titleText text-center">Add your Amiibo!</p>
+
+    {# Added action attribute to POST to the amiibo collection page.#}
+    <form class="addAmiibo_grid-container" method="POST" action="/amiibo/your-amiibo-collection/">
         {% csrf_token %}    {# Needed for form security #}
         {# form.as_p makes the ModelForm as paragraph tags: a label and input is INSIDE the p tag #}
 
