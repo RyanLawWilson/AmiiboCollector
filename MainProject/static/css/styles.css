@@ -631,15 +631,21 @@ div #footyPic{
   text-align: center;
   text-transform: uppercase;
   color: blue;
-  size: 60px;
+  font-size: 160px;
 }
 
 .wolvesHomePagetxt {
   text-align: center;
   color: black;
-  size: 22px;
+  font-size: 22px;
 }
 
+.wolvesBackground {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../images/wolves/WolvesBackground.jpg') right bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80vh;
+}
 /* =====  Specific styling for TWolvesRoster App // END =====*/
 
 
@@ -648,10 +654,10 @@ div #footyPic{
     Specific Styling Amiibo App //  START
 =============================================*/
 .cover-amiibo {
-  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../images/amiibo_home.png') right bottom;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 80vh;
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../images/amiibo_home.png') right bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80vh;
 }
 
 .text-center {text-align: center;}
@@ -720,12 +726,51 @@ div #footyPic{
     height: auto;
 }
 
+/* Styling for table in amiibo.db.html */
+.db_grid-container > * {
+    padding: 10px;
+    margin: 0;
+    background: transparent;
+    border: 5px solid white;
+    color: white;}
+.db_grid-container > h4 {
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-align: center;}
+.db_grid-container {
+    display: grid;
+    margin: 5px auto;
+    align-content: center;
+    width: 75%;
+    grid-template-columns: auto auto 10% 10% 10%;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../images/gamesystems_repeatingimg.jpg') right bottom;
+    background-repeat: repeat;
+}
+
+/* The buttons that move between db and addAmiibo */
+.btn_pageTransition {
+    display: block;
+    margin: 20px auto;
+    font-size: 20px;
+    background-color: rgb(80, 15, 17);
+    color: white;
+    padding: 5px 50px;
+    border: 2px solid black;
+    transition: 0.2s;
+    cursor: pointer
+}
+
+.btn_pageTransition:hover {
+    background-color: rgba(80, 15, 17, 0.5);
+}
+
 .grid-supercenter {
     align-self: center;
     justify-self: center;
 }
 
 .titleText {
+    margin: 20px 0;
     font-size: 32px;
     text-weight: bold;
 }
