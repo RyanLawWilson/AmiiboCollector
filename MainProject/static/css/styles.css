@@ -631,15 +631,21 @@ div #footyPic{
   text-align: center;
   text-transform: uppercase;
   color: blue;
-  size: 60px;
+  font-size: 160px;
 }
 
 .wolvesHomePagetxt {
   text-align: center;
   color: black;
-  size: 22px;
+  font-size: 22px;
 }
 
+.wolvesBackground {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../images/wolves/WolvesBackground.jpg') right bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80vh;
+}
 /* =====  Specific styling for TWolvesRoster App // END =====*/
 
 
@@ -835,6 +841,19 @@ div #footyPic{
 
 .cover-bookBag {
   background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('../images/bookBagheader.jpg') right bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80vh;
+}
+
+
+
+/* ===========================================
+    Specific styling CommunityFM //  START
+=============================================*/
+
+.cover-radio {
+  background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('../images/radio-1594819_1920.jpg') right bottom;
   background-repeat: no-repeat;
   background-size: cover;
   height: 80vh;

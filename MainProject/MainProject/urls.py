@@ -13,8 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin            # django tutorial instruction
-from django.urls import path, include       # django tutorial instruction
+from django.contrib import admin
+from django.urls import path, include
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 # "Switchboard" that allows travel to different pages.  In the MainProject,
@@ -30,6 +30,8 @@ urlpatterns = [
     path('amiibo/', include('Amiibo.urls')),
     path('bookBag/', include('BookBag.urls')),
     path('bookshelf/', include('BookShelf.urls')),
+    path('waves/', include('WaveWatch.urls')),
+    path('fm/', include('CommunityFM.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
