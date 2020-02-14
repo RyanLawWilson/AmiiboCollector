@@ -727,6 +727,7 @@ div #footyPic{
     margin: 0;
     background: transparent;
     border: 5px solid white;
+    overflow-wrap: break-word;      /* For the dates. May remove later if I require date to be specific format */
     color: white;}
 .db_grid-container > h4 {
     padding: 10px 0;
@@ -747,7 +748,7 @@ div #footyPic{
     margin: 5px auto;
     align-content: center;
     width: 85%;
-    grid-template-columns: auto auto 10% 10% 7% 10%;
+    grid-template-columns: auto 20% 10% 10% 7% 10%;
     background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../images/gamesystems_repeatingimg.jpg') right bottom;
     background-repeat: repeat;
 }

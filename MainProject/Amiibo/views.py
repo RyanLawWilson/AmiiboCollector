@@ -16,6 +16,12 @@ def amiibo_home(request):
 # Called when Amiibo/urls.py sees  'yourcollection'  at the end of the URL
 # Returns the HTML file amiibo_db.html which shows the contents of the database.
 def amiibo_db(request):
+    # NEW FEATURE: When user clicks "Add Amiibo" on the addAmiibo page they are taken to their collection.
+    # When the ModelForm is POSTed here, save it in the database.
+    form = AmiiboFigureForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+
     amiibos = AmiiboFigure.AmiiboFigurines.all()        # Put all of the variables in the db into the variable
 
     context = {
@@ -27,7 +33,7 @@ def amiibo_db(request):
 # Called when Amiibo/urls.py sees  'yourcollection/details'  at the end of the URL
 # Gets the AmiiboFigure instance that was clicked and sends it to details page.
 # Returns the HTML file amiibo_db-details.html
-def details(request, pk):
+def amiibo_details(request, pk):
     # I'll determine what amiibo to show details of based on its primary key.
     pk = int(pk)    # Make sure it's an integer.
     amiibo = get_object_or_404(AmiiboFigure, pk=pk)
@@ -59,7 +65,6 @@ def amiibo_news(request):
 # I followed this video: https://www.youtube.com/watch?v=6oOHlcHkX2U
 def addAmiibo(request):
     form = AmiiboFigureForm(request.POST or None)     # The form for the database is going to be on this page.
-    print(form)
     if form.is_valid():
         form.save()
         form = AmiiboFigureForm()   # Makes the contents of the form refresh when the user add Amiibo save.
@@ -71,3 +76,14 @@ def addAmiibo(request):
 
     # We are rendering the addAmiibo page with the ModelForm that we specified in forms.py
     return render(request, 'Amiibo/amiibo_db-addAmiibo.html', context)
+
+
+# Returns to the collection when you click the submit button on the addAmiibo page.
+def amiiboAdded(request, message):
+    message = ""
+
+    context = {
+        'message': message
+    }
+
+    return render(request, 'Amiibo/amiibo_db.html', context)
