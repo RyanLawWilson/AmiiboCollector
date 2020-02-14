@@ -1,6 +1,6 @@
-from django.urls import include, path
+from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('', views.home, name='WaveWatchHome'),                             #home page
-    ]
+    path('', views.WaveHome, name='waves'),
+]

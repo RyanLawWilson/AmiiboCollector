@@ -1,5 +1,3 @@
 from django.contrib import admin
 
-'''
-Story #2
-'''
+# Register your models here.

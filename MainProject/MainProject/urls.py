@@ -22,7 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('HomePage.urls')),
     path('footy/', include('FootyDemo.urls')),
-    path('wave/', include('WaveWatch.urls')),
+    path('waves/', include('WaveWatch.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
