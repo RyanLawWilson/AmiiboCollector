@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Amiibo',   # Added my app per instructions from story #1
     'BookShelf',    # Added app to settings.py for Mark's story 1
     'WaveWatch',
+    'CommunityFM',
 ]
 
 MIDDLEWARE = [
