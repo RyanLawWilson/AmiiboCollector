@@ -29,6 +29,7 @@ urlpatterns = [
     path('wolves/', include('TWolvesRoster.urls')),
     path('amiibo/', include('Amiibo.urls')),
     path('bookBag/', include('BookBag.urls')),
+    path('fm/', include('CommunityFM.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

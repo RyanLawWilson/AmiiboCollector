@@ -760,3 +760,16 @@ div #footyPic{
   background-size: cover;
   height: 80vh;
 }
+
+
+
+/* ===========================================
+    Specific styling CommunityFM //  START
+=============================================*/
+
+.cover-radio {
+  background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('../images/radio-1594819_1920.jpg') right bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80vh;
+}

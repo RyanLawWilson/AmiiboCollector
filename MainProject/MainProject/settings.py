@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'TWolvesRoster',
     'Amiibo',
     'BookBag',
+    'CommunityFM',
 ]
 
 MIDDLEWARE = [
