@@ -846,6 +846,53 @@ div #footyPic{
   height: 80vh;
 }
 
+.bookBag table{
+    width: 75%;
+    align: center;
+    margin: 20px auto;
+    border: 40px 20px 10px 20px;
+}
+
+.bookBag button {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border: 2px solid black;
+    background: transparent;
+    color: black;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.bookBag button:hover {
+  background: black;
+  color: white;
+  cursor: pointer;
+}
+
+#bookBagLibrary {
+    padding: 60px;
+
+}
+
+#bookBagLibrary table td
+ {
+     background: lightGray;
+     color: black;
+     text-align:center;
+     font-size: 18px;
+}
+
+#bookBagLibrary table th
+ {
+    background:var(--dark);
+    color: white;
+    text-align:center;
+    font-size: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
 
 
 /* ===========================================
