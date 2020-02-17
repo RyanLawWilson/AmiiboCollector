@@ -2,6 +2,8 @@
 {% load static %}
 {% block templatecontent %}
 <section>
+    <h1 class="text-center titleText text-AmiiboDeleted">{{ AmiiboDeleteMessage }}</h1>
+    <h1 class="text-center titleText text-AmiiboUpdated">{{ AmiiboUpdateMessage }}</h1>
     <h1 class="text-center titleText">These are all of your Amiibos!</h1>
 
     <div class="db_grid-container">
@@ -21,7 +23,7 @@
 
             {# Using url will look at the name of the path in urls.py. #}
             {# Remove url to look at the browser's url. #}
-            <button class="btn_details" onclick="location.href='{{ amiibo.pk }}/amiibo_details'">Details</button>
+            <button class="btn_details" onclick="location.href='{% url 'amiiboDetails' amiibo.pk %}'">Details</button>
         {% endfor %}
     </div>
 

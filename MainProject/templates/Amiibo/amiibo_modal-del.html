@@ -1,0 +1,24 @@
+{# This is the darkened background #}
+<div class="amiibo_modal">
+
+    {# The box that contains the content #}
+    <div class="amiibo_modal-content">
+
+        {# The exit button #}
+        <div class="exit_amiibo_modal amiibo_modalCloser">
+            <span>&times;</span>
+        </div>
+
+        {# Main Content #}
+        <div class="amiibo_modal-body">
+            <h1 class="text-center titleText">Do you really want to delete <span id="dynamicNameForModal"></span>?</h1>
+
+            <div class="amiibo_rcContainer">
+                <div class="amiibo_row">
+                    <button class="btn_amiibo btn_modal-confirm" onclick="location.href='{% url 'amiiboDetails-delete' amiibo.pk %}'">Yes... I do...</button>
+                    <button class="btn_amiibo btn_modal-cancel amiibo_modalCloser">No, go back!</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -14,10 +14,9 @@ urlpatterns = [
 	# If it matches, the URL is set to the first argument in path().
 	path('your-amiibo-collection/addAmiibo/', views.addAmiibo, name='addAmiibo'),
 	path('your-amiibo-collection/<int:pk>/amiibo_details/', views.amiibo_details, name='amiiboDetails'),
+	path('your-amiibo-collection/<int:pk>/edit', views.amiibo_edit, name='amiiboDetails-edit'),
+	path('your-amiibo-collection/<int:pk>/deleted', views.amiibo_delete, name='amiiboDetails-delete'),
 
 	path('amiibolist/', views.amiibo_api, name='amiiboAPI'),
 	path('nintendonews/', views.amiibo_news, name='nintendoNews'),
-
-
-
 ]
