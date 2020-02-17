@@ -1,0 +1,17 @@
+{% extends 'Amiibo/amiibo_base.html' %}
+{% load static %}
+{% block templatecontent %}
+<section>
+    <div class="home_grid-container">
+        <img class="grid-supercenter left" src="{% static 'images/amiibos/jigglypuff.png' %}">
+
+        <h1 class="titleText grid-supercenter">Hello World!</h1>
+        <p class="text-center">
+            Welcome to the Amiibo App, Get all of your amiibos together and digitally add them<br>
+            to the database.  You can also search for amiibos if you want to!
+        </p>
+
+        <img class="grid-supercenter right" src="{% static 'images/amiibos/king_dedede.png' %}">
+    </div>
+</section>
+{% endblock %}

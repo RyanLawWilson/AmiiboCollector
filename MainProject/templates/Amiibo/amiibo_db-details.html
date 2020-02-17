@@ -1,0 +1,28 @@
+{% extends 'Amiibo/amiibo_base.html' %}
+{% load static %}
+{% block templatecontent %}
+<section>
+    <h1 class="titleText text-center">All about {{ amiibo.name | title }}</h1>
+
+    <div class="details_grid-container">
+        {# Change the image dynamically later #}
+        <img class="amiiboImg" src="{% static 'images/amiibos/unknown.png' %}" alt="Image of {{ amiibo.name }}">
+
+        <h1>Name:</h1>
+        <h1 class=" text-center name">{{ amiibo.name | title }}</h1>
+
+        <h1>Series:</h1>
+        <h1 class="text-center series">{{ amiibo.game_series | title }}</h1>
+
+        <h1>Purchased on:</h1>
+        <h1 class="text-center date">{{ amiibo.purchase_date }}</h1>
+        <h1 class="text-center">for</h1>
+        <h1 class="text-center price">{{ amiibo.purchase_price }}</h1>
+
+        <h1>Quantity:</h1>
+        <h1 class=" text-center amount">{{ amiibo.amount }}</h1>
+    </div>
+
+    <button class="btn_pageTransition" onclick="location.href='{% url 'amiiboCollection' %}'">Back to your Collection</button>
+</section>
+{% endblock %}
