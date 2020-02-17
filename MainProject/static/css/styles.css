@@ -644,7 +644,7 @@ div #footyPic{
 }
 .waves button:hover {
   background: var(--dark);
-  color: white;
+  color: lightBlue;
 }
 
 .waves table{
@@ -667,7 +667,7 @@ div #footyPic{
 }
 
 .waves select, label{
-    color: white;
+    color: lightBlue;
     background: var(--dark);
     display: flex;
     padding-top: 5px;
@@ -718,36 +718,15 @@ div #wavesPic{
     right: 25%;
 }
 
-#jerseyCollectionPage {
-    padding: 40px;
-}
-
-#jerseyCollectionPage table th
- {
-    background:var(--dark);
-    color: white;
-    text-align:center;
-    font-size: 20px;
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
-#jerseyCollectionPage table td
- {
-     background:var(--dark);
-     color: white;
-     text-align:center;
-     font-size: 18px;
-}
 
 #info-button {
-    background: white;
+    background: lightBlue;
     color: var(--dark);
 
 }
 #info-button:hover {
     background: var(--dark);
-    color: white;
+    color: lightBlue;
 }
 
 /* =====  Styling for WaveWatch App // END ===========*/

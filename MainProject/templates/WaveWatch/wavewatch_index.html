@@ -2,7 +2,7 @@
 {% load staticfiles %}
 {% block templatecontent %}
 <section >
-    <div class="flex-container waves" id="surfTypeInfo">
+    <div class="flex-container waves" id="listSurfType">
         <table class="table-striped">
             <tr>
                 <th class="col-md">Locale</th>
@@ -10,13 +10,13 @@
                 <th class="col-md">Board Type</th>
                 <th class="col-md">Board Length</th>
             </tr>
-            {% for type in surfTypes %}     <!-- creates a new row for each jersey in the collection -->
+            {% for surfID in surfdata %}     <!-- creates a new row for each jersey in the collection -->
                 <tr>
-                    <td class="col-md">{{type.local}}</td>
-                    <td class="col-md">{{type.country}}</td>
-                    <td class="col-md">{{type.board_type}}</td>
-                    <td class="col-md">{{type.board_length}}</td>
-                    <td class="col-md"><a href="{{types.pk}}/Details"><button class="primary-light-button" id="info-button">Details</button></a></td>    <!-- creates a link for that specific jersey -->
+                    <td class="col-md">{{surfID.locale}}</td>
+                    <td class="col-md">{{surfID.country}}</td>
+                    <td class="col-md">{{surfID.board_type}}</td>
+                    <td class="col-md">{{surfID.board_length}}</td>
+                    <td class="col-md"><a href="{{surfID.pk}}/Details"><button class="primary-light-button" id="info-button">Details</button></a></td>    <!-- creates a link -->
                 </tr>
             {% endfor %}
         </table>

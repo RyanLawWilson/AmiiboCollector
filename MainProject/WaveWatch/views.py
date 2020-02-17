@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import surfType
 from .forms import BoardForm
+#from api_service import *
 
 
 
@@ -22,6 +23,12 @@ def add_surfInfo(request):
         print(form.errors)                      #Prints any errors for the posted form to the terminal
         form = BoardForm()                     #Creates a new blank form
     return render(request, 'WaveWatch/wavewatch_create.html', {'form':form})
+
+def details_surfInfo(request, pk):
+    pk = int(pk)                                #Casts value of pk to an int so it's in the proper form
+    surfID = get_object_or_404(surfType, pk=pk)   #Gets single instance of the jersey from the database
+    context={'surfID':surfID}                   #Creates dictionary object to pass the jersey object
+    return render(request,'WaveWatch/wavewatch_details.html', context)
 
 #def api_response(request):
 
