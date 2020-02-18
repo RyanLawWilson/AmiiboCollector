@@ -1,0 +1,30 @@
+{% extends 'BookBag/bookBag_base.html' %}
+{% load staticfiles %}
+{% block templatecontent %}
+<section >
+    <div class="flex-container bookBag" id="bookBagLibrary">
+        <table class="table-striped">
+            <tr>
+                <th class="col-md">Title</th>
+                <th class="col-md">Author</th>
+                <th class="col-md">Type</th>
+                <th class="col-md">Genre</th>
+                <th class="col-md">Rating</th>
+            </tr>
+            {% for book in books %}     <!-- creates a new row for each jersey in the collection -->
+                <tr>
+                    <td class="col-md">{{book.title}}</td>
+                    <td class="col-md">{{book.author}}</td>
+                    <td class="col-md">{{book.type}}</td>
+                    <td class="col-md">{{book.genre}}</td>
+                    <td class="col-md">{{book.rating}}</td>
+                    <td class="col-md">
+                        {% if book.authentic %} &#8730 {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+        <button class="secondary-bright-button" type="button" onclick=" location.href='{% url 'createBook' %}'">Add to Library</button>
+    </div>
+</section>
+{% endblock %}

@@ -2,14 +2,19 @@
 {% load static %}
 {% block templatecontent %}
 <section>
+
+    {# Amiibo delete modal - Shows up when user wants to delete their Amiibo - Confirmation #}
+    {% include 'Amiibo/amiibo_modal-del.html' %}
+
     <h1 class="titleText text-center">All about {{ amiibo.name | title }}</h1>
 
+    {# Amiibo Information #}
     <div class="details_grid-container">
         {# Change the image dynamically later #}
         <img class="amiiboImg" src="{% static 'images/amiibos/unknown.png' %}" alt="Image of {{ amiibo.name }}">
 
         <h1>Name:</h1>
-        <h1 class=" text-center name">{{ amiibo.name | title }}</h1>
+        <h1 class=" text-center name" id="amiiboNameForModal">{{ amiibo.name | title }}</h1>
 
         <h1>Series:</h1>
         <h1 class="text-center series">{{ amiibo.game_series | title }}</h1>
@@ -21,6 +26,19 @@
 
         <h1>Quantity:</h1>
         <h1 class=" text-center amount">{{ amiibo.amount }}</h1>
+    </div>
+
+    {# Edit / Delete Buttons #}
+    <div class="amiibo_rcContainer">
+        <div class="amiibo_row">
+            <button class="btn_amiibo btn_edit grid-supercenter"
+                    onclick="location.href='{% url 'amiiboDetails-edit' amiibo.pk %}'">
+                Edit Amiibo
+            </button>
+            <button class="btn_amiibo btn_delete grid-supercenter amiibo_modalOpener">
+                Delete Amiibo
+            </button>
+        </div>
     </div>
 
     <button class="btn_pageTransition" onclick="location.href='{% url 'amiiboCollection' %}'">Back to your Collection</button>

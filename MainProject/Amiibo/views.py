@@ -18,6 +18,7 @@ def amiibo_home(request):
 def amiibo_db(request):
     # NEW FEATURE: When user clicks "Add Amiibo" on the addAmiibo page they are taken to their collection.
     # When the ModelForm is POSTed here, save it in the database.
+    # REMOVE THIS LATER.  FEATURE CAN BE ACCOMPLISHED WITHOUT NEEDING TO GET THE FORM HERE.
     form = AmiiboFigureForm(request.POST or None)
     if form.is_valid():
         form.save()
@@ -49,6 +50,66 @@ def amiibo_details(request, pk):
     #       How do we send pk here?
     #       Utilize amiibo in details page.
     return render(request, 'Amiibo/amiibo_db-details.html', context)
+
+
+# Shows the page used to edit the information for an amiibo.
+def amiibo_edit(request, pk):
+    print("\n\n\n\n\n\nEntered the edit View!\n\n\n\n\n\n")
+
+    pk = int(pk)
+
+    # Get the selected amiibo using the primary key.
+    amiibo = get_object_or_404(AmiiboFigure, pk=pk)
+
+    # If there was a POST sent here, update the amiibo information
+    if request.method == "POST":
+        # Initialize the form with the Amiibo's current information
+        form = AmiiboFigureForm(request.POST, instance=amiibo)
+
+        # IF the form is valid, save it to the database and return to your collection
+        if form.is_valid():
+            # Once the form is submitted and valid, overwrite the information in amiibo and update the DB.
+            amiibo = form.save(commit=False)
+            amiibo.save()
+
+            amiibos = AmiiboFigure.AmiiboFigurines.all()
+
+            context = {
+                'amiibos': amiibos,
+                'AmiiboUpdateMessage': "{} was edited!".format(amiibo),
+            }
+
+            return render(request, 'Amiibo/amiibo_db.html', context)
+    else:
+        form = AmiiboFigureForm(instance=amiibo)
+
+    context = {
+        'form': form,
+        'amiibo': amiibo,
+    }
+
+    return render(request, 'Amiibo/amiibo_db-details-edit.html', context)
+
+
+# Deletes the selected Amiibo then returns back to your collection.
+def amiibo_delete(request, pk):
+    pk = int(pk)
+
+    amiibo = get_object_or_404(AmiiboFigure, pk=pk)
+    print("\n\n\n\n\n\nBefore Delete\n\n\n\n\n\n")
+    amiibo.delete()
+    print("\n\n\n\n\n\nAfter Delete\n\n\n\n\n\n")
+
+    amiibos = AmiiboFigure.AmiiboFigurines.all()  # Put all of the variables in the db into the variable
+
+    context = {
+        'amiibos': amiibos,
+        'AmiiboDeleteMessage': "{} has been removed from your collection".format(amiibo),
+    }
+
+    print("\n\n\n\n\n\n\nThis is right before the render\n\n\n\n\n\n\n\n")
+    return render(request, 'Amiibo/amiibo_db.html', context)
+
 
 # Called when Amiibo/urls.py sees  'amiibolist'  at the end of the URL
 # Returns the HTML file amiibo_api.html
