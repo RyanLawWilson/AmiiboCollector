@@ -19,7 +19,9 @@ def add_station(request):
         form = StationForm()
     return render(request, "CommunityFM/fm_create.html", {"form": form})
 
-
+def station_index(request):
+    stations = Station.objects.all()
+    return render(request, 'CommunityFM/fm_index.html', {'stations': stations})
 
 
 # Create your views here.
