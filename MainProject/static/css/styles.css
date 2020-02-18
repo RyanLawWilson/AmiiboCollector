@@ -394,7 +394,7 @@ h2.sub-title::after {
   -webkit-transform: translateY(30px);
 }
 .app-image .title {
-  font-size: 3.5em;
+  font-size: 3em;
   text-transform: uppercase;
   opacity: 0;
   transition-delay: 0.2s;
@@ -623,6 +623,428 @@ div #footyPic{
 
 /* =====  Specific styling Footy Demo App // END =====*/
 
+/* ===========================================
+    Specific styling for TWolvesRoster App //  START
+=============================================*/
+
+.wolvesPageTitle {
+  text-align: center;
+  text-transform: uppercase;
+  color: blue;
+  font-size: 160px;
+}
+
+.wolvesHomePagetxt {
+  text-align: center;
+  color: black;
+  font-size: 22px;
+}
+
+.wolvesBackground {
+  background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../images/wolves/WolvesBackground.jpg') right bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80vh;
+}
+/* =====  Specific styling for TWolvesRoster App // END =====*/
+
+
+
+/* ===========================================
+    Specific Styling Amiibo App //  START
+=============================================*/
+.cover-amiibo {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../images/amiibo_home.png') right bottom;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80vh;
+}
+
+.btn_amiibo {
+    font-size: 20px;
+    background-color: rgba(0,0,0,0.5);
+    color: white;
+    padding: 5px 50px;
+    margin: 5px 15px;
+    border: 2px solid black;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.text-center {text-align: center;}
+
+/* Aligns the Elements on the Amiibo home page */
+.left {grid-area: left;}
+.right {grid-area: right;}
+.home_grid-container {
+    display: grid;
+    margin: 5px auto;
+    padding: 25px 5px 5px 5px;
+    justify-content: center;
+    align-content: center;
+    grid-template:
+        'left . right'
+        'left . right'
+        'left . right';
+    grid-gap: 50px;
+    width: 80%;
+    height: auto;
+}
+
+/* The CSS that aligns all of the items in the addAmiibo form */
+.addAmiibo_grid-container > input {font-size: 16px;}
+.addAmiibo_grid-container > label {padding: 5px;}
+.addAmiibo_grid-container > input[name="name"] {grid-area: nameField}
+.addAmiibo_grid-container > input[name="game_series"] {grid-area: gameSField}
+.addAmiibo_grid-container > input[name="purchase_date"] {grid-area: purDate}
+.addAmiibo_grid-container > input[name="purchase_price"] {grid-area: purPrice}
+.addAmiibo_grid-container > select[name="amount"] {
+    grid-area: qtyDD;
+    width: 50%;
+    align-self: center;
+    justify-self: center;
+    font-size: 20px;}
+.addAmiibo_grid-container > input[type=submit] {
+    grid-area: addBtn;
+    padding: 10px 20px;
+    border: 1px solid black;
+    cursor: pointer;
+    background-color: rgba(0,0,255,0.5);
+    color: black;
+    width: 75%;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.2s;
+    box-shadow: 3px 3px 6px black}
+.addAmiibo_grid-container > input[type=submit]:hover {
+    background: green;
+    color: white;
+    border: 1px solid black}
+.addAmiibo_grid-container {
+    display: grid;
+    margin: 5px auto;
+    padding: 25px;
+    justify-content: center;
+    align-content: center;
+    grid-template:
+        '   .           nameField       nameField   '
+        '   .           gameSField      gameSField  '
+        '   .           .               .           '
+        '   qtyDD       purDate         purPrice    '
+        '   qtyDD       addBtn          addBtn      ';
+    grid-gap: 10px;
+    width: 60%;
+    height: auto;
+}
+
+/* Styling for table in amiibo_db.html */
+.db_grid-container > * {
+    /* These 4 styles make the cool background work */
+    padding: 10px;
+    margin: 0;
+    background: transparent;
+    border: 5px solid white;
+    overflow-wrap: break-word;      /* For the dates. May remove later if I require date to be specific format */
+    color: white;}
+.db_grid-container > h4 {
+    padding: 10px 0;
+    font-size: 20px;
+    letter-spacing: 2px;
+    text-align: center;}
+.btn_details {
+    background-color: rgba(0, 0, 0, 0.0);
+    transition: 0.2s;
+    color: rgb(51, 153, 255);}
+.btn_details:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: green;
+    font-weight: bolder;
+    cursor: pointer;}
+.db_grid-container {
+    display: grid;
+    margin: 5px auto;
+    align-content: center;
+    width: 85%;
+    grid-template-columns: auto 20% 10% 10% 7% 10%;
+    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('../images/gamesystems_repeatingimg.jpg') right bottom;
+    background-repeat: repeat;
+}
+
+/*Styling for the details page: amiibo_db-details.html */
+.details_grid-container > .amiiboImg {grid-area: img;}
+.details_grid-container > .name {grid-area: name;}
+.details_grid-container > .series {grid-area: ser;}
+.details_grid-container > .date {grid-area: date;}
+.details_grid-container > .price {grid-area: pri;}
+.details_grid-container > .amount {grid-area: qty;}
+.details_grid-container {
+    display: grid;
+    grid-template:
+        '   img     .   name   name   name  '
+        '   img     .   ser    ser    ser   '
+        '   img     .   date   .      pri   '
+        '   img     .   qty    qty    qty   ';
+    margin: 5px auto;
+    padding: 25px;
+    justify-content: center;
+    align-content: center;
+}
+.details_grid-container > * {
+    padding: 10px;
+    font-size: 32px;
+    text-weight: bold;
+    margin: 0;
+    align-self: center;
+}
+
+
+/* The buttons that move between db, addAmiibo, and details */
+.btn_pageTransition {
+    display: block;
+    margin: 30px auto;
+    font-size: 20px;
+    background-color: rgb(80, 15, 17);
+    color: white;
+    padding: 5px 50px;
+    border: 2px solid black;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.btn_pageTransition:hover {
+    background-color: rgba(80, 15, 17, 0.5);
+}
+
+
+/* My row column layout - meant for any page */
+.amiibo_rcContainer {
+    display: block;
+    margin: 5px auto;
+    width: 75%;
+
+    /* Change later */
+    padding: 5px;
+}
+.amiibo_row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Edit and Delete buttons */
+.btn_edit {
+    background-color: rgba(0, 0, 0, 1);
+    border: 2px solid rgb(29, 158, 0)
+}
+.btn_edit:hover {
+    background-color: rgb(29, 158, 0);
+}
+.btn_delete {
+    background-color: rgba(0, 0, 0, 1);
+    border: 2px solid rgb(176, 0, 0, 1)
+}
+.btn_delete:hover {
+    background-color: rgba(176, 0, 0, 1);
+}
+
+/* Amiibo delete modal
+*  I got a lot of the styles from https://www.w3schools.com/howto/howto_css_modals.asp*/
+.amiibo_modal {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    color: white;
+    padding-top: 15%;
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.6);
+    animation-name: moveModalContent;
+    animation-duration: 0.75s;
+}
+@keyframes moveModalContent {
+    from {padding-top: 0; background-color: rgba(0,0,0,0);}
+    to {padding-top: 15%; background-color: rgba(0,0,0,0.6);}
+}
+
+.amiibo_modal-content {
+    position: relative;
+    background-color: black;
+    margin: 10% auto;
+    padding: 10px;
+    border: 2px solid red;
+    width: 60%;
+    animation-name: fadeIn;
+    animation-duration: 2s;
+}
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1}
+}
+
+.btn_modal-confirm {
+    border: 2px solid red;
+}
+.btn_modal-confirm:hover {
+    background-color: red;
+}
+
+.btn_modal-cancel {
+    border: 2px solid rgb(138, 138, 138);
+}
+.btn_modal-cancel:hover {
+    background-color: rgb(138, 138, 138);
+}
+
+/* The small x in the corner */
+.exit_amiibo_modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    float: right;
+    font-size: 28px;
+    border: 1px solid white;
+    margin-left: auto;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+.exit_amiibo_modal:hover {
+    background-color: white;
+    color: black;
+}
+
+.grid-supercenter {
+    align-self: center;
+    justify-self: center;
+}
+
+.text-AmiiboDeleted {
+    color: rgb(163, 0, 0);
+}
+
+.text-AmiiboUpdated {
+    color: rgb(74, 136, 199);
+}
+
+.titleText {
+    margin: 20px 0;
+    font-size: 32px;
+    text-weight: bold;
+}
+
+/* =====  Specific Styling Amiibo App // END =====*/
+
+
+/* =====  Styling for WaveWatch App ==================*/
+
+.cover-waves {
+  background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('../images/wavewatch_home.jpg') right bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80vh;
+}
+.waves button{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 10px 20px;
+    border: 1px solid var(--dark);
+    background: transparent;
+    color: var(--dark);
+    text-decoration: none;
+    transition: 0.3s;
+}
+.waves button:hover {
+  background: var(--dark);
+  color: lightBlue;
+}
+
+.waves table{
+    width: 75%;
+    align: center;
+    margin: 20px auto;
+    border: 40px 20px 10px 20px;
+}
+
+.waves hr{
+    color: var(--lightGray);
+    border-top-width: 2px;
+    margin: 2px;
+}
+
+.waves h4{
+    color: var(--midtone);
+    text-align: center;
+    text-shadow: 2px 2px var(--standout);
+}
+
+.waves select, label{
+    color: lightBlue;
+    background: var(--dark);
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+div #wavesPic{
+    text-align: center;
+    position: relative;
+    padding:0;
+}
+
+#wavesPic span{
+    width: 100%;
+}
+.waves_top {
+ background:transparent!important;
+    display:inline-block;
+    padding:2px 3px;
+    position:relative;
+    top: -230px;
+    width:100%;
+    color: var(--neutral);
+    text-shadow: 2px 2px 5px var(--dark);
+}
+
+.waves_center{
+    display:inline-block;
+    padding:2px 3px;
+    color: var(--dark);
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+    line-height:1.5em;
+}
+.waves_caption{
+    background:var(--contrast);
+    color:var(--lightGray)
+    text-decoration:none;
+    padding:4px 6px;
+    font-family: Montserrat Helvetica, Ubuntu, Roboto, Noto, Arial, sans-serif;
+    font-size:18px;
+    font-weight:bold;
+    line-height:1.2;
+    display:inline-block;
+    position: absolute;
+    right: 25%;
+}
+
+
+#info-button {
+    background: lightBlue;
+    color: var(--dark);
+
+}
+#info-button:hover {
+    background: var(--dark);
+    color: lightBlue;
+}
+
+/* =====  Styling for WaveWatch App // END ===========*/
 
 /* ============= RESPONSIVE max-width: 991p =========== */
 
@@ -699,3 +1121,14 @@ div #footyPic{
     padding-bottom: 5px;
 }
 
+
+/* ===========================================
+    Specific styling CommunityFM //  START
+=============================================*/
+
+.cover-radio {
+  background: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url('../images/radio-1594819_1920.jpg') right bottom;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 80vh;
+}
