@@ -25,3 +25,11 @@ def index(request):
     get_books = Book.Books.all()
     context = {'books': get_books}
     return render(request, 'BookBag/bookBag_index.html', context)
+
+
+# Function to get details of a single book
+def details_book(request, pk):
+    pk = int(pk)
+    book = get_object_or_404(Book, pk=pk)
+    context = {'book': book}
+    return render(request, 'BookBag/bookBag_details.html', context)
