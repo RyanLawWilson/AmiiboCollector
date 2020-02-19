@@ -221,10 +221,13 @@ def amiibo_api(request):
             'amiiboData': amiiboData,
             'pages': pages,  # I only want 10 amiibos per page.
         }
+
+        if len(amiiboData) == 0:
+            context['message'] = "We found nothing based on your constraints..."
     else:
         context = {
             'form': form,
-            'message': 'No results found, check your spelling, maybe...',
+            'message': "That's a 404!! Maybe there was a typo...",
         }
 
     return render(request, 'Amiibo/amiibo_api.html', context)

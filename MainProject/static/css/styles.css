@@ -950,6 +950,7 @@ div #footyPic{
     font-weight: 600;
     padding: 2px;
     border: 2px solid rgba(0,0,0,0.66);
+    background-color: white;
 }
 
 .filter-subContainer >  select {
