@@ -1220,10 +1220,57 @@ div #wavesPic{
      font-size: 16px;
      padding: 8px;
      margin-bottom: 10px;
+     border: none;
 }
 
 .btn-center {
     display: flex;
     justify-content: center;
     margin: auto;
+}
+
+#stationDetails table th, td {
+    /*background:var(--dark);
+    color: white;*/
+    background:transparent;
+    color: black;
+    /*text-align: center;*/
+    font-size: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid lightGray;
+}
+#stationDetails table td{
+    text-align: left;
+    padding-left: 20px;
+}
+#stationDetails table th{
+    text-align:center;
+    padding-right: 20px;
+}
+#stationDetails table tr{
+    border-top: 1px solid lightGray;
+    border-bottom: 1px solid lightGray;
+}
+/*
+#stationDetails table td {
+     background:transparent;
+     color: black;
+     text-align:center;
+     font-size: 16px;
+     padding: 5px;
+     margin-bottom: 10px;
+}
+*/
+#stationDetails table {
+    width: 60%;
+    align: center;
+    margin: 20px auto;
+    border: 40px 20px 10px 20px;
+    border-collapse: collapse;
+}
+
+#stationDetails{
+    padding: 40px;
 }
