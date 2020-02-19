@@ -12,6 +12,7 @@ import json
 import math
 import re
 import random
+from bs4 import BeautifulSoup
 
 # Called when Amiibo/urls.py sees  ''  at the end of the URL
 # Returns the HTML file amiibo_home.html
@@ -235,6 +236,40 @@ def amiibo_api(request):
 # Called when Amiibo/urls.py sees  'nintendonews'  at the end of the URL
 # Returns the HTML file amiibo_news.html
 def amiibo_news(request):
+    # Connects to the website and creates the beautiful soup.
+    page = requests.get("https://nintendonews.com/")  # Website I'm scraping from
+
+    # The Beautiful Soup HTML parser.  This will get the HTML from the connection above.
+    soup = BeautifulSoup(page.content, 'html.parser')
+
+    # soup.children gives a list generator.  Making it into a list looks like ['html', '\n', HTML]
+
+    # List where the head is index 1 and body is index 3.  These are the children of <html>
+    html = list(soup.children)[2]
+
+    # The content I'm looking for is in divs with a specific set of class names.  I want the top 20 stories
+    contentDiv = html.find_all("div", class_="item has-target", limit=20)
+
+    # I want...
+    # - The age of the article (12 mins ago, for example)
+    # - The title of the article
+    # - The summary of the article
+    # - A link to the article
+
+    # contentDiv is a ResultSet - it's a list of div tags.  contentDiv: [div, div, div, ... , div]
+
+    articles = []
+    for article in contentDiv:
+        age = article.find("p", class_="date").get_text()
+        title = article.find("h2", class_="heading").get_text()
+        summary = article.find("p", class_="summary").get_text()
+        link = article.find("a").get('href')
+
+        articles.append({'age': age, 'title': title, 'summary': summary, 'link': link})
+
+    # This is the list of text that I want to send to the page.
+    viewList(articles)
+
     return render(request, 'Amiibo/amiibo_news.html')
 
 # Called when Amiibo/urls.py sees  'amiibo/addAmiibo'  at the end of the URL
@@ -268,3 +303,23 @@ def amiiboAdded(request, message):
 # Just a quick way to see my prints in the console
 def pt(s):
     print(">>> {}\n".format(s))
+
+# Easy way to see a list in the console:
+def viewList(lst, lstTitle = None):
+    position = 0
+
+    # If no title is specified, ignore it and continue
+    if lstTitle is None:
+        print("\n[\n")
+    else:
+        print("\n{}:\n[\n".format(lstTitle))
+
+    # print all of the elements in the list and be aware of \n
+    for element in lst:
+        if element == '\n':
+            print("\t({}) >>> {}\n".format(position, '\\n'))
+        else:
+            print("\t({}) >>> {}\n".format(position, element))
+        position += 1
+
+    print("]\n{}".format(type(lst)))
