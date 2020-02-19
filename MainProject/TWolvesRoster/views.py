@@ -22,4 +22,6 @@ def wolves_create(request):
 
 
 def wolves_players(request):
-    return render(request, "TWolvesRoster/wolves_players.html")
+    get_players = Player.Players.all()      #Gets all the current jerseys from the database
+    context = {'players': get_players}      #Creates a dictionary object of all the jerseys for the template
+    return render(request, "TWolvesRoster/wolves_players.html", context)

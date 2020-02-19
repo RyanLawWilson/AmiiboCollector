@@ -662,7 +662,18 @@ div #footyPic{
   background-color: #45a049;
 }
 
+.wolvesPlayerTable {
+    border-collapse: collapse;
+    width: 100%;
+}
 
+.wolvesPlayerTable, td, th {
+    padding: 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.wolvesPlayerTable, th {font-weight: bold;}
 /* =====  Specific styling for TWolvesRoster App // END =====*/
 
 
