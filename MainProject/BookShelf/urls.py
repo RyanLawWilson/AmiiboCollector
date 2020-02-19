@@ -5,5 +5,7 @@ from . import views
 # and third is the name of the pattern/function.
 
 urlpatterns = [
-    path('', views.home, name='bookshelf'),                 # Home page
+    path('', views.home, name='bookshelf'),                     # Home page
+    path('AddToShelf', views.add_book, name='addbook'),           # create a book object to database
+    path('ViewShelf', views.index, name='listshelf'),             # index page listing objects in database
 ]
