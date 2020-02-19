@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
-{% load static %}
+{% load staticfiles %}
 
 {% block page-title %}<h1>BookShelf</h1>{% endblock %}
-{% block page-subtitle %}<h3>Hello, World!</h3>{% endblock %}
+{% block page-subtitle %}<h3>Your own digital bookshelf!</h3>{% endblock %}
 
 
+{% block appcontent %}
+    <section>
+
+    {% block templatecontent %}{% endblock %} <!-- section for rendering the template specific content -->
+{% endblock %}
