@@ -16,3 +16,4 @@ class surfType(models.Model):
 
     def __str__(self):
         return self.locale
+

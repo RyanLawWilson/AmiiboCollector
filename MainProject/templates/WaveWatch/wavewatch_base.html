@@ -1,5 +1,16 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block page-title %}<h1>WaveWatch</h1>{% endblock %}
-{% block page-subtitle %}<h3>Hello, World!</h3>{% endblock %}
+{% block pagetop-css %} cover-waves {% endblock %}
+
+{% block page-title %}<h1>Wave Watch</h1>{% endblock %}
+{% block page-subtitle %}<h3>Get on your wetsuit and explore some of Oregon's best surf spots!</h3>{% endblock %}
+{% block button1 %}<a href="{% url 'waves' %}" class="contact-btn">Wave Watch Home</a>{% endblock %}
+{% block button2 %}<a href="{% url 'listSurfType' %}" class="contact-btn">Surfing Type Info</a>{% endblock %}
+
+
+{% block appcontent %}
+    <section>
+
+    {% block templatecontent %}{% endblock %} <!-- section that all the template specific content will render within -->
+{% endblock %}

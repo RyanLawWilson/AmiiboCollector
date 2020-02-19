@@ -1,0 +1,29 @@
+{% extends 'WaveWatch/wavewatch_base.html' %}
+{% load staticfiles %}
+{% block templatecontent %}
+<section>
+    <div class="flex-container waves">
+        <table>
+            <tr>
+                <th>Locale</th>
+                <td>{{surfID.locale}}</td>
+            </tr>
+            <tr>
+                <th>Country</th>
+                <td>{{surfID.country}}</td>
+            </tr>
+            <tr>
+                <th>Type of Board</th>
+                <td>{{surfID.board_type}}</td>
+            </tr>
+            <tr>
+                <th>Length of Board</th>
+                <td>{{surfID.board_length}}</td>
+            </tr>
+        </table>
+
+        <hr />
+        <button class="primary-bright-button" type="button" onclick=" location.href='{% url 'listSurfType' %}'">Back to Collection</button>
+    </div>
+</section>
+{% endblock %}

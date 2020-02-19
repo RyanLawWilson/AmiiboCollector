@@ -1,0 +1,29 @@
+{% extends 'CommunityFM/fm_base.html' %}
+{% load staticfiles %}
+{% block templatecontent %}
+<section>
+    <div class="flex-container radioIndex" id="radioIndex">
+        <table>
+            <tr>
+                <th class="col-md">Station Name</th>
+                <th class="col-md">Frequency</th>
+                <th class="col-md">Genre</th>
+                <th class="col-md">Country</th>
+                <th class="col-md">State</th>
+                <th class="col-md">Website/Streaming</th>
+            </tr>
+            {% for station in stations %}
+            <tr>
+                <td class="col-md">{{station.station_name}}</td>
+                <td class="col-md">{{station.station_frequency}}</td>
+                <td class="col-md">{{station.genre}}</td>
+                <td class="col-md">{{station.country}}</td>
+                <td class="col-md">{{station.state}}</td>
+                <td class="col-md">{{station.station_url}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <button class="btn-radio btn-center" type="button" onclick=" location.href='{% url 'addStation' %}'">Add to Collection</button>
+    </div>
+</section>
+{% endblock %}

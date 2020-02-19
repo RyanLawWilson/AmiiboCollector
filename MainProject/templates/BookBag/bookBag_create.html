@@ -2,14 +2,14 @@
 {% load staticfiles %}
 {% block templatecontent %}
 <section>
-    <div class="flex-container">
+    <div class="flex-container bookBag" id="bookBagLibrary">
         <form method="post">
             {% csrf_token %}
             <table>
                 {{ form.as_table }}
             </table>
             {{ form.non_field_errors }}
-            <button class="primary-bright-button" type="submit"> Add to Collection </button>
+            <button type="submit"> Add to Collection </button>
 
         </form>
     </div>
