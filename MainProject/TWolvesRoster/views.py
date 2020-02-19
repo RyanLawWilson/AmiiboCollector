@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from.models import Player
-from.forms import PlayerForm
+from .models import Player
+from .forms import PlayerForm
 from django.shortcuts import render, redirect, get_object_or_404
 
 
@@ -18,10 +18,17 @@ def wolves_create(request):
     else:
         print(form.errors)
         form = PlayerForm()
-    return render(request, "TWolvesRoster/wolves_create.html", {'form':form})
+    return render(request, "TWolvesRoster/wolves_create.html", {'form': form})
 
 
 def wolves_players(request):
-    get_players = Player.Players.all()      #Gets all the current jerseys from the database
-    context = {'players': get_players}      #Creates a dictionary object of all the jerseys for the template
+    get_players = Player.Players.all()  # Gets all the current jerseys from the database
+    context = {'players': get_players}  # Creates a dictionary object of all the jerseys for the template
     return render(request, "TWolvesRoster/wolves_players.html", context)
+
+
+def details_player(request, pk):
+    pk = int(pk)
+    player = get_object_or_404(Player, pk=pk)
+    context = {'player': player}
+    return render(request, "TWolvesRoster/wolves_details.html", context)
