@@ -6,7 +6,26 @@
 {% block templatecontent %}
 
 <section>
-    <h1 class="wolvesPageTitle">Player Display Page</h1>
+    <div>
+        <table class="wolvesPlayerTable">
+            <tr>
+                <th class="col-md">Name</th>
+                <th class="col-md">Position</th>
+                <th class="col-md">Age</th>
+                <th class="col-md">Current Status</th>
+            </tr>
+            {% for player in players %}     <!-- creates a new row for each jersey in the collection -->
+            <tr>
+                <td class="col-md">{{player.name}}</td>
+                <td class="col-md">{{player.position}}</td>
+                <td class="col-md">{{player.age}}</td>
+                <td class="col-md">{{player.currentStatus}}</td>
+                <!--<td class="col-md"><a href="{{player.pk}}/Details"><button class="primary-light-button" id="info-button">Details</button></a></td>-->   <!-- creates a link for that specific jersey -->
+            </tr>
+            {% endfor %}
+        </table>
+        <button class="addButton" type="button" onclick=" location.href='{% url 'createPlayer' %}'">Add a player</button>
+    </div>
 
 </section>
 {% endblock %}
