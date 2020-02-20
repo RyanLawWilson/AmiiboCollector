@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse
 from .forms import StationForm
 from .models import Station
@@ -22,6 +22,12 @@ def add_station(request):
 def station_index(request):
     stations = Station.objects.all()
     return render(request, 'CommunityFM/fm_index.html', {'stations': stations})
+
+def station_details(request, pk):
+    pk = int(pk)
+    station = get_object_or_404(Station, pk=pk)
+    context = {'station': station}
+    return render(request, 'CommunityFM/fm_details.html', context)
 
 
 # Create your views here.
