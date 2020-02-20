@@ -246,9 +246,9 @@ def amiibo_news(request):
     if form.is_valid():
         search = request.POST.get("search")
         time_frame = request.POST.get("time_frame")
-        numOfArticles = request.POST.get("numOfArticles")
-        if numOfArticles is None or numOfArticles == '':
-            numOfArticles = 10;
+        numberOfArticles = request.POST.get("numOfArticles")
+        if numberOfArticles is None or numberOfArticles == '':
+            numberOfArticles = 10;
 
     # Connects to the web page and returns all of the articles and the connection. | Called when "Newest" is selected
     def getLatestNews(numOfArt):
@@ -274,13 +274,13 @@ def amiibo_news(request):
     # Filtering by time_frame
     articlesFound = 0
     if time_frame == "Newest":
-        contentDiv, page = getLatestNews(numOfArticles)
+        contentDiv, page = getLatestNews(numberOfArticles)
     elif time_frame == "Yesterday":
         pt()
     elif time_frame == "Last Week":
         pt()
     else:   # If somehow it's not one of these, assume "Newest"
-        contentDiv, page = getLatestNews(numOfArticles)
+        contentDiv, page = getLatestNews(numberOfArticles)
     # contentDiv is a ResultSet - it's a list of div tags.  contentDiv: [div, div, div, ... , div]
 
 
