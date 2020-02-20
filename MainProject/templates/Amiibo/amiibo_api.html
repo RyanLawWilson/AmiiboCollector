@@ -2,8 +2,64 @@
 {% load static %}
 {% block templatecontent %}
 <section>
-    <p>
-        This is where I'm going to be using the API<br>
-    </p>
+    <h1 class="titleText text-center">Search for some Amiibos here.</h1>
+    <p class="text-center">To search by date, Use YYYY-MM-DD format.</p>
+
+    <form class="filter-container" method="POST">
+        {% csrf_token %}
+
+        <div class="filter-subContainer">
+            <p>Character Name:</p>
+            {{ form.characterName }}
+        </div>
+
+        <div class="filter-subContainer">
+            <p>Game Series:</p>
+            {{ form.gameSeries }}
+        </div>
+
+        <div class="filter-subContainer">
+            <p>Date:</p>
+            {{ form.dateChoices }}
+            {{ form.date }}
+        </div>
+
+        <input class="btn_apiSubmitButton" type="submit" value="GO!">
+    </form>
+
+    <div class="api-container">
+        {%for amiibo in amiiboData %}
+            <div class="amiiboInfo-container">
+                <img class="amiiboImg" src="{{ amiibo.image }}" alt="A picture of {{ amiibo.character }}">
+
+                <div class="amiiboInfo_textBlock">
+                    <p>{{ amiibo.name }}</p>
+                    <p class="text-rotated">amiibo</p>
+                </div>
+
+                <div class="amiiboInfo_textBlock">
+                    <p>{{ amiibo.character }}</p>
+                    <p class="text-rotated">character</p>
+                </div>
+
+                <div class="amiiboInfo_textBlock">
+                    <p>{{ amiibo.gameSeries }}</p>
+                    <p class="text-rotated">series</p>
+                </div>
+
+                <div class="amiiboInfo_textBlock">
+                    <p>{{ amiibo.release.na }}</p>
+                    <p class="text-rotated">date</p>
+                </div>
+
+                <div class="amiiboInfo_textBlock">
+                    <p>{{ amiibo.type }}</p>
+                    <p class="text-rotated">type</p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <h1 class="titleText text-center">{{ message }}</h1>
 </section>
 {% endblock %}

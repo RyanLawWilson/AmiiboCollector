@@ -1,0 +1,24 @@
+{% extends 'BookShelf/bookshelf_base.html' %}
+{% load staticfiles %}
+{% block templatecontent %}
+<section >
+    <div class="flex-container">
+        <h1>Your Shelf of Books</h1>
+        <table class="table-striped">
+            <tr>
+                <th class="col-md">Title</th>
+                <th class="col-md">Author</th>
+                <th class="col-md">Description</th>
+            </tr>
+            {% for book in books %}     <!-- creates a new row for each book in the collection -->
+                <tr>
+                    <td class="col-md">{{book.title}}</td>
+                    <td class="col-md">{{book.author}}</td>
+                    <td class="col-md">{{book.synopsis}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <button class="primary-bright-button" type="button" onclick=" location.href='{% url 'addbook' %}'">Add to Shelf</button>
+    </div>
+</section>
+{% endblock %}
