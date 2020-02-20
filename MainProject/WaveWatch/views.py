@@ -54,9 +54,9 @@ def delete_surfInfo(request, pk):
     if request.method == "POST":
         #confirming delete
         surfID.delete()
-        return redirect('WaveWatch/wavewatch_index.html')
+        return redirect('../../')
     context = {"surfID": surfID}
-    return render(request, "WaveWatch/wavewatch_delete", context)
+    return render(request, "WaveWatch/wavewatch_delete.html", context)
 
 """
 path('', views.WaveHome, name='waves'),
