@@ -1,0 +1,33 @@
+{% extends 'Amiibo/amiibo_base.html' %}
+{% load static %}
+{% block templatecontent %}
+<section>
+    <h1 class="text-center titleText text-AmiiboDeleted">{{ AmiiboDeleteMessage }}</h1>
+    <h1 class="text-center titleText text-AmiiboUpdated">{{ AmiiboUpdateMessage }}</h1>
+    <h1 class="text-center titleText">These are all of your Amiibos!</h1>
+
+    <div class="db_grid-container">
+        <h4>Name</h4>
+        <h4>Series</h4>
+        <h4>Price</h4>
+        <h4>Date</h4>
+        <h4>Qty</h4>
+        <h4>Info</h4>
+
+        {% for amiibo in amiibos %}
+            <p>{{ amiibo.name | title }}</p>
+            <p>{{ amiibo.game_series | title }}</p>
+            <p>{% if not amiibo.purchase_price == None %}${% endif %}{{ amiibo.purchase_price }}</p>
+            <p class="text-center">{{ amiibo.purchase_date }}</p>
+            <p class="text-center">{{ amiibo.amount }}</p>
+
+            {# Using url will look at the name of the path in urls.py. #}
+            {# Remove url to look at the browser's url. #}
+            <button class="btn_details" onclick="location.href='{% url 'amiiboDetails' amiibo.pk %}'">Details</button>
+        {% endfor %}
+    </div>
+
+
+    <button class="btn_pageTransition" onclick="location.href='{% url 'addAmiibo' %}'">Add an Amiibo!</button>
+</section>
+{% endblock %}

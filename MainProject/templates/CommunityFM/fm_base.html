@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block pagetop-css %} cover-radio {% endblock %}
+
+
+{% block page-title %} Community.FM {% endblock %}
+{% block page-subtitle %} Find community and college radio stations wherever you are. {% endblock %}
+
+{% block button1 %}<a href="{% url 'radioHome' %}" class="contact-btn">Home</a>{% endblock %}
+{% block button2 %}<a href="{% url 'index' %}" class="contact-btn">Station Index</a>{% endblock %}
+
+{% block appcontent %}
+    {% block templatecontent %} {% endblock %}
+{% endblock %}
