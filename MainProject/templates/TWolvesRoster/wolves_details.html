@@ -1,0 +1,29 @@
+{% extends 'TWolvesRoster/wolves_base.html' %}
+{% load staticfiles %}
+{% block templatecontent %}
+<section>
+    <div class="flex-container footy">
+        <table>
+            <tr>
+                <th>Name</th>
+                <td>{{player.name}}</td>
+            </tr>
+            <tr>
+                <th>Age</th>
+                <td>{{player.age}}</td>
+            </tr>
+            <tr>
+                <th>Position</th>
+                <td>{{player.position}}</td>
+            </tr>
+            <tr>
+                <th>Current Status</th>
+                <td>{{player.currentStatus}}</td>
+            </tr>
+        </table>
+
+        <hr />
+        <button class="wolvesDetailsButton" type="button" onclick=" location.href='{% url 'viewPlayers' %}'">Back to Players</button>
+    </div>
+</section>
+{% endblock %}

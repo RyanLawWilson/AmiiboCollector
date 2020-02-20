@@ -20,7 +20,7 @@
                 <td class="col-md">{{player.position}}</td>
                 <td class="col-md">{{player.age}}</td>
                 <td class="col-md">{{player.currentStatus}}</td>
-                <!--<td class="col-md"><a href="{{player.pk}}/Details"><button class="primary-light-button" id="info-button">Details</button></a></td>-->   <!-- creates a link for that specific jersey -->
+                <td class="col-md"><button class="wolvesDetailsButton" onclick="location.href='{% url 'playerDetails' player.pk %}'">Details</button></td>   <!-- creates a link for that specific jersey -->
             </tr>
             {% endfor %}
         </table>
