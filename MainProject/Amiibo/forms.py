@@ -26,3 +26,21 @@ class APIFilterForm(forms.Form):
 	gameSeries = forms.CharField(label='Game Series', max_length=60, required=False)
 	date = forms.CharField(label='Date', max_length=60, required=False)
 	dateChoices = forms.ChoiceField(label='Date Choices', choices=DATECHOICES, required=False)
+
+# Filter Form for the news page.
+class newsFilterForm(forms.Form):
+
+	TIME_FRAMES = (
+		('Newest', 'Newest'),
+		('Yesterday', 'Yesterday'),
+		('Last Week', 'Last Week'),
+	)
+
+	search = forms.CharField(label='search', max_length=30, required=False)
+	time_frame = forms.ChoiceField(label='Time Frames', choices=TIME_FRAMES, required=False)
+	numOfArticles = forms.DecimalField(
+		label='Number of Articles',
+		decimal_places=0,
+		min_value=1,
+		max_value=99, max_digits=2,
+		required=False)

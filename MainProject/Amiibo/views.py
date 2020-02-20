@@ -5,7 +5,7 @@
 # >>> Amiibo.urls, depending on what it reads, one of the functions below is run.
 
 from django.shortcuts import render, get_object_or_404
-from .forms import AmiiboFigureForm, APIFilterForm
+from .forms import AmiiboFigureForm, APIFilterForm, newsFilterForm
 from .models import AmiiboFigure
 import requests             # To access the API
 import json
@@ -13,6 +13,7 @@ import math
 import re
 import random
 from bs4 import BeautifulSoup
+from datetime import datetime
 
 # Called when Amiibo/urls.py sees  ''  at the end of the URL
 # Returns the HTML file amiibo_home.html
@@ -236,41 +237,82 @@ def amiibo_api(request):
 # Called when Amiibo/urls.py sees  'nintendonews'  at the end of the URL
 # Returns the HTML file amiibo_news.html
 def amiibo_news(request):
-    # Connects to the website and creates the beautiful soup.
-    page = requests.get("https://nintendonews.com/")  # Website I'm scraping from
+    # DEFAULT FORM VALUES
+    search = ''
+    time_frame = 'Newest'
+    numberOfArticles = 10
 
-    # The Beautiful Soup HTML parser.  This will get the HTML from the connection above.
-    soup = BeautifulSoup(page.content, 'html.parser')
+    form = newsFilterForm(request.POST or None)
+    if form.is_valid():
+        search = request.POST.get("search")
+        time_frame = request.POST.get("time_frame")
+        numOfArticles = request.POST.get("numOfArticles")
+        if numOfArticles is None or numOfArticles == '':
+            numOfArticles = 10;
 
-    # soup.children gives a list generator.  Making it into a list looks like ['html', '\n', HTML]
+    # Connects to the web page and returns all of the articles and the connection. | Called when "Newest" is selected
+    def getLatestNews(numOfArt):
+        # Connects to the website and creates the beautiful soup.
+        connection = requests.get("https://nintendonews.com/")  # Website I'm scraping from
 
-    # List where the head is index 1 and body is index 3.  These are the children of <html>
-    html = list(soup.children)[2]
+        # The Beautiful Soup HTML parser.  This will get the HTML from the connection above.
+        soup = BeautifulSoup(connection.content, 'html.parser', from_encoding="utf-8")
 
-    # The content I'm looking for is in divs with a specific set of class names.  I want the top 20 stories
-    contentDiv = html.find_all("div", class_="item has-target", limit=20)
+        # soup.children gives a list generator.  Making it into a list that looks like ['html', '\n', HTML]
+        # List where the head is index 1 and body is index 3.  These are the children of <html>
+        html = list(soup.children)[2]
 
-    # I want...
-    # - The age of the article (12 mins ago, for example)
-    # - The title of the article
-    # - The summary of the article
-    # - A link to the article
+        return html.find_all("div", class_="item has-target", limit=int(numOfArt)), connection
 
+    # Getting the date and time based on user's computer
+    systemDate = datetime.now().strftime("%Y%m%d")
+    systemTime = datetime.now().strftime("%H%M%S")
+
+
+
+
+    # Filtering by time_frame
+    articlesFound = 0
+    if time_frame == "Newest":
+        contentDiv, page = getLatestNews(numOfArticles)
+    elif time_frame == "Yesterday":
+        pt()
+    elif time_frame == "Last Week":
+        pt()
+    else:   # If somehow it's not one of these, assume "Newest"
+        contentDiv, page = getLatestNews(numOfArticles)
     # contentDiv is a ResultSet - it's a list of div tags.  contentDiv: [div, div, div, ... , div]
 
+
+
+
     articles = []
-    for article in contentDiv:
-        age = article.find("p", class_="date").get_text()
-        title = article.find("h2", class_="heading").get_text()
-        summary = article.find("p", class_="summary").get_text()
-        link = article.find("a").get('href')
+    if page.status_code == 200:
 
-        articles.append({'age': age, 'title': title, 'summary': summary, 'link': link})
+        for article in contentDiv:
+            age = article.find("p", class_="date").get_text().replace("&bullet", "|")
+            title = article.find("h2", class_="heading").get_text()
+            summary = article.find("p", class_="summary").get_text()
+            link = article.find("a").get('href')
 
-    # This is the list of text that I want to send to the page.
-    viewList(articles)
+            # Filtering by search
+            if search is None or search == '':
+                articles.append({'age': age, 'title': title, 'summary': summary, 'link': link})
+                # pt("Empty search: IGNORE SEARCH")
+            else:
+                if re.search(search, summary, re.IGNORECASE) is not None:
+                    # pt("Search Match!!! Adding!!!")
+                    articles.append({'age': age, 'title': title, 'summary': summary, 'link': link})
+                else:
+                    pt("Didn't match anything...")
+    else:
+        articles.append({'age': "", 'title': "We can't connect to the server!", 'summary': "Sorry...", 'link': ""})
 
-    return render(request, 'Amiibo/amiibo_news.html')
+    context = {
+        'articles': articles,
+        'form': form,
+    }
+    return render(request, 'Amiibo/amiibo_news.html', context)
 
 # Called when Amiibo/urls.py sees  'amiibo/addAmiibo'  at the end of the URL
 # Returns the HTML file amiibo_db-addAmiibo.html
