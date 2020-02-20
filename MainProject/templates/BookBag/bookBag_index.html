@@ -15,7 +15,8 @@
                     <td class="col-md">{{book.title}}</td>
                     <td class="col-md">{{book.author}}</td>
                     <td class="col-md">{{book.rating}}</td>
-                    <td class="col-md"><a href="{{book.pk}}/Details"><button>Details</button></a></td>
+                    <td class="col-md"><a href="{{book.pk}}/Details">Details</a></td>
+                    <td class="col-md"><a href="{{book.pk}}/Edit">Edit</a>/<a href="{{book.pk}}/Delete">Delete</a></td>
                     <td class="col-md">
                         {% if book.authentic %} &#8730 {% endif %}
                     </td>
