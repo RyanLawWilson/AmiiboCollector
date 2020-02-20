@@ -916,6 +916,132 @@ div #footyPic{
     color: black;
 }
 
+/******************************
+*** Styles for the API page ***
+*******************************/
+
+/* The styles for the filter section of the page */
+.filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    grid-gap: 10px;
+    justify-content: center;
+    width: 80%;
+    margin: 5px auto;
+    padding: 5px;
+}
+
+.filter-subContainer {
+    display: block;
+    font-weight: bold;
+    color: rgba(70, 15, 17, 0.75);
+    background-color: rgba(255, 215, 0, 0.75);
+    border-radius: 15px;
+    padding: 10px;
+    margin: 5px 5px;
+}
+
+.filter-subContainer > * {
+    margin: 0;
+    padding: 0;
+}
+
+.filter-subContainer > input[type=text], .filter-subContainer >  select {
+    font-weight: 600;
+    padding: 2px;
+    border: 2px solid rgba(0,0,0,0.66);
+    background-color: white;
+}
+
+.filter-subContainer >  select {
+    border-radius: 0;
+    text-transform: uppercase;
+    background-color: white;
+    transition: 0.25s;
+}
+
+.filter-subContainer >  select:hover {
+    background-color: rgba(0, 0, 0, 0.10);
+    color: darkblue;
+}
+
+.btn_apiSubmitButton {
+    cursor: pointer;
+    padding: 5px;
+    color: rgb(255, 215, 0);
+    background-color: rgb(70, 15, 17);
+    border-radius: 5px;
+    width: 100px;
+    height: 50px;
+    text-align: center;
+    align-self: center;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: 0.25s
+}
+
+.btn_apiSubmitButton:hover {
+    background-color: rgb(0, 150, 0)
+}
+
+/* To make things easier to understand for myself and others
+*  -- api-container: The master container (every image and text-block is inside)
+*  ---- amiiboInfo-container: Contains the individual amiibo img AND text
+*  ------ amiiboInfo_textBlock: Contains each block of text */
+.api-container {
+    display: flex;
+    width: 80%;
+    margin: 10px auto;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.amiiboInfo-container > .amiiboImg {
+    grid-area: img;
+    width: auto;
+    max-height: 300px;
+}
+.amiiboInfo-container > * {font-weight: bold;}
+.amiiboInfo-container {
+    display: grid;
+    grid-template:
+        'img'
+        '.'
+        '.'
+        '.'
+        '.'
+        '.';
+    padding: 10px;
+    justify-content: center;
+    align-content: flex-start;
+    /*background-image: linear-gradient(to bottom right, white, rgba(255, 215, 0, 0.75), white);*/
+    border-radius: 25px;
+    margin: 10px;
+}
+
+.amiiboInfo_textBlock {
+    display: flex;
+    margin: 5px;
+}
+
+.text-rotated {
+    font-size: 10px;
+    transform: rotate(-10deg);
+    padding: 0 0 10px 5px;
+    font-weight: normal;
+}
+/**********************************************
+=== END === Styles for the API page === END ===
+***********************************************/
+
+
+.text-left {
+    text-align: left;
+    align-self;
+    justify-self: left;
+}
+
 .grid-supercenter {
     align-self: center;
     justify-self: center;

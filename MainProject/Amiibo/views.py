@@ -5,8 +5,13 @@
 # >>> Amiibo.urls, depending on what it reads, one of the functions below is run.
 
 from django.shortcuts import render, get_object_or_404
-from .forms import AmiiboFigureForm
+from .forms import AmiiboFigureForm, APIFilterForm
 from .models import AmiiboFigure
+import requests             # To access the API
+import json
+import math
+import re
+import random
 
 # Called when Amiibo/urls.py sees  ''  at the end of the URL
 # Returns the HTML file amiibo_home.html
@@ -96,9 +101,7 @@ def amiibo_delete(request, pk):
     pk = int(pk)
 
     amiibo = get_object_or_404(AmiiboFigure, pk=pk)
-    print("\n\n\n\n\n\nBefore Delete\n\n\n\n\n\n")
     amiibo.delete()
-    print("\n\n\n\n\n\nAfter Delete\n\n\n\n\n\n")
 
     amiibos = AmiiboFigure.AmiiboFigurines.all()  # Put all of the variables in the db into the variable
 
@@ -107,14 +110,127 @@ def amiibo_delete(request, pk):
         'AmiiboDeleteMessage': "{} has been removed from your collection".format(amiibo),
     }
 
-    print("\n\n\n\n\n\n\nThis is right before the render\n\n\n\n\n\n\n\n")
     return render(request, 'Amiibo/amiibo_db.html', context)
 
 
 # Called when Amiibo/urls.py sees  'amiibolist'  at the end of the URL
 # Returns the HTML file amiibo_api.html
+# API: https://www.amiiboapi.com/docs/
 def amiibo_api(request):
-    return render(request, 'Amiibo/amiibo_api.html')
+    # The values I'll be getting from the API.  I may add more later | The default values when you visit the page.
+    randomDefaultCharacters = ['Pikachu', 'King Dedede', 'Jigglypuff', 'Charizard']
+    character = random.choice(randomDefaultCharacters)
+    gameseries = ''
+    dateChoice = 'Before'   # Not in API
+    date = ''
+
+    filterDict = {
+        'character': character,
+        'gameseries': gameseries,
+    }
+
+    str_api = "https://www.amiiboapi.com/api/amiibo/?"
+
+    form = APIFilterForm(request.POST or None)
+    if form.is_valid():
+        filterDict.update({'character': request.POST.get('characterName').strip()})
+        filterDict.update({'gameseries': request.POST.get('gameSeries').strip()})
+        dateChoice = request.POST.get('dateChoices')
+        date = request.POST.get('date')
+        # form = APIFilterForm()
+
+    # Using params attribute is very inconsistent so I'm doing the searches manually.
+    # pt("Values before if statements:\n>>> Character: {}\n>>> Game Series: {}".format(character, gameSeries))
+    # Determines which fields where blank and modifies the query accordingly.
+    for key, val in filterDict.items():
+        # pt("Key: {} | Value: {}".format(key, val))
+        # Change the filter only if the user typed something into the fields.
+        if val is not None and not val == '':
+            str_api += "{}={}&".format(key, val)
+
+        # if val is None:
+        #     val == ''
+        # if not val == '':
+        #     str_api += "{}={}&".format(key, val)
+
+    # Don't connect if there is no applied filter (there would be WAY too many images)
+    if str_api == "https://www.amiiboapi.com/api/amiibo/?":
+        statusCode = 404
+    else:
+        response = requests.get(str_api)
+        statusCode = response.status_code  # Gives you information on the connection based on the number returned.
+
+    pt("Status Code: {}".format(statusCode))
+
+    # I we connected to the API, get all of the Amiibos and send them to the page.
+    if statusCode == 200:
+        amiiboData = response.json()['amiibo']        # Get the JavaScript Object Notation (JSON) from the API
+
+        # REMOVE ME!!! - Testing if the regex works
+        if re.match('(\d{4})-(\d{2})-(\d{2})', date):
+            pt("The regex works!!!!!!")
+        else:
+            pt("Failed regex...")
+
+        # Filtering by date
+        if (not (date is None or date == '')) and re.match('(\d{4})-(\d{2})-(\d{2})', date):
+            pt("Looking for Amiibos {} {}".format(dateChoice, date))
+            if dateChoice == 'Before':
+                # If not reversed, items could get skipped.
+                # Check for dates NOT before the release date and remove them.
+                for amiibo in reversed(amiiboData):
+                    amiiboDate = amiibo['release']['na']
+                    if amiiboDate >= date:
+                        # pt(">>> Removed {} with a date of {}".format(amiibo['character'], amiiboDate))
+                        amiiboData.remove(amiibo)
+
+            elif dateChoice == 'On':
+                # If not reversed, items could get skipped.
+                # Check for dates NOT on the release date and remove them.
+                for amiibo in reversed(amiiboData):
+                    amiiboDate = amiibo['release']['na']
+                    if not amiiboDate == date:
+                        # pt(">>> Removed {} with a date of {}".format(amiibo['character'], amiiboDate))
+                        amiiboData.remove(amiibo)
+
+            elif dateChoice == "After":
+                # If not reversed, items could get skipped.
+                # Check for dates NOT after the release date and remove them.
+                for amiibo in reversed(amiiboData):
+                    amiiboDate = amiibo['release']['na']
+                    if amiiboDate <= date:
+                        # pt(">>> Removed {} with a date of {}".format(amiibo['character'], amiiboDate))
+                        amiiboData.remove(amiibo)
+        else:
+            pt("Not filtering based on date")
+
+        print(json.dumps(amiiboData, sort_keys=True, indent=4))
+
+        # Eventually, I want only a certain number of Amiibos on the page so that the app doesn't annihilate
+        # someones bandwidth if they don't filter out enough Amiibos.
+        amiibosPerPage = 10
+        numberOfAmiibos = len(amiiboData)
+        pages = math.ceil((numberOfAmiibos / amiibosPerPage))
+
+        # This is the JSON response printed to the console.
+        # print(json.dumps(amiiboData, sort_keys=True, indent=4))     # Makes the data easier to see.
+
+        # I'm getting the value for image, name, character, game series, release, and type.
+        context = {
+            'form': form,
+            'amiiboData': amiiboData,
+            'pages': pages,  # I only want 10 amiibos per page.
+        }
+
+        if len(amiiboData) == 0:
+            context['message'] = "We found nothing based on your constraints..."
+    else:
+        context = {
+            'form': form,
+            'message': "That's a 404!! Maybe there was a typo...",
+        }
+
+    return render(request, 'Amiibo/amiibo_api.html', context)
 
 # Called when Amiibo/urls.py sees  'nintendonews'  at the end of the URL
 # Returns the HTML file amiibo_news.html
@@ -148,3 +264,7 @@ def amiiboAdded(request, message):
     }
 
     return render(request, 'Amiibo/amiibo_db.html', context)
+
+# Just a quick way to see my prints in the console
+def pt(s):
+    print(">>> {}\n".format(s))
