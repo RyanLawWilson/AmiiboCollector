@@ -48,12 +48,23 @@ def update_surfInfo(request, pk):
         form = BoardForm(instance=surfID)
     return render(request, 'WaveWatch/wavewatch_update.html', {'form': form})
 
+def delete_surfInfo(request, pk):
+    surfID = get_object_or_404(surfType, pk=pk)
+    #POST request
+    if request.method == "POST":
+        #confirming delete
+        surfID.delete()
+        return redirect('WaveWatch/wavewatch_index.html')
+    context = {"surfID": surfID}
+    return render(request, "WaveWatch/wavewatch_delete", context)
+
 """
 path('', views.WaveHome, name='waves'),
 path('Collection/', views.index, name='listSurfType'),  # index of jerseys
 path('AddTo/', views.add_surfInfo, name='addSurfInfo'),  # index of jerseys
 path('Collection/<int:pk>/Details/', views.details_surfInfo, name='surfInfoDetails'),
 path('Collection/<int:pk>/Update/', views.update_surfInfo, name='updateSurfInfo')
+path('Collection/<int:pk>/Delete/', views.delete_surfInfo, name='deleteSurfInfo')
 
 class BoardForm(ModelForm):
     class Meta:

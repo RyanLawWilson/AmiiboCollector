@@ -22,10 +22,13 @@
                 <td>{{surfID.board_length}}</td>
             </tr>
         </table>
-
+{% url 'updateSurfInfo' pk=surfID.pk %}
         <hr />
-        <button class="primary-bright-button" class="primary-bright-button"><a href="WaveWatch/wavewatch_update.html">Edit</a></button>
+        <button class="primary-bright-button" type="button" onclick=" location.href='{% url 'updateSurfInfo' pk=surfID.pk %}'">Edit</button>
+        <button class="primary-bright-button" type="button" onclick=" location.href='{% url 'deleteSurfInfo' pk=surfID.pk %}'">Delete</button>
         <button class="primary-bright-button" type="button" onclick=" location.href='{% url 'listSurfType' %}'">Back to Collection</button>
     </div>
 </section>
 {% endblock %}
+
+<!--<button class="primary-bright-button" type="button" onclick=" location.href='{% url 'deleteSurfInfo' pk=surfID.pk %}'">Delete</button>-->
