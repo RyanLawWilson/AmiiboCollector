@@ -1281,6 +1281,8 @@ div #wavesPic{
      color: black;
      text-align:center;
      font-size: 18px;
+     padding-top: 5px;
+     padding-bottom: 5px;
 }
 
 #bookBagLibrary table th

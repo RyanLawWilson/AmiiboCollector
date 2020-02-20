@@ -1,0 +1,19 @@
+{% extends 'BookBag/bookBag_base.html' %}
+{% load staticfiles %}
+{% block templatecontent %}
+
+<div class="bookBag">
+    <form method="POST" action="." class="footy_center">
+        {% csrf_token %}
+        <strong>Confirm Delete</strong>
+        <p>Are you sure you would like to delete "{{ book.title }}" from your library?</p>
+
+        {{ book.as_p}}
+
+        <button type="submit">Delete Book</button><br><br><br>
+        <a href="{% url 'listBooks' %}">Return to Library</a>
+    </form>
+</div>
+
+
+{% endblock %}
