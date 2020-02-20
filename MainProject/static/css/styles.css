@@ -394,7 +394,7 @@ h2.sub-title::after {
   -webkit-transform: translateY(30px);
 }
 .app-image .title {
-  font-size: 3em;
+  font-size: 3.5em;
   text-transform: uppercase;
   opacity: 0;
   transition-delay: 0.2s;
