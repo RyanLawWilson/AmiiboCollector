@@ -5,7 +5,7 @@
 # >>> Amiibo.urls, depending on what it reads, one of the functions below is run.
 
 from django.shortcuts import render, get_object_or_404
-from .forms import AmiiboFigureForm, APIFilterForm
+from .forms import AmiiboFigureForm, APIFilterForm, newsFilterForm
 from .models import AmiiboFigure
 import requests             # To access the API
 import json
@@ -13,6 +13,7 @@ import math
 import re
 import random
 from bs4 import BeautifulSoup
+from datetime import datetime
 
 # Called when Amiibo/urls.py sees  ''  at the end of the URL
 # Returns the HTML file amiibo_home.html
@@ -157,6 +158,7 @@ def amiibo_api(request):
     # Don't connect if there is no applied filter (there would be WAY too many images)
     if str_api == "https://www.amiiboapi.com/api/amiibo/?":
         statusCode = 404
+        response = None
     else:
         response = requests.get(str_api)
         statusCode = response.status_code  # Gives you information on the connection based on the number returned.
@@ -236,41 +238,168 @@ def amiibo_api(request):
 # Called when Amiibo/urls.py sees  'nintendonews'  at the end of the URL
 # Returns the HTML file amiibo_news.html
 def amiibo_news(request):
-    # Connects to the website and creates the beautiful soup.
-    page = requests.get("https://nintendonews.com/")  # Website I'm scraping from
+    # DEFAULT FORM VALUES
+    search = ''
+    time_frame = 'Newest'
+    numberOfArticles = 10
 
-    # The Beautiful Soup HTML parser.  This will get the HTML from the connection above.
-    soup = BeautifulSoup(page.content, 'html.parser')
+    # The website I'm scraping from
+    website = "https://nintendonews.com/news?page="
 
-    # soup.children gives a list generator.  Making it into a list looks like ['html', '\n', HTML]
+    # Getting the date and time based on user's computer
+    # systemDate = datetime.now().strftime("%Y:%m:%d")
+    systemTime = int(datetime.now().strftime("%H%M%S").lstrip("0"))
 
-    # List where the head is index 1 and body is index 3.  These are the children of <html>
-    html = list(soup.children)[2]
+    form = newsFilterForm(request.POST or None)
+    if form.is_valid():
+        search = request.POST.get("search")
+        time_frame = request.POST.get("time_frame")
+        numberOfArticles = request.POST.get("numOfArticles")
+        if numberOfArticles is None or numberOfArticles == '' or int(numberOfArticles) > 99:
+            numberOfArticles = 10
+        else:
+            numberOfArticles = int(numberOfArticles)
 
-    # The content I'm looking for is in divs with a specific set of class names.  I want the top 20 stories
-    contentDiv = html.find_all("div", class_="item has-target", limit=20)
+    # Look at different pages of the website depending on the filter. Get's added to end of website
+    if time_frame == "Last Week":
+        startingPage = 6
+    else:
+        startingPage = 1
 
-    # I want...
-    # - The age of the article (12 mins ago, for example)
-    # - The title of the article
-    # - The summary of the article
-    # - A link to the article
+    # The search filter is on when something is typed into the search bar
+    # NOTE** time_frame Filter is always on
+    searchFilterON = False if search is None or search == '' else True
 
-    # contentDiv is a ResultSet - it's a list of div tags.  contentDiv: [div, div, div, ... , div]
+    pt("Number of articles we need: {}".format(numberOfArticles))
 
-    articles = []
-    for article in contentDiv:
-        age = article.find("p", class_="date").get_text()
-        title = article.find("h2", class_="heading").get_text()
-        summary = article.find("p", class_="summary").get_text()
-        link = article.find("a").get('href')
+    articlesFound = 0               # number of articles found
+    findMoreArticles = True         # False when there are no more articles
+    articles = []                   # The list of articles to be sent to the page
+    # Search through all of the pages until numberOfArticles reached or there are no more articles.
+    while findMoreArticles:
+        """
+                START - Connecting to the website - START
+        """
+        page = requests.get(website + str(startingPage)) # Connects to the website and creates the beautiful soup.
 
-        articles.append({'age': age, 'title': title, 'summary': summary, 'link': link})
+        soup = BeautifulSoup(page.content, 'html.parser', from_encoding="utf-8") # Gets the HTML from the page
 
-    # This is the list of text that I want to send to the page.
-    viewList(articles)
+        # soup.children gives a list generator.  Making it into a list that looks like ['html', '\n', HTML]
+        # Children of html will have the head at index 1 and body at index 3. (usually)
+        html = list(soup.children)[2]
 
-    return render(request, 'Amiibo/amiibo_news.html')
+        # contentDiv is a ResultSet - it's a list of div tags.  contentDiv: [div, div, div, ... , div]
+        contentDiv = html.find_all("div", class_="item has-target")
+        """
+                END - Connecting to the website - END
+        """
+
+        """
+                START - Filtering through articles - START
+        """
+        # Look through each article and apply the filters
+        for article in contentDiv:
+            # If we found all of the articles we need, stop finding articles
+            if articlesFound == numberOfArticles:
+                pt("Limit reached:\n>>> Found: {}\n>>> Needed: {}".format(articlesFound, numberOfArticles))
+                findMoreArticles = False
+                break
+
+            # Retrieve the relevant information
+            age = article.find("p", class_="date").get_text().replace("&bullet", "|")
+            title = article.find("h2", class_="heading").get_text()
+            summary = article.find("p", class_="summary").get_text()
+            link = article.find("a").get('href')
+
+            ''' =START= search filter =START= '''
+            # If searchFilter is off, filter passed, otherwise, check the users search and pass the filter accordingly.
+            if searchFilterON:
+                if re.search(search, summary, re.IGNORECASE) is not None:
+                    searchFilterPassed = True
+                else:
+                    searchFilterPassed = False
+            else:
+                searchFilterPassed = True
+            ''' =END= search filter =END= '''
+
+            ''' =START= time_frame filter =START= '''
+            time_frameFilterPassed = False
+
+            articleTimePassed = age.split(" ")[0]  # The number of mins, hours, days since article came out
+            articleTimeUnit = age.split(" ")[1]  # mins, hours, days
+
+            # Get articles based on time_frame (Newest, Yesterday, Last Week)
+            if time_frame == "Yesterday":
+                # If the age of the article is in minutes, compare against system time to see if it came out yesterday.
+                if re.match("mins?", articleTimeUnit):
+                    # If the age of the article, in minutes, is longer than system time, it's yesterday
+                    if int(articleTimePassed) * 100 > systemTime:
+                        time_frameFilterPassed = True
+                # If the age of the article is in hours, compare against system time to see if it came out yesterday.
+                elif re.match("hours?", articleTimeUnit):
+                    # If the age of the article, in hours, is longer than system time, it's yesterday
+                    if int(articleTimePassed) * 10000 > systemTime:
+                        time_frameFilterPassed = True
+                # If the age of the article is in days, only pick the articles that are 1 day old.
+                elif re.match("days?", articleTimeUnit):
+                    if int(articleTimePassed) == 1:
+                        time_frameFilterPassed = True
+                # If the age of the article is represented by a date (article more than 7 days old), ignore it.
+                else:
+                    time_frameFilterPassed = False
+            elif time_frame == "Last Week":
+                # If the age of the article is in minutes, ignore.
+                if re.match("mins?", articleTimeUnit):
+                    time_frameFilterPassed = False
+                # If the age of the article is in hours, ignore.
+                elif re.match("hours?", articleTimeUnit):
+                    time_frameFilterPassed = False
+                # If the age of the article is in days, only pick the articles that are 7 days old.
+                elif re.match("days?", articleTimeUnit):
+                    if int(articleTimePassed) == 7:
+                        time_frameFilterPassed = True
+                # If the age of the article is represented by a date (article more than 7 days old), we want it
+                else:
+                    time_frameFilterPassed = True
+            else:   # If somehow it's not one of these, assume "Newest"
+                time_frameFilterPassed = True
+            ''' =END= time_frame filter =END= '''
+
+            # If both filters passed, add the article
+            if searchFilterPassed and time_frameFilterPassed:
+                # shortenedLink = re.split("^(?:https?://)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)", link)[1]
+                formattedAge = age.split("|")[0].strip()
+                shortenedLink = age.split("|")[1].strip()
+                articles.append({'age': formattedAge, 'title': title, 'summary': summary, 'link': shortenedLink})
+                articlesFound += 1
+                pt("Articles Found: {}".format(articlesFound))
+
+            # endfor
+
+        # If we run out of pages to check, end the loop
+        if startingPage < 10:
+            startingPage += 1
+        else:
+            findMoreArticles = False
+
+        # endwhile
+        """
+            END - Filtering through articles - END
+        """
+
+    if articlesFound > 0:
+        context = {
+            'articles': articles,
+            'form': form,
+            'link': link,
+        }
+    else:
+        articles.append({'age': ":(", 'title': "We didn't find anything!", 'summary': "Try broadening your search", 'link': "Sorry"})
+        context = {
+            'articles': articles,
+            'form': form,
+        }
+    return render(request, 'Amiibo/amiibo_news.html', context)
 
 # Called when Amiibo/urls.py sees  'amiibo/addAmiibo'  at the end of the URL
 # Returns the HTML file amiibo_db-addAmiibo.html

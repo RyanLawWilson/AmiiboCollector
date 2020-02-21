@@ -2,8 +2,52 @@
 {% load static %}
 {% block templatecontent %}
 <section>
-    <p>
-        This is where I'm going to scrape a website for Nintendo news<br>
-    </p>
+    <h1 class="titleText text-center">Take a look at some Nintendo News!</h1>
+
+    <form class="filter-container" method="POST">
+        {% csrf_token %}
+
+        <div class="filter-subContainer">
+            <p>Search By</p>
+            {{ form.time_frame }}
+        </div>
+
+        <div class="filter-subContainer">
+            <p>Search for</p>
+            {{ form.search }}
+        </div>
+
+        <div class="filter-subContainer">
+            <p style="display: block;">Load the first{{ form.numOfArticles }}Articles<br><span class="miniSubText">Default: 10</span></p>
+        </div>
+
+        <input class="btn_apiSubmitButton" type="submit" value="GO!">
+    </form>
+
+    <div class="nintendoNews-container">
+        {% for article in articles %}
+            <div class="nintendoNews-article">
+                <div class="newsArticle-content">
+                    <div class="nintendoNews-titleContainer">
+                        <p class="nintendoNews-title">{{ article.title }}</p>
+                    </div>
+
+                    <div class="nintendoNews-linkContainer">
+                        <p class="nintendoNews-link">{{ article.link }}</p>
+                        <p class="nintendoNews-age">{{ article.age }}</p>
+                    </div>
+
+                    <div class="nintendoNews-summaryContainer">
+
+                        <p class="nintendoNews-summary">{{ article.summary }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+
+
 </section>
 {% endblock %}
