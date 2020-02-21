@@ -8,31 +8,45 @@
         {% csrf_token %}
 
         <div class="filter-subContainer">
-            <p>Search articles for</p>
-            {{ form.search }}
-        </div>
-
-        <div class="filter-subContainer">
-            <p>Sort by</p>
+            <p>Search By</p>
             {{ form.time_frame }}
         </div>
 
         <div class="filter-subContainer">
-            <p>Load the first{{ form.numOfArticles }}Articles</p>
+            <p>Search for</p>
+            {{ form.search }}
+        </div>
+
+        <div class="filter-subContainer">
+            <p style="display: block;">Load the first{{ form.numOfArticles }}Articles<br><span class="miniSubText">Default: 10</span></p>
         </div>
 
         <input class="btn_apiSubmitButton" type="submit" value="GO!">
     </form>
 
-    {% for article in articles %}
+    <div class="nintendoNews-container">
+        {% for article in articles %}
+            <div class="nintendoNews-article">
+                <div class="newsArticle-content">
+                    <div class="nintendoNews-titleContainer">
+                        <p class="nintendoNews-title">{{ article.title }}</p>
+                    </div>
 
-        <p class="titleText text-center">{{ article.title }}</p>
-        <p class="titleText text-center">{{ article.summary }}</p>
-        <p class="text-center">{{ article.age }}</p>
-        <p class="text-center">{{ article.link }}</p>
-        <p class="titleText text-center">--------------------</p>
+                    <div class="nintendoNews-linkContainer">
+                        <p class="nintendoNews-link">{{ article.link }}</p>
+                        <p class="nintendoNews-age">{{ article.age }}</p>
+                    </div>
 
-    {% endfor %}
+                    <div class="nintendoNews-summaryContainer">
+
+                        <p class="nintendoNews-summary">{{ article.summary }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
 
 
 </section>
