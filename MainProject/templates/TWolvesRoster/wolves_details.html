@@ -22,6 +22,11 @@
             </tr>
         </table>
 
+        <div class="Wolvesbtn-group">
+            <button style="width:50%" onclick="location.href='{% url 'editPlayer' player.pk %}'">Edit Player</button>
+            <button style="width:50%" onclick="location.href='{% url 'deletePlayer' player.pk %}'">Delete Player</button>
+        </div>
+
         <hr />
         <button class="wolvesDetailsButton" type="button" onclick=" location.href='{% url 'viewPlayers' %}'">Back to Players</button>
     </div>

@@ -1,0 +1,19 @@
+{% extends 'TWolvesRoster/wolves_base.html' %}
+{% load staticfiles %}
+{% block templatecontent %}
+
+
+    <form method="POST" action="." class="footy_center">
+        {% csrf_token %}
+        <strong>Confirm Delete</strong>
+        <p>Are you sure you would like to delete "{{ player.name }}" from your library?</p>
+
+        {{ player.as_p}}
+
+        <button type="submit">Delete Player</button>
+        <button class="primary-bright-button" type="button" onclick=" location.href='{% url 'viewPlayers' %}'">Cancel</button>
+    </form>
+
+
+
+{% endblock %}
