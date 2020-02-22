@@ -31,8 +31,9 @@ class APIFilterForm(forms.Form):
 class newsFilterForm(forms.Form):
 
 	TIME_FRAMES = (
-		('Newest', 'Newest'),
+		('Today', 'Today'),
 		('Yesterday', 'Yesterday'),
+		('A few days ago', 'A few days ago'),
 		('Last Week', 'Last Week'),
 	)
 

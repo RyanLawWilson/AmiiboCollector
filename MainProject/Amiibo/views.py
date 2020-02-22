@@ -236,19 +236,16 @@ def amiibo_api(request):
     return render(request, 'Amiibo/amiibo_api.html', context)
 
 # Called when Amiibo/urls.py sees  'nintendonews'  at the end of the URL
-# Returns the HTML file amiibo_news.html
+# Returns the HTML file amiibo_news.html after scraping a website for news
 def amiibo_news(request):
     # DEFAULT FORM VALUES
     search = ''
-    time_frame = 'Newest'
+    time_frame = 'Today'
     numberOfArticles = 10
 
-    # The website I'm scraping from
-    website = "https://nintendonews.com/news?page="
+    website = "https://nintendonews.com/news?page="     # The website I'm scraping from
 
-    # Getting the date and time based on user's computer
-    # systemDate = datetime.now().strftime("%Y:%m:%d")
-    systemTime = int(datetime.now().strftime("%H%M%S").lstrip("0"))
+    systemTime = int(datetime.now().strftime("%H%M%S").lstrip("0"))     # Getting the time on the user's computer
 
     form = newsFilterForm(request.POST or None)
     if form.is_valid():
@@ -262,7 +259,7 @@ def amiibo_news(request):
 
     # Look at different pages of the website depending on the filter. Get's added to end of website
     if time_frame == "Last Week":
-        startingPage = 6
+        startingPage = 8
     else:
         startingPage = 1
 
@@ -270,111 +267,200 @@ def amiibo_news(request):
     # NOTE** time_frame Filter is always on
     searchFilterON = False if search is None or search == '' else True
 
-    pt("Number of articles we need: {}".format(numberOfArticles))
+
+    # Define the time_frame filter - Determines if an articles is going to be added based on age.
+    def filterByTime_Frame(timePassed, timeUnit):
+        # Get articles based on time_frame (Today, Yesterday, Last Week)
+        if time_frame == "Today":
+            # If the age of the article is in minutes, compare against system time to see if it came out yesterday.
+            if re.match("mins?", timeUnit):
+                # If the age of the article, in minutes, is longer than system time, it's yesterday
+                return True if int(timePassed) * 100 < systemTime else False
+            # If the age of the article is in hours, compare against system time to see if it came out yesterday.
+            elif re.match("hours?", timeUnit):
+                # If the age of the article, in hours, is longer than system time, it's yesterday
+                return True if int(timePassed) * 10000 < systemTime else False
+            # If the age of the article is in days, only pick the articles that are 1 day old.
+            elif re.match("days?", timeUnit):
+                return False
+            # If the age of the article is represented by a date (article more than 7 days old), ignore it.
+            else:
+                return False
+        elif time_frame == "Yesterday":
+            # If the age of the article is in minutes, compare against system time to see if it came out yesterday.
+            if re.match("mins?", timeUnit):
+                # If the age of the article, in minutes, is longer than system time, it's yesterday
+                return True if int(timePassed) * 100 > systemTime else False
+            # If the age of the article is in hours, compare against system time to see if it came out yesterday.
+            elif re.match("hours?", timeUnit):
+                # If the age of the article, in hours, is longer than system time, it's yesterday
+                return True if int(timePassed) * 10000 > systemTime else False
+            # If the age of the article is in days, only pick the articles that are 1 day old.
+            elif re.match("days?", timeUnit):
+                return True if int(timePassed) == 1 else False
+            # If the age of the article is represented by a date (article more than 7 days old), ignore it.
+            else:
+                return False
+        elif time_frame == "A few days ago":
+            # Age is in mins or hours? False
+            if re.match("mins?", timeUnit) or re.match("hours?", timeUnit):
+                return False
+            # Age of article is between 2 and 6 days? True
+            elif re.match("days?", timeUnit):
+                return True if 1 < int(timePassed) < 7 else False
+            # If the age of the article is represented by a date (article more than 7 days old), ignore it.
+            else:
+                return False
+        elif time_frame == "Last Week":
+            # Age is in mins or hours? False
+            if re.match("mins?", timeUnit) or re.match("hours?", timeUnit):
+                return False
+            # Pass is age is 7 days old
+            elif re.match("days?", timeUnit):
+                return True if timePassed == 7 else False
+            # Age is represented by a date (article more than 7 days old), True
+            else:
+                return True
+
+
+    # Finds the age of a specific article
+    def findArticleAge(allArticles, position):
+        length = len(allArticles)
+
+        # All of this is probably not necessary.  Allows you to type in the position using words.
+        if type(position) is str:
+            if re.search("last", position, re.IGNORECASE):
+                position = length - 1
+            elif re.search("middle", position, re.IGNORECASE):
+                position = int((length - 1) / 2)
+            else:   # First
+                position = 0
+        elif type(position) is int and not 0 < position < length - 1:
+            position = length - 1
+        else:
+            position = 0
+
+        art = allArticles[position]
+        art_age = art.find("p", class_="date").get_text().replace("&bullet", "|")
+        timePassed = art_age.split(" ")[0]  # The number of mins, hours, days since article came out
+        timeUnit = art_age.split(" ")[1]  # mins, hours, days
+
+        return timePassed, timeUnit
+
 
     articlesFound = 0               # number of articles found
     findMoreArticles = True         # False when there are no more articles
+    previousPageScraped = False     # True when we scrape a page.  If pages after the previous are invalid, stop.
     articles = []                   # The list of articles to be sent to the page
     # Search through all of the pages until numberOfArticles reached or there are no more articles.
     while findMoreArticles:
-        """
-                START - Connecting to the website - START
-        """
+        # Connect to the website
         page = requests.get(website + str(startingPage)) # Connects to the website and creates the beautiful soup.
-
         soup = BeautifulSoup(page.content, 'html.parser', from_encoding="utf-8") # Gets the HTML from the page
 
-        # soup.children gives a list generator.  Making it into a list that looks like ['html', '\n', HTML]
-        # Children of html will have the head at index 1 and body at index 3. (usually)
-        html = list(soup.children)[2]
-
         # contentDiv is a ResultSet - it's a list of div tags.  contentDiv: [div, div, div, ... , div]
-        contentDiv = html.find_all("div", class_="item has-target")
-        """
-                END - Connecting to the website - END
-        """
+        contentDiv = soup.find_all("div", class_="item has-target")
+
+        # find the first article age
+        firstArticleTimePassed, firstArticleTimeUnit = findArticleAge(contentDiv, "First")
+        firstArticleValid = filterByTime_Frame(firstArticleTimePassed, firstArticleTimeUnit)
+        pt(">>> The first article is valid... {}".format(firstArticleValid))
+
+        # Only look at the middle and last age if the first age is False and the previous page was not scraped.
+        if not firstArticleValid:
+            # If the first article is not valid and we just finished scraping previous page, exit
+            if previousPageScraped:
+                break
+            # find the last article age
+            lastArticleTimePassed, lastArticleTimeUnit = findArticleAge(contentDiv, "Last")
+            lastArticleValid = filterByTime_Frame(lastArticleTimePassed, lastArticleTimeUnit)
+            pt(">>> The last article is valid... {}".format(lastArticleValid))
+
+
+            # Only look at the middle article if the first and last articles are False
+            if not lastArticleValid:
+                # find the middle article age
+                middleArticleTimePassed, middleArticleTimeUnit = findArticleAge(contentDiv, "Middle")
+                middleArticleValid = filterByTime_Frame(middleArticleTimePassed, middleArticleTimeUnit)
+                pt(">>> The middle article is valid... {}".format(middleArticleValid))
 
         """
                 START - Filtering through articles - START
         """
-        # Look through each article and apply the filters
-        for article in contentDiv:
-            # If we found all of the articles we need, stop finding articles
-            if articlesFound == numberOfArticles:
-                pt("Limit reached:\n>>> Found: {}\n>>> Needed: {}".format(articlesFound, numberOfArticles))
-                findMoreArticles = False
-                break
+        # Only search through the articles if one of these articles are valid
+        # firstArticleValid - Solves the scenario below
+        #   Scenario: You need 3 more articles on the next page.  But the last article on the next page
+        #   is too old.  Skip the page and the 3 articles that were actually valid.
+        # lastArticleValid - Solves the scenario below
+        #   Scenario: The first page has valid articles but they are after 20 invalid articles.  Since the first
+        #   article is invalid, skip the entire page even though it contains valid articles.
+        # middleArticleValid - Solves the scenario below (kinda)
+        #   Scenario: Say the first and last articles are invalid, but the middle 48 articles are valid.  Those
+        #   will all be skipped.
+        if firstArticleValid or lastArticleValid or middleArticleValid:
+            pt("Begin the scraping!!!  Page: {}".format(startingPage))
+            # Look through each article and apply the filters
+            for article in contentDiv:
+                # If we found all of the articles we need, stop finding articles
+                if articlesFound == numberOfArticles:
+                    pt("Limit reached:\n>>> Found: {}\n>>> Needed: {}".format(articlesFound, numberOfArticles))
+                    findMoreArticles = False
+                    break
 
-            # Retrieve the relevant information
-            age = article.find("p", class_="date").get_text().replace("&bullet", "|")
-            title = article.find("h2", class_="heading").get_text()
-            summary = article.find("p", class_="summary").get_text()
-            link = article.find("a").get('href')
+                # Retrieve the age information first
+                age = article.find("p", class_="date").get_text().replace("&bullet", "|")
 
-            ''' =START= search filter =START= '''
-            # If searchFilter is off, filter passed, otherwise, check the users search and pass the filter accordingly.
-            if searchFilterON:
-                if re.search(search, summary, re.IGNORECASE) is not None:
-                    searchFilterPassed = True
+                ''' =START= time_frame filter =START= '''
+                articleTimePassed = age.split(" ")[0]  # The number of mins, hours, days since article came out
+                articleTimeUnit = age.split(" ")[1]  # mins, hours, days
+
+                # Use a method that contains the algorithm that determines if we want the article
+                time_frameFilterPassed = filterByTime_Frame(articleTimePassed, articleTimeUnit)
+                ''' =END= time_frame filter =END= '''
+
+                ''' =START= search filter =START= '''
+                # If the previous test failed, don't search for anything
+                if time_frameFilterPassed:
+                    # Only retrieve the summary if we passed the time test
+                    summary = article.find("p", class_="summary").get_text()
+                    # If searchFilter is off, filter passed, otherwise, check the users search and pass the filter accordingly.
+                    if searchFilterON:
+                        if re.search(search, summary, re.IGNORECASE) is not None:
+                            searchFilterPassed = True
+                        else:
+                            searchFilterPassed = False
+                    else:
+                        searchFilterPassed = True
                 else:
                     searchFilterPassed = False
-            else:
-                searchFilterPassed = True
-            ''' =END= search filter =END= '''
+                ''' =END= search filter =END= '''
 
-            ''' =START= time_frame filter =START= '''
-            time_frameFilterPassed = False
+                # If both filters passed, add the article
+                if searchFilterPassed and time_frameFilterPassed:
+                    # Get the rest of the information when everything passed
+                    title = article.find("h2", class_="heading").get_text()
+                    link = article.find("a").get('href')
+                    # shortenedLink = re.split("^(?:https?://)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)", link)[1]
+                    formattedAge = age.split("|")[0].strip()
+                    shortenedLink = age.split("|")[1].strip()
+                    articles.append(
+                        {
+                            'age': formattedAge,
+                            'title': title,
+                            'summary': summary,
+                            'link': link,
+                            'shortLink': shortenedLink
+                        })
+                    articlesFound += 1
+                    pt("Articles Found: {}".format(articlesFound))
 
-            articleTimePassed = age.split(" ")[0]  # The number of mins, hours, days since article came out
-            articleTimeUnit = age.split(" ")[1]  # mins, hours, days
-
-            # Get articles based on time_frame (Newest, Yesterday, Last Week)
-            if time_frame == "Yesterday":
-                # If the age of the article is in minutes, compare against system time to see if it came out yesterday.
-                if re.match("mins?", articleTimeUnit):
-                    # If the age of the article, in minutes, is longer than system time, it's yesterday
-                    if int(articleTimePassed) * 100 > systemTime:
-                        time_frameFilterPassed = True
-                # If the age of the article is in hours, compare against system time to see if it came out yesterday.
-                elif re.match("hours?", articleTimeUnit):
-                    # If the age of the article, in hours, is longer than system time, it's yesterday
-                    if int(articleTimePassed) * 10000 > systemTime:
-                        time_frameFilterPassed = True
-                # If the age of the article is in days, only pick the articles that are 1 day old.
-                elif re.match("days?", articleTimeUnit):
-                    if int(articleTimePassed) == 1:
-                        time_frameFilterPassed = True
-                # If the age of the article is represented by a date (article more than 7 days old), ignore it.
-                else:
-                    time_frameFilterPassed = False
-            elif time_frame == "Last Week":
-                # If the age of the article is in minutes, ignore.
-                if re.match("mins?", articleTimeUnit):
-                    time_frameFilterPassed = False
-                # If the age of the article is in hours, ignore.
-                elif re.match("hours?", articleTimeUnit):
-                    time_frameFilterPassed = False
-                # If the age of the article is in days, only pick the articles that are 7 days old.
-                elif re.match("days?", articleTimeUnit):
-                    if int(articleTimePassed) == 7:
-                        time_frameFilterPassed = True
-                # If the age of the article is represented by a date (article more than 7 days old), we want it
-                else:
-                    time_frameFilterPassed = True
-            else:   # If somehow it's not one of these, assume "Newest"
-                time_frameFilterPassed = True
-            ''' =END= time_frame filter =END= '''
-
-            # If both filters passed, add the article
-            if searchFilterPassed and time_frameFilterPassed:
-                # shortenedLink = re.split("^(?:https?://)?(?:[^@\/\n]+@)?(?:www\.)?([^:\/?\n]+)", link)[1]
-                formattedAge = age.split("|")[0].strip()
-                shortenedLink = age.split("|")[1].strip()
-                articles.append({'age': formattedAge, 'title': title, 'summary': summary, 'link': shortenedLink})
-                articlesFound += 1
-                pt("Articles Found: {}".format(articlesFound))
-
+            previousPageScraped = True      # After all of the scraping is done, flip to true
             # endfor
+        else:
+            pt("IGNORE THIS PAGE... SKIP")
+            if previousPageScraped:
+                break
+
 
         # If we run out of pages to check, end the loop
         if startingPage < 10:
@@ -382,23 +468,31 @@ def amiibo_news(request):
         else:
             findMoreArticles = False
 
-        # endwhile
+    # endwhile
         """
             END - Filtering through articles - END
         """
 
+    # If your found some articles, send them to the page.
     if articlesFound > 0:
         context = {
             'articles': articles,
             'form': form,
-            'link': link,
         }
     else:
-        articles.append({'age': ":(", 'title': "We didn't find anything!", 'summary': "Try broadening your search", 'link': "Sorry"})
+        articles.append(
+            {
+                'age': ":(",
+                'title': "We didn't find anything!",
+                'summary': "Broaden your search",
+                'shortLink': "Sorry",
+                'link': "",
+            })
         context = {
             'articles': articles,
             'form': form,
         }
+
     return render(request, 'Amiibo/amiibo_news.html', context)
 
 # Called when Amiibo/urls.py sees  'amiibo/addAmiibo'  at the end of the URL
@@ -417,17 +511,6 @@ def addAmiibo(request):
 
     # We are rendering the addAmiibo page with the ModelForm that we specified in forms.py
     return render(request, 'Amiibo/amiibo_db-addAmiibo.html', context)
-
-
-# Returns to the collection when you click the submit button on the addAmiibo page.
-def amiiboAdded(request, message):
-    message = ""
-
-    context = {
-        'message': message
-    }
-
-    return render(request, 'Amiibo/amiibo_db.html', context)
 
 # Just a quick way to see my prints in the console
 def pt(s):
