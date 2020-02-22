@@ -361,10 +361,12 @@ def amiibo_news(request):
         # contentDiv is a ResultSet - it's a list of div tags.  contentDiv: [div, div, div, ... , div]
         contentDiv = soup.find_all("div", class_="item has-target")
 
+        # These next three blocks determine if we should actually iterate through the page
+        # If all three of the selected articles fail to validate, skip the page.
+
         # find the first article age
         firstArticleTimePassed, firstArticleTimeUnit = findArticleAge(contentDiv, "First")
         firstArticleValid = filterByTime_Frame(firstArticleTimePassed, firstArticleTimeUnit)
-        pt(">>> The first article is valid... {}".format(firstArticleValid))
 
         # Only look at the middle and last age if the first age is False and the previous page was not scraped.
         if not firstArticleValid:
@@ -374,7 +376,6 @@ def amiibo_news(request):
             # find the last article age
             lastArticleTimePassed, lastArticleTimeUnit = findArticleAge(contentDiv, "Last")
             lastArticleValid = filterByTime_Frame(lastArticleTimePassed, lastArticleTimeUnit)
-            pt(">>> The last article is valid... {}".format(lastArticleValid))
 
 
             # Only look at the middle article if the first and last articles are False
@@ -382,7 +383,6 @@ def amiibo_news(request):
                 # find the middle article age
                 middleArticleTimePassed, middleArticleTimeUnit = findArticleAge(contentDiv, "Middle")
                 middleArticleValid = filterByTime_Frame(middleArticleTimePassed, middleArticleTimeUnit)
-                pt(">>> The middle article is valid... {}".format(middleArticleValid))
 
         """
                 START - Filtering through articles - START
@@ -458,6 +458,7 @@ def amiibo_news(request):
             # endfor
         else:
             pt("IGNORE THIS PAGE... SKIP")
+            # if first, middle, and last article fail the time filter and we scraped previous page, we are done.
             if previousPageScraped:
                 break
 
@@ -473,7 +474,7 @@ def amiibo_news(request):
             END - Filtering through articles - END
         """
 
-    # If your found some articles, send them to the page.
+    # If your found some articles, send them to the page.  If not, send a sorry message.
     if articlesFound > 0:
         context = {
             'articles': articles,
