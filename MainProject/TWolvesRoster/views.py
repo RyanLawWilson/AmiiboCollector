@@ -32,3 +32,28 @@ def details_player(request, pk):
     player = get_object_or_404(Player, pk=pk)
     context = {'player': player}
     return render(request, "TWolvesRoster/wolves_details.html", context)
+
+
+def edit_player(request, pk):
+    pk = int(pk)
+    player = get_object_or_404(Player, pk=pk)
+    if request.method == "POST":
+        form = PlayerForm(request.POST, instance=player)
+        if form.is_valid():
+            player = form.save(commit=False)
+            player.save()
+            return redirect('playerDetails', pk=player.pk)
+    else:
+        form = PlayerForm(instance=player)
+    return render(request, "TWolvesRoster/wolves_edit.html", {'form': form})
+
+
+def delete_player(request, pk):
+    pk = int(pk)
+    player = get_object_or_404(Player, pk=pk)
+    if request.method == 'POST':
+        player.delete()
+        return redirect('viewPlayers')
+    return render(request, 'TWolvesRoster/wolves_confrim.html', {'player': player})
+
+

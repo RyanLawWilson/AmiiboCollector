@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import ShelfForm
 from .models import ShelfItem
 
@@ -25,5 +25,15 @@ def add_book(request):
         form = ShelfForm()                      # creates a new blank form
     return render(request, 'BookShelf/bookshelf_create.html', {'form': form})
 
+def details(request, pk):
+    pk = int(pk)                                # ensures the value for the primary key is in an integer form
+    book = get_object_or_404(ShelfItem, pk=pk)  # gets a single object's data from the database
+    content = {'book': book}                     # creates a dictionary object to pass into the book object
+    return render(request, 'BookShelf/bookshelf_details.html', content)
 
 
+
+    # pk = int(pk)                                #Casts value of pk to an int so it's in the proper form
+    # jersey = get_object_or_404(Jersey, pk=pk)   #Gets single instance of the jersey from the database
+    # context={'jersey':jersey}                   #Creates dictionary object to pass the jersey object
+    # return render(request,'FootyDemo/footy_details.html', context)

@@ -15,6 +15,7 @@
                     <td class="col-md">{{book.title}}</td>
                     <td class="col-md">{{book.author}}</td>
                     <td class="col-md">{{book.synopsis}}</td>
+                    <td class="col-md"><a href="ViewShelf/Details/{{book.pk}}"><button class="primary-light-button" id="info-button">Details</button></a></td>    <!-- creates a link for that specific book object -->
                 </tr>
             {% endfor %}
         </table>

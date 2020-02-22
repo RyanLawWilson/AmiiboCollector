@@ -1,0 +1,25 @@
+{% extends 'BookShelf/bookshelf_base.html' %}
+{% load staticfiles %}
+{% block templatecontent %}
+<section>
+    <div class="flex-container">
+        <table>
+            <tr>
+                <th>Book Title</th>
+                <td>{{book.title}}</td>
+            </tr>
+            <tr>
+                <th>Author</th>
+                <td>{{book.author}}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{book.synopsis}}</td>
+            </tr>
+        </table>
+
+        <hr />
+        <button class="primary-bright-button" type="button" onclick=" location.href='{% url 'listshelf' %}'">Back to Shelf</button>
+    </div>
+</section>
+{% endblock %}
