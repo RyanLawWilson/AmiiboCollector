@@ -24,14 +24,7 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 #   Django will look for another list of URLs in urls.py of the Amiibo app.
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('HomePage.urls')),
-    path('footy/', include('FootyDemo.urls')),
-    path('wolves/', include('TWolvesRoster.urls')),
-    path('amiibo/', include('Amiibo.urls')),
-    path('bookBag/', include('BookBag.urls')),
-    path('bookshelf/', include('BookShelf.urls')),
-    path('waves/', include('WaveWatch.urls')),
-    path('fm/', include('CommunityFM.urls')),
+    path('', include('Amiibo.urls')),
 ]
 
 urlpatterns += staticfiles_urlpatterns()
