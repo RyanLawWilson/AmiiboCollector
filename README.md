@@ -5,8 +5,8 @@ The database that I am using to store the Amiibos is a local database using **SQ
 
 ## Table of Contents
 
-* **[CRUD Pages](#Index)**
-    * Index
+* **[CRUD Pages](#Crud-Pages)**
+    * [Index](##Index)
     * Create
     * Edit
     * Details
