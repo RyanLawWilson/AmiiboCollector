@@ -79,3 +79,32 @@ def amiibo_details(request, pk):
 <p align="center">
     <img src="./readme_resources/Details.gif" width="75%">
 </p>
+
+
+
+**<p align="center" name="Delete">Delete Modal</p>**
+Instead of a separate made for the delete feature, I created a modal.  On the details page of any Amiibo, clicking the 'Delete Amiibo' button will bring up the modal.  Confirming will delete the Amiibo from the database and bring you back to the Index page.
+
+The primary key of the Amiibo is passed to the amiibo_delete method in the view.  In the view, the Amiibo is found and deleted.  Since we want to Render the Index page, we get all of the Amiibos from the database and send it to the Index page.
+
+```python
+# Deletes the selected Amiibo then returns back to your collection.
+def amiibo_delete(request, pk):
+    pk = int(pk)
+
+    amiibo = get_object_or_404(AmiiboFigure, pk=pk)
+    amiibo.delete()
+
+    amiibos = AmiiboFigure.AmiiboFigurines.all()  # Put all of the variables in the db into the variable
+
+    context = {
+        'amiibos': amiibos,
+        'AmiiboDeleteMessage': "{} has been removed from your collection".format(amiibo),
+    }
+
+    return render(request, 'Amiibo/amiibo_db.html', context)
+```
+
+<p align="center">
+    <img src="./readme_resources/Delete.gif" width="75%">
+</p>
