@@ -87,7 +87,8 @@ To Edit an Amiibo, click the 'Edit Amiibo' button on the details page.  The edit
 
 The method in the view should only save the changes to the database if we received a POST request.  After getting the form data using a model form `AmiiboFigureForm`, we determine if the form is valid.  If so, save the Amiibo information from the form and render the Index page.
 
-↓ *This is only a section of the amiibo_edit method, not the entire method* ↓
+<sub>↓</sub> *This is only a section of the amiibo_edit method, not the entire method* <sub>↓</sub>
+
 ```python
 # If there was a POST sent here, update the amiibo information
 if request.method == "POST":
