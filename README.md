@@ -8,7 +8,7 @@ The database that I am using to store the Amiibos is a local database using **SQ
     * [Create](#Create)
     * [Details](#Details)
     * [Edit](#Edit)
-    * Delete
+    * [Delete](#Delete)
 * **AmiiboApi**
 * **Web Scraping (Beautiful Soup)**
 
@@ -82,6 +82,41 @@ def amiibo_details(request, pk):
 
 
 
+**<p align="center" name="Edit">Edit Page</p>**
+To Edit an Amiibo, click the 'Edit Amiibo' button on the details page.  The edit page displays a form populated with that particular Amiibo's information.  Editing some of the values in the fields and clicking 'Confirm Changes' will edit that Amiibo.
+
+The method in the view should only save the changes to the database if we received a POST request.  After getting the form data using a model form `AmiiboFigureForm`, we determine if the form is valid.  If so, save the Amiibo information from the form and render the Index page.
+
+↓ *This is only a section of the amiibo_edit method, not the entire method* ↓
+```python
+# If there was a POST sent here, update the amiibo information
+if request.method == "POST":
+    # Initialize the form with the Amiibo's current information
+    form = AmiiboFigureForm(request.POST, instance=amiibo)
+
+    # IF the form is valid, save it to the database and return to your collection
+    if form.is_valid():
+        # Once the form is submitted and valid, overwrite the information in amiibo and update the DB.
+        amiibo = form.save(commit=False)
+        amiibo.save()
+
+        amiibos = AmiiboFigure.AmiiboFigurines.all()
+
+        context = {
+            'amiibos': amiibos,
+            'AmiiboUpdateMessage': "{} was edited!".format(amiibo),
+        }
+
+        return render(request, 'Amiibo/amiibo_db.html', context)
+```
+
+<p align="center">
+    <img src="./readme_resources/Edit.gif" width="75%">
+</p>
+
+
+
+
 **<p align="center" name="Delete">Delete Modal</p>**
 Instead of a separate made for the delete feature, I created a modal.  On the details page of any Amiibo, clicking the 'Delete Amiibo' button will bring up the modal.  Confirming will delete the Amiibo from the database and bring you back to the Index page.
 
@@ -108,3 +143,4 @@ def amiibo_delete(request, pk):
 <p align="center">
     <img src="./readme_resources/Delete.gif" width="75%">
 </p>
+
