@@ -1,7 +1,9 @@
 # **<p align="center">Amiibo Collector</p>**
 For this project, I created a Django application. This app is themed around Amiibos.  You can create, edit, and delete your Amiibos and search for more Amiibos.  I use the AmiiboApi to search for all available Amiibos and display them on the page.  You can also look at general Nintendo news.  This page web scrapes [nintendonews.com](https://nintendonews.com/) for the latest Nintendo articles.
 
-<h2>Table of Contents</h2>
+The database that I am using to store the Amiibos is a local database using **SQLite**.  To contact the API, I am using Python's **requests** module.  For web scraping, I am using **Beautiful Soup**.
+
+## Table of Contents
 
 * **[CRUD Pages](#Index)**
     * Index
@@ -13,11 +15,12 @@ For this project, I created a Django application. This app is themed around Amii
 * **Web Scraping (Beautiful Soup)**
 
 <br />
-<br />
 
 # <p align="center">Crud Pages</p>
+## Index
+The Index page displays all of the Amiibos stored in the database.
 
-View
+`View`
 ```python
 # Called when Amiibo/urls.py sees  'yourcollection'  at the end of the URL
 # Returns the HTML file amiibo_db.html which shows the contents of the database.
