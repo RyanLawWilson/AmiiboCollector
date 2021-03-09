@@ -5,14 +5,12 @@ The database that I am using to store the Amiibos is a local database using **SQ
 
 * **[CRUD Pages](#Crud-Pages)**
     * [Index](#Index)
-    * Create
-    * Edit
-    * Details
+    * [Create](#Create)
+    * [Details](#Details)
+    * [Edit](#Edit)
     * Delete
 * **AmiiboApi**
 * **Web Scraping (Beautiful Soup)**
-
-<br />
 
 # <p align="center">Crud Pages</p>
 **<p align="center" name="Index">Index Page</p>**
@@ -20,7 +18,6 @@ The Index page displays all of the Amiibos stored in the database.  The Amiibo i
 
 The View is pretty straight-forward: Get all of the Amiibos saved in the database with `AmiiboFigure.AmiiboFigurines.all()` and send it to the template.  `AmiiboFigure` is the model representing an Amiibo and `AmiiboFigurines` is that model's model manager.
 
-`View`
 ```python
 # Called when Amiibo/urls.py sees  'yourcollection'  at the end of the URL
 # Returns the HTML file amiibo_db.html which shows the contents of the database.
@@ -38,9 +35,47 @@ def amiibo_db(request):
     }
 
     return render(request, 'Amiibo/amiibo_db.html', context)
-
 ```
 
 <p align="center">
     <img src="./readme_resources/Index.gif" width="75%">
+</p>
+
+
+
+
+**<p align="center" name="Create">Create Page</p>**
+On the Create page, the user enters in the Amiibo name, game series, purchase date, purchase amount, and the quantity.  After the form is submitted, the `amiibo_db` method is called which saves the Amiibo if the form is valid.
+
+<p align="center">
+    <img src="./readme_resources/Create.gif" width="75%">
+</p>
+
+
+
+**<p align="center" name="Details">Details Page</p>**
+Clicking on the details button on the Index page will bring you to this page.  Here, you can see the image associated with your Amiibo *(future feature: use the AmiiboAPI to get the image)* and all of the other information associated with that Amiibo.
+
+The view for the details page is pretty simple.  First, we need to pass the primary key up to the amiibo_details method so that we can get the Amiibo object from the database.  Once we have the Amiibo, we can send it to the details page.
+
+```python
+# Called when Amiibo/urls.py sees  'yourcollection/details'  at the end of the URL
+# Gets the AmiiboFigure instance that was clicked and sends it to details page.
+# Returns the HTML file amiibo_db-details.html
+def amiibo_details(request, pk):
+    # I'll determine what amiibo to show details of based on its primary key.
+    pk = int(pk)    # Make sure it's an integer.
+    amiibo = get_object_or_404(AmiiboFigure, pk=pk)
+
+    context = {
+        'amiibo': amiibo
+    }
+
+    # When the primary key is passed to this function, the corresponding amiibo is retrieved and
+    # sent to amiibo_db-details.html.
+    return render(request, 'Amiibo/amiibo_db-details.html', context)
+```
+
+<p align="center">
+    <img src="./readme_resources/Details.gif" width="75%">
 </p>
