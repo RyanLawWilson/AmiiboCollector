@@ -3,7 +3,7 @@ For this project, I created a Django application. This app is themed around Amii
 
 The database that I am using to store the Amiibos is a local database using **SQLite**.  To contact the API, I am using Python's **requests** module.  For web scraping, I am using **Beautiful Soup**.
 
-* **[CRUD Pages](#Crud-Pages)**
+* **[CRUD Pages](#crud-pages)**
     * [Index](#Index)
     * [Create](#Create)
     * [Details](#Details)
@@ -12,7 +12,7 @@ The database that I am using to store the Amiibos is a local database using **SQ
 * **AmiiboApi**
 * **Web Scraping (Beautiful Soup)**
 
-# <p align="center">Crud Pages</p>
+# <p align="center" name="crud-pages">CRUD Pages</p>
 **<p align="center" name="Index">Index Page</p>**
 The Index page displays all of the Amiibos stored in the database.  The Amiibo information is organized in a table.  From the table you can also view more details about an Amiibo by clicking the details button on the left.
 
