@@ -1,9 +1,7 @@
 # **<p align="center">Amiibo Collector</p>**
-For this project, I created a Django application. This app is themed around Amiibos.  You can create, edit, and delete your Amiibos and search for more Amiibos.  I use the AmiiboApi to search for all available Amiibos and display them on the page.  You can also look at general Nintendo news.  This page web scrapes [nintendonews.com](https://nintendonews.com/) for the latest Nintendo articles.
+For this project, I created a Django application. This app is themed around Amiibos.  You can create, edit, and delete your Amiibos and search for more Amiibos.  I use the [AmiiboApi](https://www.amiiboapi.com/) to search for all available Amiibos and display them on the page.  You can also look at general Nintendo news.  This page web scrapes [nintendonews.com](https://nintendonews.com/) for the latest Nintendo articles.
 
 The database that I am using to store the Amiibos is a local database using **SQLite**.  To contact the API, I am using Python's **requests** module.  For web scraping, I am using **Beautiful Soup**.
-
-## Table of Contents
 
 * **[CRUD Pages](#Crud-Pages)**
     * [Index](#Index)
@@ -17,8 +15,10 @@ The database that I am using to store the Amiibos is a local database using **SQ
 <br />
 
 # <p align="center">Crud Pages</p>
-## Index
-The Index page displays all of the Amiibos stored in the database.
+**<p align="center" name="Index">Index Page</p>**
+The Index page displays all of the Amiibos stored in the database.  The Amiibo information is organized in a table.  From the table you can also view more details about an Amiibo by clicking the details button on the left.
+
+The View is pretty straight-forward: Get all of the Amiibos saved in the database with `AmiiboFigure.AmiiboFigurines.all()` and send it to the template.  `AmiiboFigure` is the model representing an Amiibo and `AmiiboFigurines` is that model's model manager.
 
 `View`
 ```python
@@ -42,5 +42,5 @@ def amiibo_db(request):
 ```
 
 <p align="center">
-    <img src="./readme_resources/API.gif" width="720px">
+    <img src="./readme_resources/Index.gif" width="75%">
 </p>
