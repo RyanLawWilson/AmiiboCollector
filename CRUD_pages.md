@@ -1,7 +1,7 @@
 <p align="center">
-  <img src="./readme_resources/jigglypuff.png" width="100" />
+  <img src="./readme_resources/jigglypuff.png" width="100" alt="Jigglypuff Amiibo" />
   <img src="./readme_resources/title_text_crud.png" />
-  <img src="./readme_resources/king_dedede.png" width="100" />
+  <img src="./readme_resources/king_dedede.png" width="100" alt="King Dedede Amiibo" />
 </p>
 
 <div align="center">
