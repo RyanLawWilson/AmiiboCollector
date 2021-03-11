@@ -12,7 +12,7 @@ The database that I am using to store the Amiibos is a local database using **SQ
 
 *Table of Contents*
 * **[CRUD Pages](#crud-pages)**
-* **AmiiboAPI**
+* **[AmiiboAPI](#amiibo-api)**
 * **Web Scraping**
 
 <br>
@@ -43,7 +43,7 @@ First, the **[Create page](./CRUD_pages.md#Create)**.  Here a user can save a ne
 </div>
 
 
-# <p align="center" name="crud-pages">AmiiboAPI</p>
+# <p align="center" name="amiibo-api">AmiiboAPI</p>
 An Amiibo that I used to complement my App was the [AmiiboAPI](asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf).  This API has nearly all of the Amiibos in existence as well as images to accompany them.  I use Python's `requests` module to contact the API and get data about Amiibos.
 
 <p align="center">
