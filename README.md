@@ -8,7 +8,9 @@ The database that I am using to store the Amiibos is a local database using **SQ
 * **Web Scraping (Beautiful Soup)**
 
 # <p align="center" name="crud-pages">CRUD Pages</p>
-Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laboriosam provident, sit sunt ratione voluptatibus ex voluptatem magnam magni. Neque expedita fugiat unde quo. Fugit quas architecto vitae, temporibus impedit est!
+I created the CRUD functionality for my application (creating, updating, and deleting objects).  I created a model called AmmiboFigure to represent an individual Amiibo and I used a SQLite database to store objects.  There are 4 templates (pages) that I made for the CRUD functionality.
+
+First, the **[Create](./CRUD_pages.md#Create)** page.  Here a user can save a new Amiibo to the database by filling out and submitting the form.  Next, the **Index** page.  This page shows the user the contents of the database (what AmiiboFigures are being stored).  From the Index page, the user can click on the details button for any of the Amiibos and see more information about that Amiibo on the **Details** page.  From the Details page, the user can either edit the Amiibo's properties from the **Edit** page or **Delete** the Amiibo.  There isn't a page for deleting an Amiibo.  Instead, I opted for a confirmation modal.
 
 <div align="center" name="crud-pages">
 
