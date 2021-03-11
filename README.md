@@ -107,10 +107,12 @@ if (not (date is None or date == '')) and re.match('(\d{4})-(\d{2})-(\d{2})', da
 Once the Amiibos have been filtered, the Amiibos that didn't get deleted from the `amiiboData` list get sent to the template to be displayed on the page.
 
 # <p align="center" name="web-scraping">Web Scraping</p>
+The website that I am scraping from is [nintendonews.com](https://nintendonews.com/).  I am using the requests module and Beautiful Soup to scrape the page.  The user can enter text they want to search for, a particular timeframe, and how many articles that should be displayed.  The URL for the source article is found when scraping the nintendonews site and is displayed on the page so that users can go directly to the article without going through nintendonews.
 
 
-
-
+<p align="center">
+    <img src="./readme_resources/BS_Scrape.gif" width="75%">
+</p>
 
 
 
