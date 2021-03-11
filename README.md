@@ -8,9 +8,24 @@ For this project, I created a Django application. This app is themed around Amii
 
 The database that I am using to store the Amiibos is a local database using **SQLite**.  To contact the API, I am using Python's **requests** module.  For web scraping, I am using **Beautiful Soup**.
 
+<br>
+
+*Table of Contents*
 * **[CRUD Pages](#crud-pages)**
 * **AmiiboApi**
-* **Web Scraping (Beautiful Soup)**
+* **Web Scraping**
+
+
+<div align="center">
+
+
+| **<div align="center">Technologies Used</div>** |
+| --- |
+| **Python • Django • API • JSON • SQL • HTML • CSS • JavaScript • Azure DevOps • Git • PyCharm** |
+
+</div>
+
+<br>
 
 # <p align="center" name="crud-pages">CRUD Pages</p>
 I created the CRUD functionality for my application (creating, updating, and deleting objects).  I created a model called AmmiboFigure to represent an individual Amiibo and I used a SQLite database to store objects.  There are 4 templates (pages) that I made for the CRUD functionality.
