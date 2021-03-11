@@ -13,7 +13,7 @@
 * **CRUD Pages**<br>
 &nbsp;&nbsp;&nbsp;&nbsp;**[Index](#Index)** • **[Create](#Create)** • **[Details](#Details)** • **[Edit](#Edit)** • **[Delete](#Delete)**
 * **[AmiiboAPI](./README.md#amiibo-api)**
-* **[Web Scraping]()**
+* **[Web Scraping](./README.md#web-scraping)**
 
 
 

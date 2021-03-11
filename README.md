@@ -13,7 +13,7 @@ The database that I am using to store the Amiibos is a local database using **SQ
 *Table of Contents*
 * **[CRUD Pages](#crud-pages)**
 * **[AmiiboAPI](#amiibo-api)**
-* **Web Scraping**
+* **[Web Scraping](#web-scraping)**
 
 <br>
 
@@ -105,3 +105,5 @@ if (not (date is None or date == '')) and re.match('(\d{4})-(\d{2})-(\d{2})', da
 ```
 
 Once the Amiibos have been filtered, the Amiibos that didn't get deleted from the `amiiboData` list get sent to the template to be displayed on the page.
+
+# <p align="center" name="web-scraping">Web Scraping</p>
