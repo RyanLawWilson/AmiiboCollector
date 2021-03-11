@@ -44,7 +44,7 @@ First, the **[Create page](./CRUD_pages.md#Create)**.  Here a user can save a ne
 
 
 # <p align="center" name="amiibo-api">AmiiboAPI</p>
-An Amiibo that I used to complement my App was the [AmiiboAPI](asdfasdfasdfasdfasdfasdfasdfasdfasdfasdfasdf).  This API has nearly all of the Amiibos in existence as well as images to accompany them.  I use Python's `requests` module to contact the API and get data about Amiibos.
+An API that I used to complement my App was the [AmiiboAPI](https://www.amiiboapi.com/).  This API has nearly all of the Amiibos in existence as well as images to accompany them.  I use Python's `requests` module to contact the API and get data about Amiibos.
 
 <p align="center">
     <img src="./readme_resources/API.gif" width="75%">
