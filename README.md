@@ -15,6 +15,7 @@ The database that I am using to store the Amiibos is a local database using **SQ
 * **AmiiboApi**
 * **Web Scraping**
 
+<br>
 
 <div align="center">
 
@@ -24,8 +25,6 @@ The database that I am using to store the Amiibos is a local database using **SQ
 | **Python • Django • API • JSON • SQL • HTML • CSS • JavaScript • Azure DevOps • Git • PyCharm** |
 
 </div>
-
-<br>
 
 # <p align="center" name="crud-pages">CRUD Pages</p>
 I created the CRUD functionality for my application (creating, updating, and deleting objects).  I created a model called AmmiboFigure to represent an individual Amiibo and I used a SQLite database to store objects.  There are 4 templates (pages) that I made for the CRUD functionality.
