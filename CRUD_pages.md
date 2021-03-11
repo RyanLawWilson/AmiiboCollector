@@ -2,13 +2,13 @@
 
 <div align="center">
 
-:arrow_backward: Back to main [README file](./README.md).
+[:arrow_backward:](./README.md) Back to main [README file](./README.md).
 </div>
 
-* CRUD Pages<br>
-&nbsp;&nbsp;&nbsp;&nbsp;[Index](#Index) • [Create](#Create) • [Details](#Details) • [Edit](#Edit) • [Delete](#Delete)
-* **AmiiboApi**
-* **Web Scraping (Beautiful Soup)**
+* **CRUD Pages**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**[Index](#Index)** • **[Create](#Create)** • **[Details](#Details)** • **[Edit](#Edit)** • **[Delete](#Delete)**
+* **[AmiiboAPI]()**
+* **[Web Scraping]()**
 
 
 
