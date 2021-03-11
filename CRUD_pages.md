@@ -1,5 +1,10 @@
 # **<p align="center">Amiibo Collector<br><sup>CRUD pages</sup></p>**
 
+<div align="center">
+
+:arrow_backward: Back to main [README file](./README.md).
+</div>
+
 * [Index](#Index)
 * [Create](#Create)
 * [Details](#Details)
