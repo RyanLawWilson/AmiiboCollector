@@ -1,11 +1,8 @@
-
-<div align="center">
-
-| <img src="./readme_resources/jigglypuff.png" width="100px" /> | **<h1 align="center">Amiibo Collector</h1>** | <img src="./readme_resources/king_dedede.png" width="100px" /> |
-| :---         |     :---:      |          ---: |
-
-</div>
-<br>
+<p align="center">
+  <img src="./readme_resources/jigglypuff.png" width="100" />
+  <img src="./readme_resources/title_text.png" />
+  <img src="./readme_resources/king_dedede.png" width="100" />
+</p>
 
 For this project, I created a Django application. This app is themed around Amiibos.  You can create, edit, and delete your Amiibos and search for more Amiibos.  I use the [AmiiboApi](https://www.amiiboapi.com/) to search for all available Amiibos and display them on the page.  You can also look at general Nintendo news.  This page web scrapes [nintendonews.com](https://nintendonews.com/) for the latest Nintendo articles.
 
@@ -23,5 +20,13 @@ First, the **[Create page](./CRUD_pages.md#Create)**.  Here a user can save a ne
 <div align="center" name="crud-pages">
 
 **You can find more detailed information about what I did for the CRUD pages [here](./CRUD_pages.md)**
+
+</div>
+
+
+<div align="center">
+
+| <img src="./readme_resources/jigglypuff.png" width="100px" /> | **<h1 align="center">Amiibo Collector</h1>** | <img src="./readme_resources/king_dedede.png" width="100px" /> |
+| :---         |     :---:      |          ---: |
 
 </div>
