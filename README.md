@@ -1,11 +1,10 @@
 
 <div align="center">
 
-| <img src="./readme_resources/jigglypuff.png" width="100px" /> | <hr />**<h1 align="center">Amiibo Collector</h1>** | <img src="./readme_resources/king_dedede.png" width="100px" /> |
+| <img src="./readme_resources/jigglypuff.png" width="100px" /> | **<h1 align="center">Amiibo Collector</h1>** | <img src="./readme_resources/king_dedede.png" width="100px" /> |
 | :---         |     :---:      |          ---: |
 
 </div>
-
 <br>
 
 For this project, I created a Django application. This app is themed around Amiibos.  You can create, edit, and delete your Amiibos and search for more Amiibos.  I use the [AmiiboApi](https://www.amiiboapi.com/) to search for all available Amiibos and display them on the page.  You can also look at general Nintendo news.  This page web scrapes [nintendonews.com](https://nintendonews.com/) for the latest Nintendo articles.
