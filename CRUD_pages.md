@@ -16,8 +16,6 @@
 * **[Web Scraping](./README.md#web-scraping)**
 
 
-
-
 ## **<p align="center" name="Index">Index Page</p>**
 The Index page displays all of the Amiibos stored in the database.  The Amiibo information is organized in a table.  From the table you can also view more details about an Amiibo by clicking the details button on the left.
 
@@ -144,8 +142,11 @@ def amiibo_delete(request, pk):
     return render(request, 'Amiibo/amiibo_db.html', context)
 ```
 
-
-
+*Table of Contents*
+* **CRUD Pages**<br>
+&nbsp;&nbsp;&nbsp;&nbsp;**[Index](#Index)** • **[Create](#Create)** • **[Details](#Details)** • **[Edit](#Edit)** • **[Delete](#Delete)**
+* **[AmiiboAPI](./README.md#amiibo-api)**
+* **[Web Scraping](./README.md#web-scraping)**
 
 <div align="center">
 
