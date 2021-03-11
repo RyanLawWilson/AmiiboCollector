@@ -5,11 +5,10 @@
 :arrow_backward: Back to main [README file](./README.md).
 </div>
 
-* [Index](#Index)
-* [Create](#Create)
-* [Details](#Details)
-* [Edit](#Edit)
-* [Delete](#Delete)
+* CRUD Pages<br>
+&nbsp;&nbsp;&nbsp;&nbsp;[Index](#Index) • [Create](#Create) • [Details](#Details) • [Edit](#Edit) • [Delete](#Delete)
+* **AmiiboApi**
+* **Web Scraping (Beautiful Soup)**
 
 
 
