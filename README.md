@@ -49,3 +49,59 @@ An Amiibo that I used to complement my App was the [AmiiboAPI](asdfasdfasdfasdfa
 <p align="center">
     <img src="./readme_resources/API.gif" width="75%">
 </p>
+
+The code for getting information from the API is in my amiibo_api View method.  The first bit of code gets the filter information from the form so that we can query information from the API based on user input.  `filterDict` is a dictionary that contains the form information for the typed in character and game series.
+
+```Python
+str_api = "https://www.amiiboapi.com/api/amiibo/?"
+
+form = APIFilterForm(request.POST or None)
+if form.is_valid():
+    filterDict.update({'character': request.POST.get('characterName').strip()})
+    filterDict.update({'gameseries': request.POST.get('gameSeries').strip()})
+    dateChoice = request.POST.get('dateChoices')
+    date = request.POST.get('date')
+```
+
+Next, I add queries to the query string depending on what fields the user filled out.
+
+```Python
+# Using params attribute is very inconsistent so I'm doing the searches manually.
+# pt("Values before if statements:\n>>> Character: {}\n>>> Game Series: {}".format(character, gameSeries))
+# Determines which fields where blank and modifies the query accordingly.
+for key, val in filterDict.items():
+    # pt("Key: {} | Value: {}".format(key, val))
+    # Change the filter only if the user typed something into the fields.
+    if val is not None and not val == '':
+        str_api += "{}={}&".format(key, val)
+```
+
+Once the string for the API is configured, I can contact the API to get Amiibos that match the query.  If the query didn't change, I make sure not to query the API because it will give me **ALL** of the Amiibos (including their images).  I use the requests module to contact the API and pass in my query string.
+
+```Python
+# Don't connect if there is no applied filter (there would be WAY too many images)
+if str_api == "https://www.amiiboapi.com/api/amiibo/?":
+    statusCode = 404
+    response = None
+else:
+    response = requests.get(str_api)
+    statusCode = response.status_code  # Gives you information on the connection based on the number returned.
+```
+
+There isn't an endpoint for the API that allows you to only select Amiibos Before, After, or Between certain times.  So I do that sorting myself after I get the JSON from the API.  After I get the JSON response from the API, I assign it to a variable called `amiiboData`.  If an Amiibos release date is not within the time frame specified in the form by the user, it is removed from `amiiboData`.
+
+```Python
+# Filtering by date
+if (not (date is None or date == '')) and re.match('(\d{4})-(\d{2})-(\d{2})', date):
+    pt("Looking for Amiibos {} {}".format(dateChoice, date))
+    if dateChoice == 'Before':
+        # If not reversed, items could get skipped.
+        # Check for dates NOT before the release date and remove them.
+        for amiibo in reversed(amiiboData):
+            amiiboDate = amiibo['release']['na']
+            if amiiboDate >= date:
+                # pt(">>> Removed {} with a date of {}".format(amiibo['character'], amiiboDate))
+                amiiboData.remove(amiibo)
+```
+
+Once the Amiibos have been filtered, the Amiibos that didn't get deleted from the `amiiboData` list get sent to the template to be displayed on the page.
