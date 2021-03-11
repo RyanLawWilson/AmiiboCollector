@@ -148,8 +148,6 @@ def filterByTime_Frame(timePassed, timeUnit):
 
 If there are any articles that fall in that timeframe (`time_frameFilterPassed` is **true**), I can move on to the search feature.  If there weren't any articles found in the timeframe (`time_frameFilterPassed` is **false**), I don't bother searching and just display a message on the screen saying no articles were found.
 
-In the code below
-
 ```Python
 # If the previous test failed, don't search for anything
 if time_frameFilterPassed:
@@ -167,10 +165,8 @@ else:
     searchFilterPassed = False
 ```
 
+If both filters pass, then I gather the information I want to display to the page for each article pass the list of articles to the template page.
 
-<br>
-<br>
-<br>
 <br>
 
 *Table of Contents*
