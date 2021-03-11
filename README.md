@@ -114,8 +114,58 @@ The website that I am scraping from is [nintendonews.com](https://nintendonews.c
     <img src="./readme_resources/BS_Scrape.gif" width="75%">
 </p>
 
+I first initialize my Beautiful Soup object and identify the elements on that page that I want to scrape.  My App is built to search threw more that just the first page of the website if needed which is the reason for the `startingPage` variable.
+```Python
+page = requests.get(website + str(startingPage)) # Connects to the website and creates the beautiful soup.
+soup = BeautifulSoup(page.content, 'html.parser', from_encoding="utf-8") # Gets the HTML from the page
 
+# contentDiv is a ResultSet - it's a list of div tags.  contentDiv: [div, div, div, ... , div]
+contentDiv = soup.find_all("div", class_="item has-target")
+```
 
+As I search through the articles on the website, I determine if they are in the timeframe that the user specified.  If they are not, the articles are not added to the list and are not sent down to the page.  The `time_frame` variable refers to the timeframe option that the user selected.  Options are "Today", "Yesterday", "A few days ago", and "Last Week".  The `systemTime` variable is just the current time.
+
+```Python
+# Define the time_frame filter - Determines if an articles is going to be added based on age.
+def filterByTime_Frame(timePassed, timeUnit):
+    # Get articles based on time_frame (Today, Yesterday, Last Week)
+    if time_frame == "Today":
+        # If the age of the article is in minutes, compare against system time to see if it came out yesterday.
+        if re.match("mins?", timeUnit):
+            # If the age of the article, in minutes, is longer than system time, it's yesterday
+            return True if int(timePassed) * 100 < systemTime else False
+        # If the age of the article is in hours, compare against system time to see if it came out yesterday.
+        elif re.match("hours?", timeUnit):
+            # If the age of the article, in hours, is longer than system time, it's yesterday
+            return True if int(timePassed) * 10000 < systemTime else False
+        # If the age of the article is in days, only pick the articles that are 1 day old.
+        elif re.match("days?", timeUnit):
+            return False
+        # If the age of the article is represented by a date (article more than 7 days old), ignore it.
+        else:
+            return False
+```
+
+If there are any articles that fall in that timeframe (`time_frameFilterPassed` is **true**), I can move on to the search feature.  If there weren't any articles found in the timeframe (`time_frameFilterPassed` is **false**), I don't bother searching and just display a message on the screen saying no articles were found.
+
+In the code below
+
+```Python
+# If the previous test failed, don't search for anything
+if time_frameFilterPassed:
+    # Only retrieve the summary if we passed the time test
+    summary = article.find("p", class_="summary").get_text()
+    # If searchFilter is off, filter passed, otherwise, check the users search and pass the filter accordingly.
+    if searchFilterON:
+        if re.search(search, summary, re.IGNORECASE) is not None:
+            searchFilterPassed = True
+        else:
+            searchFilterPassed = False
+    else:
+        searchFilterPassed = True
+else:
+    searchFilterPassed = False
+```
 
 
 <br>
