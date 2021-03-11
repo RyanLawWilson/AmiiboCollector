@@ -41,7 +41,7 @@ def amiibo_db(request):
 
 
 **<p align="center" name="Create">Create Page</p>**
-On the Create page, the user enters in the Amiibo name, game series, purchase date, purchase amount, and the quantity.  After the form is submitted, the `amiibo_db` method is called which saves the Amiibo if the form is valid.
+On the Create page, the user enters in the Amiibo name, game series, purchase date, purchase amount, and the quantity.  After the form is submitted, the `amiibo_db` method is called which saves the Amiibo if the form is valid.  Take a look at the code snippet for the [Index Page](#Index) to see the code for saving the Amiibo for the database.
 
 <p align="center">
     <img src="./readme_resources/Create.gif" width="75%">
